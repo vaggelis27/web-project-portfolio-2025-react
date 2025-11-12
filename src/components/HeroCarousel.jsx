@@ -12,7 +12,7 @@ function HeroCarousel() {
             style={{
               height: "100vh",
               objectFit: "cover",
-              objectPosition: "50% 20%",
+              objectPosition: "50% 50%",
             }}
             alt="Ανθή"
           />
