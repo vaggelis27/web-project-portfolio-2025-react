@@ -1,0 +1,126 @@
+/* ==== START NAVBAR ==== */
+
+/* background Color*/
+#navbar {
+  background: linear-gradient(160deg, #3232a8, #1f4f80 55%, #676f86);
+}
+
+#navbar .nav-link {
+  color: #ffffff !important;
+  text-transform: uppercase;
+}
+
+p.lowercase {
+  text-transform: lowercase;
+}
+
+p.capitalize {
+  text-transform: capitalize;
+}
+
+/* Logo */
+.navbar-logo {
+  display: inline-block;
+  max-width: 120px;
+  height: auto;
+  padding: 0;
+}
+
+/* Navbar Links */
+.navbar-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 22px;
+}
+
+/* Logo hover effect */
+.navbar-logo:hover {
+  opacity: 0.85;
+}
+/* Toggler */
+.custom-toggler .navbar-toggler-icon {
+  background-image: none;
+  width: 24px;
+  height: 2px;
+  background-color: #000;
+  box-shadow: 0 6px 0 #000, 0 12px 0 #000;
+}
+
+/* Toggler always white (top and scrolled) */
+#navbar:not(.navbar-scrolled) .custom-toggler .navbar-toggler-icon {
+  background-color: #ffffff;
+  box-shadow: 0 6px 0 #ffffff, 0 12px 0 #ffffff;
+}
+
+
+#navbar:not(.navbar-scrolled) .nav-link {
+  color: #ffffff !important;
+}
+
+/* Explosive hover effect for nav links */
+.nav-link:hover {
+  transform: scale(1);
+}
+
+.nav-link:hover::before,
+.nav-link:hover::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 200%;
+  height: 200%;
+  border-radius: 50%;
+  transform: translate(-20%, -20%) scale(0);
+  animation: burst 0.4s ease-out forwards;
+}
+.nav-link:hover::before {
+  background: radial-gradient(circle, rgba(255, 196, 0, 0.808), transparent);
+  z-index: -1;
+}
+.nav-link:hover::after {
+  background: radial-gradient(circle, rgba(255, 174, 0, 0.74), transparent);
+  z-index: -2;
+}
+
+@keyframes burst {
+  0% {
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 1;
+  }
+  70% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1.5);
+    opacity: 0;
+  }
+}
+
+/* Remove underline hover for logo menu item */
+.navbar-nav .nav-link.p-0::after {
+  display: none;
+}
+/* No effect on the image-only logo item */
+.navbar-nav .nav-link.p-0:hover {
+  transform: none;
+}
+.navbar-nav .nav-link.p-0:hover::before,
+.navbar-nav .nav-link.p-0:hover::after {
+  content: none;
+}
+
+/* Fine-tune toggler and container */
+#navbar .custom-toggler .navbar-toggler-icon {
+  background-color: #eeeeee;
+  box-shadow: 0 6px 0 #ebebeb, 0 12px 0 #eeeeee;
+}
+#navbar .navbar-toggler:focus {
+  box-shadow: none;
+}
+.navbar .container-fluid {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
