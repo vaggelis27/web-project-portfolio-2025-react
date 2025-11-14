@@ -6,21 +6,17 @@ import "../components/Footer.css";
 import "../index.css";
 import HeroCarousel from "../components/HeroCarousel.jsx";
 import "../components/HeroCarousel.css";
+import About from "../components/About.jsx";
 
 function App() {
   return (
     <>
       <Navbar />
       <HeroCarousel />
-      <div className="container mt-5 pt-5 text-white text-center"> 
-      <h1>Welcome to VN Photography</h1>
-      </div>
 
-      <p>This is the React version of your portfolio.</p>
+      <About />
 
-      <div className="fixed-bottom">
-        <Footer />
-      </div>
+      <Footer />
     </>
   );
 }

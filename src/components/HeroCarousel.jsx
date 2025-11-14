@@ -10,9 +10,9 @@ function HeroCarousel() {
             src="/src/assets/background-images/Ανθή.png"
             className="d-block w-100 hero-img"
             style={{
-              height: "100vh",
+              height: "80vh",
               objectFit: "cover",
-              objectPosition: "50% 50%",
+              objectPosition: "30% 20%",
             }}
             alt="Ανθή"
           />

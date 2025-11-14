@@ -1,0 +1,5 @@
+.hero-carousel {
+  display: block;
+  margin-top: 50px;
+  object-fit: cover;
+}
