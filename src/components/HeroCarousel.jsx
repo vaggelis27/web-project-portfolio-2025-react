@@ -7,92 +7,92 @@ function HeroCarousel() {
       <Carousel fade interval={4000}>
         <Carousel.Item>
           <img
-            src="/src/assets/background-images/Ανθή.png"
+            src="/src/assets/background-images/1.jpg"
             className="d-block w-100 hero-img"
             style={{
               height: "80vh",
               objectFit: "cover",
               objectPosition: "30% 20%",
             }}
-            alt="Ανθή"
+            alt="1"
           />
         </Carousel.Item>
 
         <Carousel.Item>
           <img
-            src="/src/assets/background-images/IMG_8241.jpg"
+            src="/src/assets/background-images/2.jpg"
             className="d-block w-100 hero-img"
             style={{
               height: "100vh",
               objectFit: "cover",
               objectPosition: "50% 40%",
             }}
-            alt="IMG_8241"
+            alt="2"
           />
         </Carousel.Item>
 
         <Carousel.Item>
           <img
-            src="/src/assets/background-images/IMG_6982.jpg"
+            src="/src/assets/background-images/3.jpg"
             className="d-block w-100 hero-img"
             style={{
               height: "100vh",
               objectFit: "cover",
               objectPosition: "50% 20%",
             }}
-            alt="IMG_6982"
+            alt="3"
           />
         </Carousel.Item>
 
         <Carousel.Item>
           <img
-            src="/src/assets/background-images/galaxy.jpg"
+            src="/src/assets/background-images/4.jpg"
             className="d-block w-100 hero-img"
             style={{
               height: "100vh",
               objectFit: "cover",
               objectPosition: "50% 40%",
             }}
-            alt="galaxy"
+            alt="4"
           />
         </Carousel.Item>
 
         <Carousel.Item>
           <img
-            src="/src/assets/background-images/20200827200434_IMG_1054.JPG"
+            src="/src/assets/background-images/5.jpg"
             className="d-block w-100 hero-img"
             style={{
               height: "100vh",
               objectFit: "cover",
               objectPosition: "50% 20%",
             }}
-            alt="20200827200434_IMG_1054"
+            alt="5"
           />
         </Carousel.Item>
 
         <Carousel.Item>
           <img
-            src="/src/assets/background-images/_MG_4451.jpg"
+            src="/src/assets/background-images/6.jpg"
+            className="d-block w-100 hero-img"
+            style={{
+              height: "100vh",
+              objectFit: "cover",
+              objectPosition: "50% 60%",
+            }}
+            alt="6"
+          />
+        </Carousel.Item>
+
+        <Carousel.Item>
+          <img
+            src="/src/assets/background-images/7.jpg"
             className="d-block w-100 hero-img"
             style={{
               height: "100vh",
               objectFit: "cover",
               objectPosition: "50% 20%",
             }}
-            alt="_MG_4451"
-          />
-        </Carousel.Item>
-
-        <Carousel.Item>
-          <img
-            src="/src/assets/background-images/IMG_6804.jpg"
-            className="d-block w-100 hero-img"
-            style={{
-              height: "100vh",
-              objectFit: "cover",
-              objectPosition: "50% 20%",
-            }}
-            alt="IMG_6804"
+            alt="7"
           />
         </Carousel.Item>
       </Carousel>

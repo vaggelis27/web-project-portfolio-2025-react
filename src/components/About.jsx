@@ -1,4 +1,4 @@
-import logo from '../assets/logo vangelis.jpeg';
+import logo from '../assets/logo-vangelis.jpeg';
 import './About.css';
 function About() {
   return (
