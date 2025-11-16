@@ -8,12 +8,13 @@ import HeroCarousel from "../components/HeroCarousel.jsx";
 import "../components/HeroCarousel.css";
 import About from "../components/About.jsx";
 import Contact from "../components/Contact.jsx";
-import "../components/Contact.jsx";
+import Gallery from "../components/Gallery.jsx";
 function App() {
   return (
     <>
       <Navbar />
       <HeroCarousel />
+      <Gallery />
       <About />
       <Contact />
       <Footer />

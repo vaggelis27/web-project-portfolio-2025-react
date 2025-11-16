@@ -2,7 +2,7 @@ import logo from '../assets/logo-vangelis.jpeg';
 import './About.css';
 function About() {
   return (
-    <section id="about" className="py-5 text-dark about-section">
+    <section id="about" className="py-5 my-5 text-dark about-section">
       <div className="container">
         <div className="row justify-content-center">
           <div className="col-lg-8 text-center">
