@@ -1,10 +1,10 @@
 /* background Color*/
+
 .navbar .container-fluid {
   display: block;
   align-items: center;
   justify-content: space-between;
   padding: 18px;
-  font-family: "Open Sans";
   text-transform: uppercase;
   color: rgba(0, 35, 122, 0.5);
   font-size: 20px;
@@ -16,6 +16,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  font-size: 1em;
+  text-decoration: none;
+  font-weight: 500;
   gap: 35px;
 }
 
@@ -46,7 +49,7 @@ p.capitalize {
 
 /* Logo hover effect */
 .navbar-logo:hover {
-  opacity: 0.85;
+  opacity: 100;
 }
 /* Toggler */
 .custom-toggler .navbar-toggler-icon {
