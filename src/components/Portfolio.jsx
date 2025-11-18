@@ -1,30 +1,51 @@
+import Button from "react-bootstrap/Button";
+import Card from "react-bootstrap/Card";
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 
-function CardExample() {
+function BasicExample() {
   return (
-    <div className="section__container portfolio__container">
-      <h2 className="section__header">~ PORTFOLIO ~</h2>
-      <div className="portfolio__grid">
-        <div className="portfolio__card">
-          <img src="assets/portfolio-1.jpg" alt="portfolio" />
-          <div className="portfolio__content">
-            <button className="btn">VIEW PPORTFOLIO</button>
-          </div>
-        </div>
-        <div className="portfolio__card">
-          <img src="assets/portfolio-2.jpg" alt="portfolio" />
-          <div className="portfolio__content">
-            <button className="btn">VIEW PPORTFOLIO</button>
-          </div>
-        </div>
-        <div className="portfolio__card">
-          <img src="assets/portfolio-3.jpg" alt="portfolio" />
-          <div className="portfolio__content">
-            <button className="btn">VIEW PPORTFOLIO</button>
-          </div>
-        </div>
-      </div>
-    </div>
+    <Container className="py-5">
+      <Row className="g-4">
+        <Col md={4}>
+          <Card style={{ width: "20rem" }}>
+            <Card.Img variant="top" src="../assets/background-images/1.jpg" />
+            <Card.Body>
+              <Card.Title>Nature</Card.Title>
+              <Button variant="primary">N</Button>
+            </Card.Body>
+          </Card>
+        </Col>A
+
+        <Col md={4}>
+          <Card style={{ width: "20rem" }}>
+            <Card.Img variant="top" src="holder.js/100px180" />
+            <Card.Body>
+              <Card.Title>Card Title</Card.Title>
+              <Card.Text>
+                Some quick example text to build on the card title.
+              </Card.Text>
+              <Button variant="primary">Go somewhere</Button>
+            </Card.Body>
+          </Card>
+        </Col>
+
+        <Col md={4}>
+          <Card style={{ width: "20rem" }}>
+            <Card.Img variant="top" src="holder.js/100px180" />
+            <Card.Body>
+              <Card.Title>Card Title</Card.Title>
+              <Card.Text>
+                Some quick example text to build on the card title.
+              </Card.Text>
+              <Button variant="primary">Go somewhere</Button>
+            </Card.Body>
+          </Card>
+        </Col>
+      </Row>
+    </Container>
   );
 }
 
-export default CardExample;
+export default BasicExample;
