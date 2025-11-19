@@ -1,4 +1,4 @@
-import "../components/Contact.css";
+import "./Contact.css";
 function Contact() {
   const onSubmit = async (event) => {
     event.preventDefault();

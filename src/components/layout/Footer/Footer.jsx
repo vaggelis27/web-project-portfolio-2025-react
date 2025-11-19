@@ -1,5 +1,5 @@
 import React from "react";
-import "../components/Footer.css";
+import "./Footer.css";
 
 export default function Footer() {
   return (

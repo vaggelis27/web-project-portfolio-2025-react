@@ -1,5 +1,5 @@
-import logo from '../assets/logo-vangelis.jpeg';
-import './About.css';
+import logo from "../../../assets/logo-vangelis.jpeg";
+import "./About.css";
 function About() {
   return (
     <section id="about" className="py-5 my-5 text-dark about-section">
