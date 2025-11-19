@@ -1,4 +1,4 @@
-import { useRef, useEffect } from "react"; // <--- ΔΙΟΡΘΩΣΗ: Προστέθηκε η εισαγωγή των Hooks
+import { useRef, useEffect } from "react";
 import "../components/Navbar.css";
 import logo from "../assets/new logo 2025 2.png";
 
@@ -19,7 +19,7 @@ export default function Navbar() {
     resizeCanvas();
     window.addEventListener("resize", resizeCanvas);
 
-    // ======== FIRE ANIMATION CLASS (UNCHANGED) =========
+    // ===== FIRE ANIMATION CLASS  ======
     class FireAnimation {
       constructor() {
         this.particles = [];
