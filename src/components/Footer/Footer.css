@@ -1,0 +1,75 @@
+.footer-social-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.9);
+  transition: transform 0.3s ease, background 0.3s ease, color 0.3s ease;
+}
+.footer-social-link .bi {
+  font-size: 1.5rem;
+}
+.footer-social-link:hover {
+  transform: translateY(-3px);
+  background: rgba(255, 255, 255, 0.2);
+}
+.footer-social-link--instagram {
+  color: #e4405f;
+}
+.footer-social-link--github {
+  color: #ffffff;
+}
+.footer-social-link--facebook {
+  color: #1877f2;
+}
+.footer-social-link--instagram:hover {
+  color: #ff6f84;
+}
+.footer-social-link--github:hover {
+  color: #d0d0d0;
+}
+.footer-social-link--facebook:hover {
+  color: #4c96ff;
+}
+
+/* Footer icons in anchors */
+footer a i {
+  transition: color 0.3s, transform 0.3s;
+}
+
+footer {
+  background: linear-gradient(160deg, #161616, #000000 55%, #bbbbbb);
+  color: rgba(255, 255, 255, 0.92);
+  padding: 3rem 0 2rem;
+}
+
+footer .footer-divider {
+  border-color: rgba(255, 255, 255, 0.12);
+  opacity: 1;
+  margin: 1.5rem 0;
+}
+
+footer a {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+footer a:hover,
+footer a:focus {
+  color: #ffffff;
+}
+
+footer .footer-heading {
+  color: #ffffff;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+@media (max-width: 767.98px) {
+  footer {
+    text-align: center;
+    padding: 2.5rem 0 1.5rem;
+  }
+}
