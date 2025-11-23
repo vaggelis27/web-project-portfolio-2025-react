@@ -1,13 +1,13 @@
 import Carousel from "react-bootstrap/Carousel";
 import "./HeroCarousel.css";
-import heroImage1 from "../../../assets/background-images/IMG_6804.jpg";
-import heroImage2 from "../../../assets/background-images/IMG_6982.jpg";
-import heroImage3 from "../../../assets/background-images/IMG_8241.jpg";
+import heroImage1 from "../assets/background-images/8.png";
+import heroImage2 from "../assets/background-images/IMG_6982.jpg";
+import heroImage3 from "../assets/background-images/IMG_8241.jpg";
 
 function HeroCarousel() {
   return (
     <section className="hero-carousel position-relative">
-      {/* Overlay text πάνω από τις εικόνες */}
+      {/* Overlay text */}
       <div className="hero-overlay text-white text-center">
         <h1 className="display-5 fw-bold">Centered hero</h1>
         <p className="lead mb-4">

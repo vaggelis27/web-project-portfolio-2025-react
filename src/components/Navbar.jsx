@@ -1,6 +1,6 @@
 import { useRef, useEffect } from "react";
 import "./Navbar.css";
-import logo from "../../../assets/new logo 2025 2.png";
+import logo from "../assets/new logo 2025 2.png";
 
 export default function Navbar() {
   const canvasRef = useRef(null);
