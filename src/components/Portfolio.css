@@ -5,3 +5,8 @@
   border-radius: 15px;
   display: block;
 }
+
+.gallery-img:hover {
+  transform: scale(1.05);
+  transition: transform 0.3s ease;
+}

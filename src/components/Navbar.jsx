@@ -242,7 +242,7 @@ export default function Navbar() {
               </a>
             </li>
             <li className="nav-item">
-              <a href="#gallery" className="nav-link">
+              <a href="#Gallery" className="nav-link">
                 <i className="bi bi-collection me-1"></i> Gallery
               </a>
             </li>

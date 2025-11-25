@@ -10,25 +10,26 @@ import "./Portfolio.css";
 
 export default function Gallery() {
   return (
-    <Container className="py-5 text-center">
-      <Row className="g-4">
+    <section id="Gallery" className="py-5 my-5 text-dark">
+      <Container className="py-5 text-center">
+        <h1 className="fw-bold mb-4">Gallery</h1>
+        <Row className="g-4">
+          <Col md={4}>
+            <img src={portfolioImage1} className="gallery-img" />
+            <button className="btn btn-primary mt-3">Nature</button>
+          </Col>
 
-        <Col md={4}>
-          <img src={portfolioImage1} className="gallery-img" />
-          <button className="btn btn-primary mt-3">Nature</button>
-        </Col>
+          <Col md={4}>
+            <img src={portfolioImage2} className="gallery-img" />
+            <button className="btn btn-primary mt-3">Portrait</button>
+          </Col>
 
-        <Col md={4}>
-          <img src={portfolioImage2} className="gallery-img" />
-          <button className="btn btn-primary mt-3">Portrait</button>
-        </Col>
-
-        <Col md={4}>
-          <img src={portfolioImage3} className="gallery-img" />
-          <button className="btn btn-primary mt-3">Night</button>
-        </Col>
-
-      </Row>
-    </Container>
+          <Col md={4}>
+            <img src={portfolioImage3} className="gallery-img" />
+            <button className="btn btn-primary mt-3">Night</button>
+          </Col>
+        </Row>
+      </Container>
+    </section>
   );
 }

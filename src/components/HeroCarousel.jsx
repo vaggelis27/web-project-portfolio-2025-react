@@ -7,7 +7,6 @@ import heroImage3 from "../assets/background-images/IMG_8241.jpg";
 function HeroCarousel() {
   return (
     <section className="hero-carousel position-relative">
-      {/* Overlay text */}
       <div className="hero-overlay text-white text-center">
         <h1 className="display-5 fw-bold">Centered hero</h1>
         <p className="lead mb-4">
@@ -16,7 +15,6 @@ function HeroCarousel() {
         </p>
       </div>
 
-      {/* Full-width Carousel */}
       <Carousel fade interval={4000}>
         <Carousel.Item>
           <img

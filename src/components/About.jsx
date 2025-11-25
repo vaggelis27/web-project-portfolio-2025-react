@@ -1,4 +1,3 @@
-// cspell:ignore vangelis
 import logo from "../assets/logo-brand.jpg";
 import "./About.css";
 function About() {
