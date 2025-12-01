@@ -1,11 +1,12 @@
 .hero-carousel {
   display: block;
-  margin-top: 50px;
+  margin-top: 50px;z
   object-fit: cover;
-  height: 100vh;
+  height: 60vh;
   width: 100%;
   overflow: hidden;
   position: relative;
+  
 }
 
 .hero-overlay {
@@ -20,7 +21,7 @@
 }
 
 .hero-img {
-  height: 85vh;
+  height: 55vh;
   object-fit: cover;
   object-position: center;
 }

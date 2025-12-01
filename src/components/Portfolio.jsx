@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -8,28 +9,38 @@ import portfolioImage3 from "../assets/background-images/IMG_8241.jpg";
 
 import "./Portfolio.css";
 
-export default function Gallery() {
+export default function Portfolio() {
   return (
-    <section id="Gallery" className="py-5 my-5 text-dark">
-      <Container className="py-5 text-center">
-        <h1 className="fw-bold mb-4">Gallery</h1>
-        <Row className="g-4">
-          <Col md={4}>
-            <img src={portfolioImage1} className="gallery-img" />
-            <button className="btn btn-primary mt-3">Nature</button>
-          </Col>
+    <section id="Portfolio" className="py-5 my-5 text-dark">
+      <div className="Portfolio">
+        <Container className="py-5 text-center">
+          <h1 className="fw-bold mb-4">Portfolio</h1>
+          <Row className="g-4">
+            <Col md={4}>
+              <img
+                src={portfolioImage1}
+                className="Portfolio-img"
+                alt="Nature"
+              />
+              <Link to="/naturePage" className="btn btn-primary mt-3">
+                Nature
+              </Link>
+            </Col>
 
-          <Col md={4}>
-            <img src={portfolioImage2} className="gallery-img" />
-            <button className="btn btn-primary mt-3">Portrait</button>
-          </Col>
+            <Col md={4}>
+              <img src={portfolioImage2} className="Portfolio-img" />
+              <Link to="/" className="btn btn-primary mt-3">
+                portrait
+              </Link>
+            </Col>
 
-          <Col md={4}>
-            <img src={portfolioImage3} className="gallery-img" />
-            <button className="btn btn-primary mt-3">Night</button>
-          </Col>
-        </Row>
-      </Container>
+            <Col md={4}>
+              <img src={portfolioImage3} className="Portfolio-img" />
+              <button className="btn btn-primary mt-3">Night</button>
+            </Col>
+          </Row>
+        </Container>
+      </div>
     </section>
   );
 }

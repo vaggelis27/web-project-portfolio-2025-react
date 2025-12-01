@@ -1,8 +1,8 @@
 import Carousel from "react-bootstrap/Carousel";
 import "./HeroCarousel.css";
-import heroImage1 from "../assets/background-images/8.png";
-import heroImage2 from "../assets/background-images/IMG_6982.jpg";
-import heroImage3 from "../assets/background-images/IMG_8241.jpg";
+import heroImage1 from "../assets/background-images/6.jpg";
+import heroImage2 from "../assets/background-images/7.jpg";
+import heroImage3 from "../assets/background-images/2.jpg";
 
 function HeroCarousel() {
   return (

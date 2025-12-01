@@ -1,4 +1,8 @@
-/* ===== NAVIGATION LINKS (DESKTOP)=====  */
+
+.body {
+  padding-top: 70px;
+}
+
 .navbar-nav {
   display: flex;
   align-items: center;

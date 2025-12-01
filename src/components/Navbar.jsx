@@ -1,4 +1,5 @@
 import { useRef, useEffect } from "react";
+import { Link } from "react-router-dom";
 import "./Navbar.css";
 import logo from "../assets/new logo 2025 2.png";
 
@@ -19,16 +20,15 @@ export default function Navbar() {
     resizeCanvas();
     window.addEventListener("resize", resizeCanvas);
 
-    // ===== FIRE ANIMATION CLASS  ======
     class FireAnimation {
       constructor() {
         this.particles = [];
         this.paletteBase = [
-          { r: 245, g: 167, b: 66 }, // Gold
-          { r: 232, g: 90, b: 25 }, // Orange
-          { r: 255, g: 62, b: 0 }, // Bright red-orange
-          { r: 191, g: 34, b: 34 }, // Deep red
-          { r: 80, g: 20, b: 70 }, // Purple shadow
+          { r: 245, g: 167, b: 66 },
+          { r: 232, g: 90, b: 25 },
+          { r: 255, g: 62, b: 0 },
+          { r: 191, g: 34, b: 34 },
+          { r: 80, g: 20, b: 70 },
         ];
 
         this.palette = [...this.paletteBase];
@@ -212,10 +212,14 @@ export default function Navbar() {
   return (
     <nav className="navbar navbar-expand-md fixed-top shadow-0" id="navbar">
       <div className="container-fluid flex-wrap">
-        {/* Mobile brand logo (visible on mobile only) */}
-        <a href="./index.html" className="navbar-brand d-block d-md-none py-0">
+        {/* Mobile brand logo */}
+        <Link
+          to="/"
+          className="navbar-brand d-block d-md-none py-0"
+          onClick={() => window.scrollTo(0, 0)}
+        >
           <img src={logo} alt="VN Logo" className="navbar-logo" />
-        </a>
+        </Link>
 
         {/* Toggler */}
         <button
@@ -236,29 +240,43 @@ export default function Navbar() {
           id="navbarNav"
         >
           <ul className="navbar-nav">
+            {/* HOME LINK */}
             <li className="nav-item">
-              <a href="./index.html" className="nav-link">
+              <Link
+                to="/"
+                className="nav-link"
+                onClick={() => window.scrollTo(0, 0)}
+              >
                 <i className="bi bi-image me-1"></i> Home
-              </a>
+              </Link>
             </li>
+
+            {/* Portfolio */}
             <li className="nav-item">
-              <a href="#Gallery" className="nav-link">
-                <i className="bi bi-collection me-1"></i> Gallery
+              <a href="#Portfolio" className="nav-link">
+                <i className="bi bi-collection me-1"></i> Portfolio
               </a>
             </li>
 
-            {/* Desktop-only centered logo inside menu */}
+            {/* Desktop logo */}
             <li className="nav-item d-none d-md-block">
-              <a href="./index.html" className="nav-link p-0" aria-label="Home">
+              <Link
+                to="/"
+                className="nav-link p-0"
+                onClick={() => window.scrollTo(0, 0)}
+              >
                 <img src={logo} alt="VN Logo" className="navbar-logo" />
-              </a>
+              </Link>
             </li>
 
+            {/* About */}
             <li className="nav-item">
               <a href="#about" className="nav-link">
                 <i className="bi bi-info-circle me-1"></i> About
               </a>
             </li>
+
+            {/* Contact */}
             <li className="nav-item">
               <a href="#contact" className="nav-link">
                 <i className="bi bi-envelope me-1"></i> Contact
@@ -267,6 +285,7 @@ export default function Navbar() {
           </ul>
         </div>
       </div>
+
       <div className="canvas-container">
         <canvas id="fire-canvas" ref={canvasRef}></canvas>
       </div>

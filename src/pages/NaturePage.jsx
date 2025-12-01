@@ -21,7 +21,7 @@ import nature13 from "../assets/nature/Nature_Photos13.jpg";
 import nature14 from "../assets/nature/Nature_Photos14.png";
 import nature15 from "../assets/nature/Nature_Photos15.png";
 
-import "./Gallery.css";
+import "./NaturePage.css";
 
 const galleryItems = [
   { src: nature01, alt: "Nature photo 1" },
@@ -41,11 +41,16 @@ const galleryItems = [
   { src: nature15, alt: "Nature photo 15" },
 ];
 
-class Gallery extends React.Component {
+class NaturePage extends React.Component {
   render() {
     return (
       <div className="gallery-container">
-        <LightGallery plugins={[lgZoom, lgVideo]} mode="lg-fade" preload={1}>
+        <LightGallery
+          plugins={[lgZoom, lgVideo]}
+          mode="lg-fade"
+          download={false}
+          preload={1}
+        >
           {galleryItems.map((item, index) => (
             <a
               key={index}
@@ -67,4 +72,4 @@ class Gallery extends React.Component {
   }
 }
 
-export default Gallery;
+export default NaturePage;
