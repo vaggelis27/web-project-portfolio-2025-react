@@ -14,8 +14,10 @@ export default defineConfig({
   plugins: [react()],
   resolve: {
     alias: {
-      // __dirname (πρόσθεσα αυτά για να δουλέψει τα alias όπως στο webpack)
       "@": path.resolve(__dirname, "./src"),
     },
+  },
+  build: {
+    outDir: "docs",
   },
 });
