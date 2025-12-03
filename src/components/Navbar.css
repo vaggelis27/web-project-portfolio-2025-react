@@ -10,6 +10,7 @@
   text-decoration: none;
   font-weight: normal;
   gap: 40px;
+  
 }
 
 /* Nav links color when NOT scrolled */
@@ -63,6 +64,7 @@
   padding: 0;
   object-fit: contain;
   filter: brightness(115%);
+  
 }
 
 .navbar-logo:hover {
