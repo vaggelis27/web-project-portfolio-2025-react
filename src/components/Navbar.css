@@ -1,4 +1,3 @@
-
 .body {
   padding-top: 70px;
 }
@@ -57,10 +56,12 @@
 
 /*LOGO STYLING */
 .navbar-logo {
-  display: inline-block;
+  display: block;
   max-width: 120px;
-  height: auto;
+  height: 20vh;
   padding: 0;
+  filter: brightness(120%);
+   object-fit: contain;
 }
 
 .navbar-logo:hover {

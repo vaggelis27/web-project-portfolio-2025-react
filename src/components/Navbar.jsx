@@ -1,7 +1,7 @@
 import { useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./Navbar.css";
-import logo from "../assets/new logo 2025 2.png";
+import logo from "../assets/brand-logo.svg";
 
 export default function Navbar() {
   const canvasRef = useRef(null);
