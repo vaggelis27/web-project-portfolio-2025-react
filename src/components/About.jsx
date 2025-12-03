@@ -1,4 +1,4 @@
-import logo from "../assets/logo-brand.jpg";
+import logo from "../assets/about-logo/logo-brand.jpg";
 import "./About.css";
 function About() {
   return (
