@@ -4,8 +4,8 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
 import portfolioImage1 from "../assets/background-images/4.jpg";
-import portfolioImage2 from "../assets/background-images/IMG_6982.jpg";
-import portfolioImage3 from "../assets/background-images/IMG_8241.jpg";
+import portfolioImage2 from "../assets/background-images/9.jpg";
+import portfolioImage3 from "../assets/background-images/8.png";
 
 import "./Portfolio.css";
 
