@@ -47,7 +47,7 @@
 
 /*=====  NAVBAR BACKGROUND===== */
 #navbar {
-  background: linear-gradient(160deg, #161616, #000000 55%, #141414);
+  background: linear-gradient(160deg, #000000, #000000 55%, #141414);
 }
 
 .nav-link {
@@ -57,11 +57,12 @@
 /*LOGO STYLING */
 .navbar-logo {
   display: block;
-  max-width: 120px;
-  height: 20vh;
+  height: 90px;
+  width: auto;
+  margin: 0;
   padding: 0;
-  filter: brightness(120%);
-   object-fit: contain;
+  object-fit: contain;
+  filter: brightness(115%);
 }
 
 .navbar-logo:hover {

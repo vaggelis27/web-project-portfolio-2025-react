@@ -24,11 +24,11 @@ export default function Navbar() {
       constructor() {
         this.particles = [];
         this.paletteBase = [
-          { r: 245, g: 167, b: 66 },
-          { r: 232, g: 90, b: 25 },
-          { r: 255, g: 62, b: 0 },
-          { r: 191, g: 34, b: 34 },
-          { r: 80, g: 20, b: 70 },
+          { r: 255, g: 200, b: 40 },
+          { r: 255, g: 140, b: 20 },
+          { r: 255, g: 70, b: 0 },
+          { r: 230, g: 30, b: 30 },
+          { r: 150, g: 25, b: 120 },
         ];
 
         this.palette = [...this.paletteBase];
@@ -42,7 +42,7 @@ export default function Navbar() {
       }
 
       createParticles() {
-        const particleCount = Math.floor((canvas.width * canvas.height) / 3000);
+        const particleCount = Math.floor((canvas.width * canvas.height) / 1800);
         for (let i = 0; i < particleCount; i++) {
           this.particles.push({
             x: Math.random() * canvas.width,
@@ -186,7 +186,7 @@ export default function Navbar() {
           this.particles.push({
             x: mouseX + offsetX,
             y: mouseY + offsetY,
-            size: 10 + Math.random() * 20,
+            size: 10 + Math.random() * 35,
             opacity: 0.2 + Math.random() * 0.4,
             speedX: (Math.random() - 0.5) * 2,
             speedY: -2 - Math.random() * 2,
