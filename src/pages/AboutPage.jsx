@@ -1,6 +1,6 @@
 import logo from "../assets/about-logo/logo-brand.jpg";
-import "./About.css";
-function About() {
+import "../pages/AboutPage.css";
+function AboutPage() {
   return (
     <section id="about" className="py-5 my-5 text-dark about-section">
       <div className="container">
@@ -21,4 +21,4 @@ function About() {
   );
 }
 
-export default About;
+export default AboutPage;

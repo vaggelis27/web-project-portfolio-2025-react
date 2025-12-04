@@ -271,7 +271,7 @@ export default function Navbar() {
 
             {/* About */}
             <li className="nav-item">
-              <a href="#about" className="nav-link">
+              <a href="../pages/AboutPage.jsx" className="nav-link">
                 <i className="bi bi-info-circle me-1"></i> About
               </a>
             </li>

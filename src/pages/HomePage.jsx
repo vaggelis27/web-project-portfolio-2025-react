@@ -1,16 +1,16 @@
 import React from "react";
 import HeroCarousel from "../components/HeroCarousel.jsx";
 import Portfolio from "../components/Portfolio.jsx";
-import About from "../components/About.jsx";
-import Contact from "../components/Contact.jsx";
+import AboutPage from "../pages/AboutPage.jsx";
+import ContactPage from "../ContactPage.jsx";
 
 function HomePage() {
   return (
     <>
       <HeroCarousel />
       <Portfolio />
-      <About />
-      <Contact />
+      <AboutPage />
+      <ContactPage />
     </>
   );
 }
