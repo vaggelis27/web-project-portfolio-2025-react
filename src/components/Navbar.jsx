@@ -6,6 +6,8 @@ import logo from "../assets/navbar-logo/brand-logo2.png";
 export default function Navbar() {
   const canvasRef = useRef(null);
 
+  // ==== START JAVASCRIPT/REACT  ====
+
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -20,6 +22,7 @@ export default function Navbar() {
     resizeCanvas();
     window.addEventListener("resize", resizeCanvas);
 
+    // ==== Fire Animation Class ====
     class FireAnimation {
       constructor() {
         this.particles = [];
@@ -40,7 +43,8 @@ export default function Navbar() {
 
         canvas.addEventListener("mousemove", this.handleMouseMove.bind(this));
       }
-
+      // ==== CREATE PARTICLES ====
+      // generates many random fire particles based on screen size
       createParticles() {
         const particleCount = Math.floor((canvas.width * canvas.height) / 1800);
         for (let i = 0; i < particleCount; i++) {
@@ -61,7 +65,8 @@ export default function Navbar() {
           });
         }
       }
-
+      // ==== ANIMATE LOOP ====
+      // clears canvas, updates colors, moves particles and requests next frame
       animate(currentTime = 0) {
         const deltaTime = currentTime - this.lastUpdateTime;
         this.lastUpdateTime = currentTime;
@@ -77,7 +82,8 @@ export default function Navbar() {
 
         requestAnimationFrame(this.animate.bind(this));
       }
-
+      // ==== UPDATE COLOR PALETTE ====
+      // smoothly animates fire colors over time using sine waves
       updatePalette() {
         this.palette = this.paletteBase.map((color, index) => {
           const t = this.time + index * 0.5;
@@ -95,7 +101,8 @@ export default function Navbar() {
           };
         });
       }
-
+      // ==== UPDATE PARTICLES ====
+      // updates movement, rotation, fading, and respawns dead particles
       updateParticles() {
         for (let i = 0; i < this.particles.length; i++) {
           const p = this.particles[i];
@@ -141,7 +148,8 @@ export default function Navbar() {
           }
         }
       }
-
+      // ==== DRAW BRUSHSTROKE ====
+      // renders a curved flame stroke with gradient and highlight
       drawBrushstroke(x, y, size, rotation, color, opacity) {
         ctx.save();
         ctx.translate(x, y);
@@ -174,6 +182,8 @@ export default function Navbar() {
         ctx.restore();
       }
 
+      // ==== MOUSE MOVE FIRE BURST ====
+      // creates extra flame particles when user moves cursor
       handleMouseMove(e) {
         const rect = canvas.getBoundingClientRect();
         const mouseX = e.clientX - rect.left;
@@ -203,12 +213,14 @@ export default function Navbar() {
     }
 
     const fireAnimation = new FireAnimation();
+    // === END JAVASCRIPT/REACT ===
 
     return () => {
       window.removeEventListener("resize", resizeCanvas);
     };
   }, []);
 
+  // === START JSX/HTML RENDER  ===
   return (
     <nav className="navbar navbar-expand-md fixed-top shadow-0" id="navbar">
       <div className="container-fluid flex-wrap">
@@ -252,11 +264,9 @@ export default function Navbar() {
             </li>
 
             {/* Portfolio */}
-            <li className="nav-item">
-              <a href="#Portfolio" className="nav-link">
-                <i className="bi bi-collection me-1"></i> Portfolio
-              </a>
-            </li>
+            <Link to="/" className="nav-link">
+              <i className="bi bi-collection me-1"></i> Portfolio
+            </Link>
 
             {/* Desktop logo */}
             <li className="nav-item d-none d-md-block">

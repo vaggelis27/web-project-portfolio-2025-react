@@ -12,7 +12,7 @@
 #navbar:not(.navbar-scrolled) .nav-link {
   color: #ffffff !important;
 }
-
+/* === HOVER ==== */
 /* Nav link hover effect (explosive burst) */
 .nav-link:hover {
   transform: scale(1);
