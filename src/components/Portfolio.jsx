@@ -11,7 +11,7 @@ import "./Portfolio.css";
 
 export default function Portfolio() {
   return (
-    <section id="Portfolio" className="py-5 my-5 text-dark">
+    <section id="portfolio" className="py-5 my-5 text-dark">
       <div className="Portfolio">
         <Container className="py-5 text-center">
           <h1 className="fw-bold mb-4">Portfolio</h1>

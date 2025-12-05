@@ -1,5 +1,7 @@
 import { useRef, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+import React from "react";
+
 import "./Navbar.css";
 import logo from "../assets/navbar-logo/brand-logo2.png";
 
@@ -213,23 +215,35 @@ export default function Navbar() {
     }
 
     const fireAnimation = new FireAnimation();
-    // === END JAVASCRIPT/REACT ===
 
     return () => {
       window.removeEventListener("resize", resizeCanvas);
     };
   }, []);
 
+  // === Start scroll navbar top down ===
+  const location = useLocation();
+  const handlePortfolioClick = (e) => {
+    //  Home
+    if (location.pathname === "/") {
+      e.preventDefault(); // Prevents navigation
+      const section = document.getElementById("portfolio");
+      if (section) {
+        section.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+  };
+
+  // === End scroll navbar top down ===
+
+  // === END JAVASCRIPT/REACT ===
+
   // === START JSX/HTML RENDER  ===
   return (
     <nav className="navbar navbar-expand-md fixed-top shadow-0" id="navbar">
       <div className="container-fluid flex-wrap">
         {/* Mobile brand logo */}
-        <Link
-          to="/"
-          className="navbar-brand d-block d-md-none py-0"
-          onClick={() => window.scrollTo(0, 0)}
-        >
+        <Link to="/" className="navbar-brand d-block d-md-none py-0">
           <img src={logo} alt="VN Logo" className="navbar-logo" />
         </Link>
 
@@ -252,31 +266,27 @@ export default function Navbar() {
           id="navbarNav"
         >
           <ul className="navbar-nav">
-            {/* HOME LINK */}
+            {/* Home */}
             <li className="nav-item">
-              <Link
-                to="/"
-                className="nav-link"
-                onClick={() => window.scrollTo(0, 0)}
-              >
-                <i className="bi bi-image me-1"></i> Home
-              </Link>
+              <a href="./" className="nav-link">
+                Home
+              </a>
             </li>
 
             {/* Portfolio */}
-            <Link to="/" className="nav-link">
+            <Link
+              to="/#portfolio"
+              className="nav-link"
+              onClick={handlePortfolioClick}
+            >
               <i className="bi bi-collection me-1"></i> Portfolio
             </Link>
 
-            {/* Desktop logo */}
+            {/* DESKTOP LOGO*/}
             <li className="nav-item d-none d-md-block">
-              <Link
-                to="/"
-                className="nav-link p-0"
-                onClick={() => window.scrollTo(0, 0)}
-              >
+              <a href="./" className="nav-link p-0">
                 <img src={logo} alt="VN Logo" className="navbar-logo" />
-              </Link>
+              </a>
             </li>
 
             {/* About */}
@@ -302,3 +312,4 @@ export default function Navbar() {
     </nav>
   );
 }
+// === END JSX/HTML RENDER ===
