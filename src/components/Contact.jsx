@@ -1,5 +1,5 @@
-import "./ContactPage.css";
-function ContactPage() {
+import "./Contact.css";
+function Contact() {
   const onSubmit = async (event) => {
     event.preventDefault();
     const formData = new FormData(event.target);
@@ -126,4 +126,4 @@ function ContactPage() {
   );
 }
 
-export default ContactPage;
+export default Contact;

@@ -1,5 +1,6 @@
 import { useRef, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
+
 import React from "react";
 
 import "./Navbar.css";
@@ -227,7 +228,18 @@ export default function Navbar() {
     //  Home
     if (location.pathname === "/") {
       e.preventDefault(); // Prevents navigation
+      //portfolio section scroll
       const section = document.getElementById("portfolio");
+      if (section) {
+        section.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+  };
+  //  Contact section scroll
+  const handleContactClick = (e) => {
+    if (location.pathname === "/") {
+      e.preventDefault(); // Prevents navigation
+      const section = document.getElementById("contact");
       if (section) {
         section.scrollIntoView({ behavior: "smooth" });
       }
@@ -268,19 +280,17 @@ export default function Navbar() {
           <ul className="navbar-nav">
             {/* Home */}
             <li className="nav-item">
-              <a href="./" className="nav-link">
+              <Link to="/" className="nav-link">
                 Home
-              </a>
+              </Link>
             </li>
 
             {/* Portfolio */}
-            <Link
-              to="/#portfolio"
-              className="nav-link"
-              onClick={handlePortfolioClick}
-            >
-              <i className="bi bi-collection me-1"></i> Portfolio
-            </Link>
+            <li className="nav-item">
+              <Link to="/" className="nav-link" onClick={handlePortfolioClick}>
+                <i className="bi bi-collection me-1"></i> Portfolio
+              </Link>
+            </li>
 
             {/* DESKTOP LOGO*/}
             <li className="nav-item d-none d-md-block">
@@ -291,16 +301,16 @@ export default function Navbar() {
 
             {/* About */}
             <li className="nav-item">
-              <a href="../pages/AboutPage.jsx" className="nav-link">
+              <Link to="/about" className="nav-link">
                 <i className="bi bi-info-circle me-1"></i> About
-              </a>
+              </Link>
             </li>
 
             {/* Contact */}
             <li className="nav-item">
-              <a href="#contact" className="nav-link">
+              <Link to="/" className="nav-link" onClick={handleContactClick}>
                 <i className="bi bi-envelope me-1"></i> Contact
-              </a>
+              </Link>
             </li>
           </ul>
         </div>
