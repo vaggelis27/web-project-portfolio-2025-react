@@ -6,7 +6,7 @@ import heroImage3 from "../assets/background-images/2.jpg";
 
 function HeroCarousel() {
   return (
-    <section className="hero-carousel position-relative">
+    <section className="hero-carousel position-relative mt-4 pt-4">
       <div className="hero-overlay text-white text-center">
         <h1 className="display-5 fw-bold">Centered hero</h1>
         <p className="lead mb-4">
