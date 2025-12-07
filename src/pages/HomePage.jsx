@@ -1,7 +1,6 @@
 import React from "react";
 import HeroCarousel from "../components/HeroCarousel.jsx";
 import Portfolio from "../components/Portfolio.jsx";
-import AboutPage from "../pages/AboutPage.jsx";
 import ContactPage from "../components/Contact.jsx";
 
 function HomePage() {
@@ -9,7 +8,6 @@ function HomePage() {
     <>
       <HeroCarousel />
       <Portfolio />
-      <AboutPage />
       <ContactPage />
     </>
   );
