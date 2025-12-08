@@ -9,3 +9,19 @@
 .img-responsive:hover {
   transform: scale(1.05);
 }
+
+.gallery-title {
+  color: black !important;
+  margin-bottom: 40px; /* distance from images */
+}
+
+.gallery-item {
+  display: inline-block;
+  margin: 10px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.gallery-container {
+  padding-top: 140px; /* no cover navbar */
+}

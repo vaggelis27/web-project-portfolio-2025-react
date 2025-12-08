@@ -8,11 +8,12 @@ function HeroCarousel() {
   return (
     <section className="hero-carousel position-relative mt-4 pt-4">
       <div className="hero-overlay text-white text-center">
-        <h1 className="display-5 fw-bold">Centered hero</h1>
-        <p className="lead mb-4">
-          Quickly design and customize responsive mobile-first sites with
-          Bootstrap...
-        </p>
+        <h1 className="display-5 fw-bold">Evangelos Ntotsikas</h1>
+        <hr
+          className="mx-auto my-2"
+          style={{ width: "120px", borderTop: "3px solid #ffffffff" }}
+        />
+        <p className="lead mb-4">Frontend Developer</p>
       </div>
 
       <Carousel fade interval={4000}>

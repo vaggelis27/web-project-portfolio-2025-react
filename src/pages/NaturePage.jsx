@@ -45,7 +45,7 @@ class NaturePage extends React.Component {
   render() {
     return (
       <div className="gallery-container">
-        <h1 className="gallery-title">Nature Photography</h1>
+        <h1 className="gallery-title text-center">Nature Photography</h1>
         <LightGallery
           plugins={[lgZoom, lgVideo]}
           mode="lg-fade"
