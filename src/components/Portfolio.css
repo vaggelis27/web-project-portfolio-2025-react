@@ -1,12 +1,71 @@
+/* Βασικό στυλ της εικόνας, διατηρείται */
 .Portfolio-img {
   width: 100%;
   height: 250px;
   object-fit: cover;
   border-radius: 15px;
   display: block;
+  /* Εφφέ Smooth transition για αλλαγές */
+  transition: transform 0.4s ease, filter 0.4s ease;
 }
 
-.Portfolio-img:hover {
-  transform: scale(1.05);
-  transition: transform 0.3s ease;
+/* ---------------------------------------------------- */
+
+/* Το περιτύλιγμα της κάρτας (Container) */
+.Portfolio-card-link {
+    display: block;
+    text-decoration: none; /* Αφαιρεί την υπογράμμιση του Link */
+}
+
+.Portfolio-card {
+    position: relative; /* Σημαντικό: Για να λειτουργήσει το absolute overlay */
+    overflow: hidden; /* Κρύβει οτιδήποτε βγαίνει από τα όρια της κάρτας (όπως η μεγεθυμένη εικόνα) */
+    border-radius: 15px;
+    cursor: pointer;
+}
+
+/* ---------------------------------------------------- */
+/* Στυλ του Overlay (Το κείμενο) */
+.Portfolio-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 15px;
+    background-color: rgba(0, 0, 0, 0.5); /* Μισο-διάφανο μαύρο φόντο */
+    color: white;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end; /* Τοποθετεί το περιεχόμενο στο κάτω μέρος */
+    align-items: flex-start;
+    padding: 20px;
+    
+    opacity: 0; /* Αρχικά αόρατο */
+    transition: opacity 0.4s ease; /* Ομαλή εμφάνιση */
+}
+
+.Overlay-title {
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+.Overlay-tag {
+    font-size: 0.9em;
+}
+
+/* ---------------------------------------------------- */
+/* Hover Effects */
+
+.Portfolio-card:hover .Portfolio-img {
+    /* Ελαφρύ ζουμ στην εικόνα */
+    transform: scale(1.08); 
+    /* Ελαφρύ σκοτείνιασμα της εικόνας για καλύτερη αντίθεση με το overlay */
+    filter: brightness(0.8);
+}
+
+.Portfolio-card:hover .Portfolio-overlay {
+    /* Εμφανίζει το Overlay */
+    opacity: 1;
 }
