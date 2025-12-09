@@ -1,3 +1,9 @@
+/* Mobile */
+@media screen {
+  @media (max-width: 768px) {
+  }
+}
+
 .gallery-title {
   color: black !important;
   margin-bottom: 40px; /* distance from images */
