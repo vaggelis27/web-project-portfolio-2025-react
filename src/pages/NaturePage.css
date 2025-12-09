@@ -1,18 +1,16 @@
+.gallery-title {
+  color: black !important;
+  margin-bottom: 40px; /* distance from images */
+}
 .img-responsive {
   width: auto;
-  height: 500px;
-  margin: 5px;
+  height: 300px;
   object-fit: cover;
   transition: transform 0.3s ease;
 }
 
 .img-responsive:hover {
   transform: scale(1.05);
-}
-
-.gallery-title {
-  color: black !important;
-  margin-bottom: 40px; /* distance from images */
 }
 
 .gallery-item {

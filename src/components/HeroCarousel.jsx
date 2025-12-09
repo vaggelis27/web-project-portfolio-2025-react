@@ -2,7 +2,7 @@ import Carousel from "react-bootstrap/Carousel";
 import "./HeroCarousel.css";
 import heroImage1 from "../assets/background-images/6.jpg";
 import heroImage2 from "../assets/background-images/7.jpg";
-import heroImage3 from "../assets/background-images/2.jpg";
+import heroImage3 from "../assets/background-images/10.jpg";
 
 function HeroCarousel() {
   return (
@@ -20,7 +20,7 @@ function HeroCarousel() {
         <Carousel.Item>
           <img
             src={heroImage1}
-            className="d-block w-100 hero-img"
+            className="d-block w-100 hero-img "
             alt="Landscape 1"
           />
         </Carousel.Item>
@@ -36,7 +36,7 @@ function HeroCarousel() {
         <Carousel.Item>
           <img
             src={heroImage3}
-            className="d-block w-100 hero-img"
+            className="d-block w-100  hero-img"
             alt="Landscape 3"
           />
         </Carousel.Item>

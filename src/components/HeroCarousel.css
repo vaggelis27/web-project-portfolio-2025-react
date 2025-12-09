@@ -23,7 +23,8 @@
 }
 
 .hero-img {
-  height: 55vh;
+  width: 100%;
+  height: 80vh;
   object-fit: cover;
   object-position: center;
 }
