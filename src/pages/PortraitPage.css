@@ -1,0 +1,31 @@
+/* Mobile */
+@media screen {
+  @media (max-width: 768px) {
+  }
+}
+
+.gallery-title {
+  color: black !important;
+  margin-bottom: 40px; /* distance from images */
+}
+.img-responsive {
+  width: auto;
+  height: 300px;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.img-responsive:hover {
+  transform: scale(1.05);
+}
+
+.gallery-item {
+  display: inline-block;
+  margin: 10px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.gallery-container {
+  padding-top: 140px; /* no cover navbar */
+}
