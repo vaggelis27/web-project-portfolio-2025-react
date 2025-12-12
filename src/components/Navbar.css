@@ -1,4 +1,4 @@
-#navbar {
+.navbar {
   background: rgba(10, 10, 10, 0.55);
   border: 1px solid rgba(0, 0, 0, 0.08);
   backdrop-filter: blur(16px) saturate(140%);
@@ -8,7 +8,7 @@
     box-shadow 0.3s ease, backdrop-filter 0.3s ease;
 }
 
-#navbar.navbar-scrolled {
+.navbar.navbar-scrolled {
   background: rgba(245, 245, 245, 0.92);
   border-color: rgba(0, 0, 0, 0.08);
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
@@ -17,11 +17,13 @@
 }
 
 /* Nav link colors by state */
-#navbar.navbar-scrolled .nav-link {
+.navbar.navbar-scrolled .nav-link {
   color: #000000 !important;
+  font-family: "Helvetica Neue", sans-serif;
+  font-weight: lighter;
 }
 
-#navbar:not(.navbar-scrolled) .nav-link {
+.navbar:not(.navbar-scrolled) .nav-link {
   color: #ffffff !important;
 }
 
@@ -38,7 +40,7 @@
 .nav-link {
   position: relative;
 }
-
+/* HOVER */
 /* Nav link hover effect (explosive burst) */
 .nav-link:hover {
   transform: scale(1);
