@@ -1,3 +1,30 @@
+#navbar {
+  background: rgba(10, 10, 10, 0.55);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  backdrop-filter: blur(16px) saturate(140%);
+  -webkit-backdrop-filter: blur(16px) saturate(140%);
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.35);
+  transition: background-color 0.3s ease, border-color 0.3s ease,
+    box-shadow 0.3s ease, backdrop-filter 0.3s ease;
+}
+
+#navbar.navbar-scrolled {
+  background: rgba(245, 245, 245, 0.92);
+  border-color: rgba(0, 0, 0, 0.08);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(12px) saturate(160%);
+  -webkit-backdrop-filter: blur(12px) saturate(160%);
+}
+
+/* Nav link colors by state */
+#navbar.navbar-scrolled .nav-link {
+  color: #000000 !important;
+}
+
+#navbar:not(.navbar-scrolled) .nav-link {
+  color: #ffffff !important;
+}
+
 .navbar-nav {
   display: flex;
   align-items: center;
@@ -8,11 +35,10 @@
   gap: 40px;
 }
 
-/* Nav links color when NOT scrolled */
-#navbar:not(.navbar-scrolled) .nav-link {
-  color: #ffffff !important;
+.nav-link {
+  position: relative;
 }
-/* === HOVER ==== */
+
 /* Nav link hover effect (explosive burst) */
 .nav-link:hover {
   transform: scale(1);
@@ -41,20 +67,11 @@
   z-index: -2;
 }
 
-/*=====  NAVBAR BACKGROUND===== */
-#navbar {
-  background: linear-gradient(160deg, #000000, #000000 55%, #141414);
-}
-
-.nav-link {
-  position: relative;
-}
-
-/*LOGO STYLING */
+/* Logo */
 .navbar-logo {
   display: block;
   height: 120px;
-  width: ;
+  width: auto;
   margin: 0;
   padding: 0;
   object-fit: contain;
@@ -65,7 +82,7 @@
   opacity: 100;
 }
 
-/*===== TOGGLER (MOBILE MENU ICON)===== */
+/* Toggler (mobile menu icon) */
 .custom-toggler .navbar-toggler-icon {
   background-image: none;
   width: 24px;
@@ -74,13 +91,11 @@
   box-shadow: 0 6px 0 #000, 0 12px 0 #000;
 }
 
-/* White toggler when navbar is NOT scrolled */
 #navbar:not(.navbar-scrolled) .custom-toggler .navbar-toggler-icon {
   background-color: #ffffff;
   box-shadow: 0 4px 0 #ffffff, 0 12px 0 #ffffff;
 }
 
-/* Fine-tuned toggler default inside navbar */
 #navbar .custom-toggler .navbar-toggler-icon {
   background-color: #eeeeee;
   box-shadow: 0 6px 0 #ebebeb, 0 12px 0 #eeeeee;
@@ -90,7 +105,6 @@
   box-shadow: none;
 }
 
-/* ===== ANIMATION KEYFRAMES FOR HOVER FONTS LINKS=====  */
 @keyframes burst {
   0% {
     transform: translate(-50%, -50%) scale(0);
@@ -104,18 +118,3 @@
     opacity: 0;
   }
 }
-
-.canvas-container {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -1;
-}
-
-canvas {
-  width: 100%;
-  height: 100%;
-}
-
