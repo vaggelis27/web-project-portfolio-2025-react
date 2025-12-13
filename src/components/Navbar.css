@@ -113,7 +113,6 @@
 }
 
 /* TOGGLER */
-
 #navbar .navbar-toggler:focus {
   box-shadow: none;
 }
@@ -200,3 +199,5 @@
     letter-spacing: 1px;
   }
 }
+
+
