@@ -86,7 +86,7 @@ export default function Navbar() {
           <ul className="navbar-nav ms-auto">
             <li className="nav-item">
               <Link to="/" className="nav-link">
-                Home
+                <i className="bi bi-house-door me-1"></i> Home
               </Link>
             </li>
 
