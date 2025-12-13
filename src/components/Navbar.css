@@ -96,19 +96,16 @@
 .navbar-brand {
   display: flex;
   align-items: center;
-  padding: auto;
-  
+  padding: 0;
+  margin-right: auto;
 }
 
 /* LOGO (STABLE) */
 .navbar-logo {
-  display: block;
-  height: 164px;
+  height: 120px;
   width: auto;
-  object-fit: contain;
-  filter: brightness(1.15) contrast(1.15);
-  opacity: 0.9;
-  transition: opacity 0.3s ease;
+  display: block;
+  flex-shrink: 0;
 }
 
 .navbar-logo:hover {
@@ -167,8 +164,13 @@
 /* MOBILE NAVBAR DROPDOWN */
 @media (max-width: 768px) {
   #navbar .navbar-collapse {
-    margin-top: 1px;
-    padding: 14px 18px;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    margin-top: 0;
+    padding: 12px 18px;
+    z-index: 1050;
 
     border-radius: 16px;
 
