@@ -1,5 +1,5 @@
 /* GLOBAL FONT IMPORT */
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
 
 /* NAVBAR BASE */
 #navbar {
@@ -53,16 +53,15 @@
   display: flex;
   align-items: center;
   gap: 40px;
-
-  font-family: "Montserrat", sans-serif;
-  font-size: 1.1em;
-  font-weight: 400;
 }
-
 .nav-link {
   position: relative;
-  text-transform: uppercase;
-  letter-spacing: 1px;
+  letter-spacing: 1x;
+  font-family: "Roboto", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-variation-settings: "wdth" 100;
 }
 
 /* NAV LINK HOVER EFFECT */
@@ -97,16 +96,16 @@
 .navbar-brand {
   display: flex;
   align-items: center;
-  padding: 0;
+  padding: auto;
+  
 }
 
 /* LOGO (STABLE) */
 .navbar-logo {
+  display: block;
   height: 164px;
   width: auto;
-  display: block;
   object-fit: contain;
-
   filter: brightness(1.15) contrast(1.15);
   opacity: 0.9;
   transition: opacity 0.3s ease;
