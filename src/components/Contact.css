@@ -1,62 +1,142 @@
+/* CONTACT SECTION BASE STYLES */
 .contact-section {
+  /* solid black background for the section */
   background-color: #000;
 }
 
+/* CONTACT CARD */
 .contact-card {
+  /* semi-transparent dark background */
   background: rgba(13, 13, 24, 0.7);
+
+  /* subtle border */
   border: 1px solid rgba(10, 10, 10, 0.12);
+
+  /* rounded corners */
   border-radius: 24px;
+
+  /* soft shadow for depth */
   box-shadow: 0 20px 45px rgba(0, 0, 0, 0.28);
+
+  /* glass / blur effect */
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
 }
+
+/* CARD TYPOGRAPHY */
 .contact-card .lead {
+  /* soft white text */
   color: rgba(255, 255, 255, 0.8);
+
+  /* readable body font */
+  font-family: "Open Sans", sans-serif;
 }
 
+/* FORM LABELS */
 .contact-form .form-label {
+  /* spacing between letters */
   letter-spacing: 0.2em;
+
+  /* subtle white color */
   color: rgba(255, 255, 255, 0.7);
+
+  /* header font */
+  font-family: "Montserrat", sans-serif;
+
+  /* uppercase style */
+  text-transform: uppercase;
 }
+
+/* FORM INPUTS */
 .contact-form .form-control {
+  /* subtle transparent background */
   background: rgba(255, 252, 252, 0.08);
+
+  /* light border */
   border: 1px solid rgba(255, 255, 255, 0.15);
+
+  /* rounded inputs */
   border-radius: 16px;
+
+  /* input text color */
   color: rgba(255, 255, 255, 0.95);
+
+  /* internal spacing */
   padding: 0.85rem 1.1rem;
+
+  /* smooth focus transitions */
   transition: border-color 0.25s ease, box-shadow 0.25s ease,
     background 0.25s ease;
 }
+
+/* FORM INPUT FOCUS */
 .contact-form .form-control:focus {
+  /* darker background on focus */
   background: rgba(0, 0, 0, 0.12);
+
+  /* stronger border */
   border-color: rgba(10, 10, 10, 0.8);
+
+  /* custom focus ring */
   box-shadow: 0 0 0 0.25rem rgba(124, 77, 255, 0.25);
+
+  /* pure white text */
   color: #fff;
 }
+
+/* PLACEHOLDER TEXT */
 .contact-form .form-control::placeholder {
+  /* subtle placeholder color */
   color: rgba(255, 255, 255, 0.55);
 }
 
+/* SUBMIT BUTTON */
 .btn-contact {
+  /* gradient background */
   background: linear-gradient(135deg, #7c4dff, #b47cff);
+
+  /* remove default border */
   border: none;
+
+  /* pill shape */
   border-radius: 999px;
+
+  /* text styling */
   color: #fff;
   font-weight: 600;
+  merging-letter-spacing: 0.08em;
   letter-spacing: 0.08em;
-  padding: 0.9rem 1.8rem;
   text-transform: uppercase;
+
+  /* padding */
+  padding: 0.9rem 1.8rem;
+
+  /* smooth hover transitions */
   transition: transform 0.3s ease, box-shadow 0.3s ease,
     background-position 0.3s ease;
+
+  /* enable gradient movement */
   background-size: 200% 200%;
 }
+
+/* BUTTON HOVER / FOCUS */
 .btn-contact:hover,
 .btn-contact:focus {
+  /* lift effect */
   transform: translateY(-2px);
+
+  /* stronger shadow */
   box-shadow: 0 15px 35px rgba(123, 108, 167, 0.45);
+
+  /* shift gradient */
   background-position: right;
 }
+
+/* BUTTON ACTIVE */
 .btn-contact:active {
+  /* reset lift */
   transform: translateY(0);
+
+  /* reduced shadow */
   box-shadow: 0 8px 18px rgba(124, 77, 255, 0.4);
 }
