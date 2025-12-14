@@ -1,14 +1,25 @@
-    body {
-      font-family: "Open Sans", sans-serif;
-      font-size: 16px;
-      line-height: 1.6;
-      color: var(--text-color);
-      overflow-x: hidden;
-      min-height: 100vh;
-      background-color: var(--primary-color);
-      background-position: center;
-      background-repeat: no-repeat;
-      background-size: cover;
-      padding-top: 85px;
-    }
+:root {
+  --bg-main: linear-gradient(
+    to right,
+    #f6f1ea,
+    #e6ded4,
+    #d5cfc3,
+    #c4c0b2,
+    #b3b1a1
+  );
+}
 
+body {
+  font-family: "Open Sans", sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--text-color);
+  overflow-x: hidden;
+  min-height: 100vh;
+  background-color: var(--primary-color);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding-top: 85px;
+  background-color: rgb(119, 76, 23);
+}

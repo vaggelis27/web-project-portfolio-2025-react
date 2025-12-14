@@ -33,33 +33,43 @@ const portfolioItems = [
 
 export default function Portfolio() {
   return (
-    <section id="portfolio" className="py-5 my-5 text-dark">
-      <div className="Portfolio">
-        <Container className="py-5 text-center">
-          <h1 className="fw-bold mb-4">Portfolio</h1>
-          <Row className="g-4">
-            {portfolioItems.map((item) => (
-              <Col md={4} key={item.id}>
-                {/* link cards */}
-                <Link to={item.to} className="Portfolio-card-link">
-                  <div className="Portfolio-card">
-                    {/* img full frame */}
-                    <img
-                      src={item.image}
-                      className="Portfolio-img"
-                      alt={item.title}
-                    />
-                    {/* Το Overlay up images*/}
-                    <div className="Portfolio-overlay">
-                      <h3 className="Overlay-title">{item.title}</h3>
-                      <span className="Overlay-tag">View Project &rarr;</span>
-                    </div>
-                  </div>
-                </Link>
-              </Col>
-            ))}
-          </Row>
-        </Container>
+    <section id="portfolio" className="py-5 my-0 text-dark">
+      <div>
+        <div classname="wave"></div>
+        <div classname="wave"></div>
+        <div classname="wave"></div>
+
+        <div className="background-logo">
+          <div className="Portfolio">
+            <Container className=" text-center">
+              <h1 className="fw-bold mb-4">Portfolio</h1>
+              <Row className="g-4">
+                {portfolioItems.map((item) => (
+                  <Col md={4} key={item.id}>
+                    {/* link cards */}
+                    <Link to={item.to} className="Portfolio-card-link">
+                      <div className="Portfolio-card">
+                        {/* img full frame */}
+                        <img
+                          src={item.image}
+                          className="Portfolio-img"
+                          alt={item.title}
+                        />
+                        {/* Το Overlay up images*/}
+                        <div className="Portfolio-overlay">
+                          <h3 className="Overlay-title">{item.title}</h3>
+                          <span className="Overlay-tag">
+                            View Project &rarr;
+                          </span>
+                        </div>
+                      </div>
+                    </Link>
+                  </Col>
+                ))}
+              </Row>
+            </Container>
+          </div>
+        </div>
       </div>
     </section>
   );

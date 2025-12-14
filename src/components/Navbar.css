@@ -3,8 +3,8 @@
 
 /* NAVBAR BASE */
 #navbar {
-  height: 85px;
-  min-height: 85px;
+  height: 9rem;
+  min-height: 105px;
 
   padding: 0 22px;
 
@@ -92,7 +92,7 @@
 
 /* LOGO (STABLE) */
 .navbar-logo {
-  height: 130px;
+  height: 12rem;
   width: auto;
   display: block;
   flex-shrink: 0;

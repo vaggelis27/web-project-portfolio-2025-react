@@ -59,7 +59,7 @@ export default function Navbar() {
   return (
     <nav
       ref={navbarRef}
-      className="navbar navbar-expand-md fixed-top  shadow-0"
+      className="navbar navbar-expand-md fixed-top shadow-0"
       id="navbar"
     >
       <div className="container-fluid">
