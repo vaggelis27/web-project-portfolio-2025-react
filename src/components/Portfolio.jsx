@@ -33,7 +33,7 @@ const portfolioItems = [
 
 export default function Portfolio() {
   return (
-    <section id="portfolio" className="py-5 my-0 text-dark">
+    <section id="portfolio" className="py-4 text-dark">
       <div className="background-logo">
         <div className="Portfolio">
           <Container className=" text-center">

@@ -30,7 +30,7 @@ function Contact() {
   };
 
   return (
-    <section id="contact" className="py-5 mt-5 text-white">
+    <section id="contact" className="py-4 text-white contact-section">
       <div className="container">
         <div className="row justify-content-center">
           <div className="col-lg-8 col-xl-10">

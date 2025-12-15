@@ -40,6 +40,7 @@ class Portrait extends React.Component {
             <a
               key={index}
               className="gallery-item"
+              href={item.src}
               data-src={item.src}
               data-sub-html={`<h4>${item.alt}</h4>`}
             >

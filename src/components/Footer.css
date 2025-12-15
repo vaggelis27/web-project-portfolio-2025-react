@@ -44,7 +44,7 @@ footer {
   background: linear-gradient(160deg, #161616, #000000 55%, #bbbbbb);
   color: rgba(255, 255, 255, 0.92);
   padding: 1em 0 1em;
-  margin-top: 110px;
+  margin-top: 0;
 }
 
 footer .footer-divider {

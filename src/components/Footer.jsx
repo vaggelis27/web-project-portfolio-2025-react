@@ -3,7 +3,7 @@ import "./Footer.css";
 
 export default function Footer() {
   return (
-    <footer className="text-center text-light py-2bg-dark footer-section ">
+    <footer className="text-center text-light bg-dark footer-section ">
       <div className="white mb-2 footer-title">
         <strong>Photography Portfolio</strong>
       </div>

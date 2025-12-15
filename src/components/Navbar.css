@@ -21,9 +21,9 @@
 
 /* NAVBAR INNER LAYOUT (BOOTSTRAP-SAFE) */
 #navbar .container-fluid {
-  height: 100%;
   display: flex;
   align-items: center;
+  justify-content: space-between;
 }
 
 /* NAVBAR SCROLLED */
@@ -95,10 +95,12 @@
   width: auto;
   display: block;
   flex-shrink: 0;
+  transition: transform 0.25s ease, opacity 0.25s ease;
 }
 
-.navbar-logo:hover {
-  opacity: 100%;
+.navbar-brand:hover .navbar-logo {
+  transform: scale(1.04);
+  opacity: 0.9;
 }
 
 /* TOGGLER */

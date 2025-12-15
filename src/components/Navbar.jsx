@@ -55,6 +55,13 @@ export default function Navbar() {
     }
   };
 
+  /* LOGO CLICK (ALWAYS GO HOME, SCROLL TO TOP IF ALREADY THERE) */
+  const handleLogoClick = () => {
+    if (location.pathname === "/") {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  };
+
   /* JSX RENDER */
   return (
     <nav
@@ -64,7 +71,7 @@ export default function Navbar() {
     >
       <div className="container-fluid">
         {/* BRAND LOGO (LEFT) */}
-        <Link to="/" className="navbar-brand py-0">
+        <Link to="/" className="navbar-brand py-0" onClick={handleLogoClick}>
           <img src={logo} alt="VN Logo" className="navbar-logo" />
         </Link>
 

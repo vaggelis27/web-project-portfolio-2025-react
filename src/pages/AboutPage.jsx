@@ -337,7 +337,7 @@ function AboutPage() {
   }, []);
 
   return (
-    <section id="about" className="py-5 my-5 text-light about-section">
+    <section id="about" className="py-5   text-light about-section">
       <div className="container">
         <div className="row justify-content-center">
           <div className="col-lg-8 text-center">
