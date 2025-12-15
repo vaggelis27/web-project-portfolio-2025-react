@@ -124,7 +124,7 @@
 /* MOBILE */
 @media (max-width: 768px) {
   #navbar {
-    height: 9rem;
+    height: 10rem;
     min-height: 72px;
     padding: 0 18px;
   }
@@ -135,7 +135,7 @@
   }
 
   .navbar-logo {
-    height: 10rem;
+    height: 12rem;
     width: auto;
     object-fit: contain;
 

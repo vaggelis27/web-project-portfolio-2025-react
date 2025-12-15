@@ -48,7 +48,7 @@ export default function Navbar() {
     if (location.pathname === "/") {
       e.preventDefault();
 
-      const section = document.getElementById("contact");
+      const section = document.getElementById("ContactPage");
       if (section) {
         section.scrollIntoView({ behavior: "smooth" });
       }
@@ -103,7 +103,7 @@ export default function Navbar() {
             </li>
 
             <li className="nav-item">
-              <Link to="/" className="nav-link" onClick={handleContactClick}>
+              <Link to="/contact" className="nav-link" onClick={handleContactClick}>
                 <i className="bi bi-envelope me-1"></i> Contact
               </Link>
             </li>

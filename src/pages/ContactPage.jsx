@@ -1,4 +1,4 @@
-import "./Contact.css";
+import "./ContactPage.css";
 function Contact() {
   const onSubmit = async (event) => {
     event.preventDefault();
@@ -30,7 +30,7 @@ function Contact() {
   };
 
   return (
-    <section id="contact" className="py-5 text-white">
+    <section id="contact" className="py-5 mt-5 text-white">
       <div className="container">
         <div className="row justify-content-center">
           <div className="col-lg-8 col-xl-10">
