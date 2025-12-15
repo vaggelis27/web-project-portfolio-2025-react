@@ -124,9 +124,9 @@
 /* MOBILE */
 @media (max-width: 768px) {
   #navbar {
-    height: 10rem;
+    height: auto;
     min-height: 72px;
-    padding: 0 18px;
+    padding: 8px 18px;
   }
 
   .navbar-brand {
