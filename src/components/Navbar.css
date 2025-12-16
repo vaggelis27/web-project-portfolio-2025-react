@@ -91,11 +91,11 @@
 
 /* LOGO (STABLE) */
 .navbar-logo {
-  --navbar-logo-scale: 1.6;
-  width: auto;
+  --navbar-logo-scale: 2;
+  width: 12rem;
   display: block;
   flex-shrink: 0;
-  max-height: 64px;
+  max-height: auto;
   transform: scale(var(--navbar-logo-scale));
   transform-origin: left center;
   transition: transform 0.25s ease, opacity 0.25s ease;
