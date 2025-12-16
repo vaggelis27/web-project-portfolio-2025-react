@@ -1,8 +1,8 @@
 import { useEffect, useRef } from "react";
 import "./HeroCarousel.css";
-import heroImage1 from "../assets/background-images/6.jpg";
-import heroImage2 from "../assets/background-images/7.jpg";
-import heroImage3 from "../assets/background-images/10.jpg";
+import heroImage1 from "../assets/background-images/4.jpg";
+import heroImage2 from "../assets/background-images/6.jpg";
+import heroImage3 from "../assets/background-images/8.png";
 
 // Local slide data (uses imported assets instead of remote URLs)
 const slides = [

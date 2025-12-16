@@ -4,9 +4,9 @@
 
 .Portfolio-img {
   width: 100%;
-  height: 250px;
+  height: 450px;
   object-fit: cover;
-  border-radius: 15px;
+  /* border-radius: 15px; temp deactivated */
   display: block;
   /* Smooth transition  */
   transition: transform 0.4s ease, filter 0.4s ease;
@@ -20,8 +20,8 @@
 .Portfolio-card {
   position: relative;
   overflow: hidden;
-  border-radius: 15px;
-  cursor: pointer;
+  /* border-radius: 15px; temp deactivated */
+  aspect-ratio: 1 / 1;
 }
 
 /*  Overlay (text) */
@@ -62,6 +62,11 @@
   filter: brightness(0.8);
 }
 
-.Portfolio-card:hover .Portfolio-overlay {
+/* unhide */
+.Portfolio-overlay {
   opacity: 1;
 }
+
+/* /* .Portfolio-card:hover .Portfolio-overlay { * (hide) 
+  opacity: 1;
+} */

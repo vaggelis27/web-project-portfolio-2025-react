@@ -1,7 +1,5 @@
 import { Link } from "react-router-dom";
-import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
+import { Container, Row, Col } from "react-bootstrap";
 
 import portfolioImage1 from "../assets/background-images/4.jpg";
 import portfolioImage2 from "../assets/background-images/6.jpg";

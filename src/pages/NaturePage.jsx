@@ -1,9 +1,7 @@
-import React from "react";
-import LightGallery from "lightgallery/react";
-import lgZoom from "lightgallery/plugins/zoom";
-import lgVideo from "lightgallery/plugins/video";
-import "lightgallery/css/lightgallery.css";
-import "lightgallery/css/lg-zoom.css";
+import React, { useState } from "react";
+import { Container, Row, Col, Image } from "react-bootstrap";
+import Lightbox from "yet-another-react-lightbox";
+import "yet-another-react-lightbox/styles.css";
 
 import nature01 from "../assets/nature/Nature_Photos01.jpg";
 import nature02 from "../assets/nature/Nature_Photos02.jpg";
@@ -41,37 +39,65 @@ const galleryItems = [
   { src: nature15, alt: "Nature photo 15" },
 ];
 
-class NaturePage extends React.Component {
-  render() {
-    return (
-      <div className="gallery-container">
-        <h1 className="gallery-title text-center">Nature Photography</h1>
-        <LightGallery
-          plugins={[lgZoom, lgVideo]}
-          mode="lg-fade"
-          download={false}
-          preload={1}
-        >
-          {galleryItems.map((item, index) => (
-            <a
-              key={index}
-              className="gallery-item"
-              href={item.src}
-              data-src={item.src}
-              data-sub-html={`<h4>${item.alt}</h4>`}
+function NaturePage() {
+  const [isOpen, setIsOpen] = useState(false);
+  const [photoIndex, setPhotoIndex] = useState(0);
+  const slides = galleryItems.map((item) => ({
+    src: item.src,
+    description: item.alt,
+  }));
+
+  const openLightbox = (index) => {
+    setPhotoIndex(index);
+    setIsOpen(true);
+  };
+
+  const closeLightbox = () => {
+    setIsOpen(false);
+  };
+  return (
+    <Container className="py-5">
+      <h1 className="text-center mb-4">Nature Photography</h1>
+
+      {/* -------------------- Gallery display (Bootstrap grid) -------------------- */}
+      <Row className="g-1">
+        {galleryItems.map((img, index) => (
+          <Col key={index} xs={12} sm={6} md={4}>
+            <div
+              className="gallery-card"
+              // When clicked, open the lightbox at this image
+              onClick={() => openLightbox(index)}
+              style={{ cursor: "pointer" }} // Show it is clickable
             >
-              <img
-                className="img-responsive gallery-thumbnail"
-                src={item.src}
-                alt={item.alt}
-                loading="lazy"
+              <Image
+                src={img.src}
+                alt={img.alt}
+                fluid
+                className="gallery-image"
               />
-            </a>
-          ))}
-        </LightGallery>
-      </div>
-    );
-  }
+            </div>
+          </Col>
+        ))}
+      </Row>
+
+      {/* -------------------- Lightbox Component (Click & Zoom) -------------------- */}
+      {isOpen && (
+        <Lightbox
+          open={isOpen}
+          index={photoIndex}
+          close={closeLightbox}
+          slides={slides}
+          carousel={{ finite: false }}
+          render={{
+            description: ({ slide }) => slide.description,
+          }}
+          on={{
+            view: ({ index }) => setPhotoIndex(index),
+          }}
+        />
+      )}
+    </Container>
+  );
 }
 
 export default NaturePage;
