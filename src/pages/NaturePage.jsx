@@ -56,15 +56,19 @@ function NaturePage() {
     setIsOpen(false);
   };
   return (
-    <Container className="py-5">
-      <h1 className="text-center mb-4">Nature Photography</h1>
+    // Χρήση της nature-gallery-container για το padding κάτω από τη navbar
+    <Container className="nature-gallery-container py-5">
+      {/* Χρήση της nature-gallery-title */}
+      <h1 className="text-center mb-4 nature-gallery-title">
+        Nature Photography
+      </h1>
 
       {/* -------------------- Gallery display (Bootstrap grid) -------------------- */}
       <Row className="g-1">
         {galleryItems.map((img, index) => (
           <Col key={index} xs={12} sm={6} md={4}>
             <div
-              className="gallery-card"
+              className="nature-card" // Αλλαγή σε nature-card
               // When clicked, open the lightbox at this image
               onClick={() => openLightbox(index)}
               style={{ cursor: "pointer" }} // Show it is clickable
@@ -73,9 +77,10 @@ function NaturePage() {
                 src={img.src}
                 alt={img.alt}
                 fluid
-                className="gallery-image"
+                className="nature-image" // Αλλαγή σε nature-image (Προαιρετικό, αλλά καλύτερο για σαφήνεια)
               />
-              <div className="card-title">{img.alt}</div>
+              {/* Χρήση της nature-card-title για να δουλέψει το hover text */}
+              <div className="nature-card-title">{img.alt}</div>
             </div>
           </Col>
         ))}

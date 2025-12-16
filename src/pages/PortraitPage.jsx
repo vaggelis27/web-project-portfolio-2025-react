@@ -40,11 +40,11 @@ function Portrait() {
       <h1 className="gallery-title text-center">Portrait Photography</h1>
 
       {/* ------------- Gallery display (Bootstrap grid) ------------- */}
-      <Row className="g-1">
+      <Row className="g-2">
         {galleryItems.map((img, index) => (
           <Col key={index} xs={12} sm={6} md={4}>
             <div
-              className="gallery-card "
+              className="portrait-card"
               onClick={() => openLightbox(index)} // Open lightbox on click
               style={{ cursor: "pointer" }}
             >
@@ -52,7 +52,7 @@ function Portrait() {
                 src={img.src}
                 alt={img.alt}
                 fluid
-                className="gallery-image"
+                className="portrait-image"
               />
             </div>
           </Col>

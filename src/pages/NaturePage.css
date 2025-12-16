@@ -1,16 +1,16 @@
 /* Page spacing κάτω από fixed navbar */
-.gallery-container {
+.nature-gallery-container {
   padding-top: 140px;
 }
 
 /* Gallery title */
-.gallery-title {
+.nature-gallery-title {
   color: black;
   margin-bottom: 40px;
 }
 
 /* Gallery card  */
-.gallery-card {
+.nature-card {
   position: relative;
   aspect-ratio: 1 / 1;
   overflow: hidden;
@@ -18,7 +18,7 @@
   height: 100%;
 }
 
-.gallery-item {
+.nature-item {
   display: block;
   text-decoration: none;
   color: inherit;
@@ -26,7 +26,7 @@
 }
 
 /* Image inside card */
-.gallery-card img {
+.nature-card img {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -35,12 +35,12 @@
 }
 /* HOVER EFFECT */
 /* Zoom image on hover */
-.gallery-card:hover img {
+.nature-card:hover img {
   transform: scale(1.05);
 }
 
 /* Dark overlay */
-.gallery-card::after {
+.nature-card::after {
   content: "";
   position: absolute;
   inset: 0;
@@ -50,12 +50,12 @@
 }
 
 /* Show overlay on hover */
-.gallery-card:hover::after {
+.nature-card:hover::after {
   opacity: 1;
 }
 
 /* Title on hover */
-.gallery-card .card-title {
+.nature-card .nature-card-title {
   position: absolute;
   inset: 0;
   display: flex;
@@ -69,6 +69,6 @@
 }
 
 /* Show title on hover */
-.gallery-card:hover .card-title {
+.nature-card:hover .nature-card-title {
   opacity: 1;
 }
