@@ -26,11 +26,6 @@ const galleryItems = [
 function Portrait() {
   const [isOpen, setIsOpen] = useState(false);
   const [photoIndex, setPhotoIndex] = useState(0);
-  const slides = galleryItems.map((item) => ({
-    src: item.src,
-    description: item.alt,
-  }));
-
   const openLightbox = (index) => {
     setPhotoIndex(index);
     setIsOpen(true);
@@ -45,11 +40,11 @@ function Portrait() {
       <h1 className="gallery-title text-center">Portrait Photography</h1>
 
       {/* ------------- Gallery display (Bootstrap grid) ------------- */}
-      <Row className="g-4">
+      <Row className="g-1">
         {galleryItems.map((img, index) => (
           <Col key={index} xs={12} sm={6} md={4}>
             <div
-              className="gallery-card"
+              className="gallery-card "
               onClick={() => openLightbox(index)} // Open lightbox on click
               style={{ cursor: "pointer" }}
             >
@@ -70,13 +65,16 @@ function Portrait() {
           open={isOpen}
           index={photoIndex}
           close={closeLightbox}
-          slides={slides}
+          slides={galleryItems.map((img) => ({
+            src: img.src,
+            description: img.alt,
+          }))}
           carousel={{ finite: false }}
           render={{
-            description: ({ slide }) => slide.description,
+            description: (slide) => slide.description,
           }}
           on={{
-            view: ({ index }) => setPhotoIndex(index),
+            view: () => {},
           }}
         />
       )}

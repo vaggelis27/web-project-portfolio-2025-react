@@ -75,6 +75,7 @@ function NaturePage() {
                 fluid
                 className="gallery-image"
               />
+              <div className="card-title">{img.alt}</div>
             </div>
           </Col>
         ))}
