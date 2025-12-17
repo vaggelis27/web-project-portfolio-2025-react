@@ -103,9 +103,9 @@
 }
 
 .navbar-brand:hover .navbar-logo {
-  transform: scale(var(--navbar-logo-scale)) scale(0.7);
+  transform: scale(var(--navbar-logo-scale)) scale(0.9);
   opacity: 0.9;
-} /* οταν κάνω κλικ στο brand, το logo στο κινητό κάνει ζουμ ουτ το scale*/
+} /* when click on the brand, the logo on mobile makes zoom in the scale*/
 
 /* TOGGLER */
 #navbar .navbar-toggler:focus {
