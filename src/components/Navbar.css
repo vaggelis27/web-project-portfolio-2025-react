@@ -29,7 +29,7 @@
 /* NAVBAR SCROLLED COLORS */
 #navbar.navbar-scrolled {
   background: var(--bg-main);
-  border-color: rgba(0, 0, 0, 0.08);
+  border-color: rgba(165, 39, 39, 0.08);
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
 
   backdrop-filter: blur(12px) saturate(160%);
@@ -37,25 +37,25 @@
 }
 
 /* NAV LINK COLORS */
-#navbar:not(.navbar-scrolled) .nav-link {
+
+#navbar .nav-link {
   color: #ffffff !important;
   transition: color 0.3s ease;
 }
 
 #navbar.navbar-scrolled .nav-link {
   color: #000000 !important;
-  transition: color 0.3s ease;
 }
 
 /* NAVIGATION LINKS */
 .navbar-nav {
   display: flex;
   align-items: center;
-  gap: 40px;
+  gap: 80px;
 }
+
 .nav-link {
   position: relative;
-  letter-spacing: 1x;
   font-family: "Roboto", sans-serif;
   font-optical-sizing: auto;
   font-weight: 400;
@@ -91,7 +91,6 @@
   margin-right: auto;
 }
 
-/* LOGO (STABLE) */
 .navbar-logo {
   --navbar-logo-scale: 2;
   width: 12rem;
@@ -133,7 +132,7 @@
   #navbar {
     height: auto;
     min-height: 72px;
-    padding: 8px 18px;
+    padding: 5px 18px;
   }
 
   .navbar-brand {
@@ -150,24 +149,30 @@
     transform: scale(1.6);
     transform-origin: left center;
   }
-
+}
+@media (max-width: 768px) {
+  #navbar .container-fluid {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
   .navbar-nav {
+    flex-direction: column;
+    align-items: flex-start;
     gap: 18px;
   }
 }
 
-/* MOBILE NAVBAR DROPDOWN */
 @media (max-width: 768px) {
   #navbar .navbar-collapse {
     position: absolute;
     top: 100%;
-    left: 50%;
-    transform: translateX(-50%);
+    left: 0;
+    right: 0;
+    transform: none;
     margin-top: 0;
     padding: 12px 18px;
     z-index: 1050;
-
-    border-radius: 16px;
 
     background: rgba(0, 0, 0, 0.92);
     backdrop-filter: blur(12px);
@@ -182,22 +187,7 @@
 }
 
 @media (max-width: 768px) {
-  .navbar-nav {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 18px;
-  }
-}
-
-@media (max-width: 768px) {
-  #navbar .navbar-collapse .nav-link {
+  #navbar .nav-link {
     font-size: 1.05rem;
-    letter-spacing: 1px;
-  }
-}
-
-@media (max-width: 768px) {
-  .navbar-logo {
-    transform: scale(1.2);
   }
 }

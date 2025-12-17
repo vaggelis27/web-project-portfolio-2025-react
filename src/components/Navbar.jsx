@@ -2,7 +2,7 @@ import { useRef, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useState } from "react"; // NOTE: We need to use the useState hook for this component.
 import { X } from "lucide-react";
-
+import { motion } from "framer-motion";
 import React from "react";
 
 import "./Navbar.css";
