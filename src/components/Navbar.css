@@ -103,7 +103,7 @@
 }
 
 .navbar-brand:hover .navbar-logo {
-  transform: scale(var(--navbar-logo-scale)) scale(1.04);
+  transform: scale(var(--navbar-logo-scale)) scale(0.7);
   opacity: 0.9;
 }
 
