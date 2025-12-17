@@ -1,4 +1,4 @@
-/* Page spacing κάτω από fixed navbar */
+/* Page spacing below the fixed navbar */
 .nature-gallery-container {
   padding-top: 140px;
 }
@@ -9,7 +9,7 @@
   margin-bottom: 40px;
 }
 
-/* Gallery card  */
+/* Gallery card */
 .nature-card {
   position: relative;
   aspect-ratio: 1 / 1;
@@ -33,8 +33,7 @@
   display: block;
   transition: transform 0.3s ease;
 }
-/* HOVER EFFECT */
-/* Zoom image on hover */
+/* HOVER EFFECT: Zoom image on hover */
 .nature-card:hover img {
   transform: scale(1.05);
 }

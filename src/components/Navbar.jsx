@@ -1,5 +1,8 @@
 import { useRef, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
+import { useState } from "react"; // NOTE: We need to use the useState hook for this component.
+import { X } from "lucide-react";
+
 import React from "react";
 
 import "./Navbar.css";
@@ -9,7 +12,9 @@ export default function Navbar() {
   /* REFS & ROUTER */
   const navbarRef = useRef(null);
   const location = useLocation();
+  const [menuOpen, setMenuOpen] = useState(false);
 
+  /* NAVBAR MENU OPEN/CLOSE */
   /* NAVBAR SCROLL EFFECT */
   useEffect(() => {
     const navbarEl = navbarRef.current;
@@ -79,20 +84,26 @@ export default function Navbar() {
         <button
           className="navbar-toggler custom-toggler"
           type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNav"
           aria-controls="navbarNav"
-          aria-expanded="false"
+          aria-expanded={menuOpen}
           aria-label="Toggle navigation"
+          onClick={() => setMenuOpen(!menuOpen)}
         >
           <span className="navbar-toggler-icon"></span>
         </button>
 
         {/* NAVIGATION LINKS (RIGHT) */}
-        <div className="collapse navbar-collapse" id="navbarNav">
+        <div
+          className={`navbar-collapse ${menuOpen ? "show" : "collapse"}`}
+          id="navbarNav"
+        >
           <ul className="navbar-nav ms-auto">
             <li className="nav-item">
-              <Link to="/" className="nav-link">
+              <Link
+                to="/"
+                className="nav-link"
+                onClick={() => setMenuOpen(false)}
+              >
                 <i className="bi bi-house-door me-1"></i> Home
               </Link>
             </li>
@@ -110,7 +121,11 @@ export default function Navbar() {
             </li>
 
             <li className="nav-item">
-              <Link to="/contact" className="nav-link" onClick={handleContactClick}>
+              <Link
+                to="/contact"
+                className="nav-link"
+                onClick={handleContactClick}
+              >
                 <i className="bi bi-envelope me-1"></i> Contact
               </Link>
             </li>

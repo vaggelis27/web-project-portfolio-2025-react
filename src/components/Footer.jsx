@@ -8,7 +8,7 @@ export default function Footer() {
         <strong>Photography Portfolio</strong>
       </div>
 
-      <div className="my-2 footer-social">
+      <div className=" footer-social">
         <a
           href="https://www.instagram.com/vagelisntotsikas/"
           target="_blank"
