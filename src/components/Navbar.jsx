@@ -1,9 +1,5 @@
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react"; // NOTE: We need to use the useState hook for this component.
 import { Link, useLocation } from "react-router-dom";
-import { useState } from "react"; // NOTE: We need to use the useState hook for this component.
-import { X } from "lucide-react";
-import { motion } from "framer-motion";
-import React from "react";
 
 import "./Navbar.css";
 import logo from "../assets/navbar-logo/photography_logo 2025.svg";
@@ -14,7 +10,6 @@ export default function Navbar() {
   const location = useLocation();
   const [menuOpen, setMenuOpen] = useState(false);
 
-  /* NAVBAR MENU OPEN/CLOSE */
   /* NAVBAR SCROLL EFFECT */
   useEffect(() => {
     const navbarEl = navbarRef.current;
