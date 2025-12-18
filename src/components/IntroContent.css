@@ -1,8 +1,9 @@
 .editorial-section {
   padding: 80px 20px;
-  max-width: 900px;
+  width: auto;
   margin: 0 auto;
   text-align: center;
+  background: var(--bg-main);
 }
 
 .brand-logo img {
