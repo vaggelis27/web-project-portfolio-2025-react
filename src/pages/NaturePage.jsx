@@ -47,15 +47,15 @@ function NaturePage() {
     description: item.alt,
   }));
 
-const openLightbox = (index) => {
-  setPhotoIndex(index);
-  setIsOpen(true);
-};
+  const openLightbox = (index) => {
+    setPhotoIndex(index);
+    setIsOpen(true);
+  };
 
-const closeLightbox = () => {
-  setIsOpen(false);
-};
-return (
+  const closeLightbox = () => {
+    setIsOpen(false);
+  };
+  return (
     // Use nature-gallery-container to keep padding below the navbar
     <Container className="nature-gallery-container py-5">
       {/* Use nature-gallery-title styling */}
