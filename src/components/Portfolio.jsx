@@ -1,9 +1,10 @@
 import { Link } from "react-router-dom";
 import { Container, Row, Col } from "react-bootstrap";
 
-import portfolioImage1 from "../assets/background-images/4.jpg";
-import portfolioImage2 from "../assets/background-images/6.jpg";
-import portfolioImage3 from "../assets/background-images/7.jpg";
+// Use existing local assets for the portfolio cards
+import portfolioImage1 from "../assets/nature/Nature_Photos01.jpg";
+import portfolioImage2 from "../assets/Portrait/Portrait_Photos01.jpg";
+import portfolioImage3 from "../assets/nature/Nature_Photos10.JPG";
 
 import "./Portfolio.css";
 
