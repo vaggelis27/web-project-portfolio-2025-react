@@ -1,0 +1,26 @@
+.editorial-section {
+  padding: 80px 20px;
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.brand-logo img {
+  max-width: 250px;
+  height: auto;
+  margin-bottom: 50px;
+}
+
+.lead-paragraph {
+  font-size: 1.25rem;
+  color: #666;
+  font-style: italic;
+  margin-bottom: 30px;
+}
+
+.text-content p {
+  line-height: 1.8;
+  color: #333;
+  margin-bottom: 20px;
+  font-family: "Inter", sans-serif;
+}
