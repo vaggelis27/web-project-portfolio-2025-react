@@ -8,7 +8,6 @@ import NaturePage from "./pages/NaturePage.jsx";
 import PortraitPage from "./pages/PortraitPage.jsx";
 import ContactPage from "./pages/ContactPage.jsx";
 import NightPage from "./pages/NightPage.jsx";
-
 function App() {
   return (
     <>

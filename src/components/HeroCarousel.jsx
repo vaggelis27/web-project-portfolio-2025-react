@@ -7,23 +7,24 @@ import heroImage3 from "../assets/imagesHero/Hero_Photos03.jpg";
 const slides = [
   {
     image: heroImage1,
-    title: "Explora el Mundo",
-    subtitle: "Descubre lugares increíbles",
+    title: "Lakes ioannina",
+    subtitle: "Embrace Tranquility",
     paragraph:
-      "Vive experiencias únicas en los destinos más espectaculares del planeta",
+      "Discover the serene beauty of Ioannina's lakes, where tranquil waters meet stunning mountain views",
   },
   {
     image: heroImage2,
-    title: "Naturaleza Salvaje",
-    subtitle: "Conecta con lo esencial",
+    title: "Lakes ioannina",
+    subtitle: "Embrace Tranquility",
     paragraph:
-      "Sumérgete en la belleza de paisajes vírgenes y bosques milenarios",
+      "Discover the serene beauty of Ioannina's lakes, where tranquil waters meet stunning mountain views",
   },
   {
     image: heroImage3,
-    title: "Paraíso Tropical",
-    subtitle: "Tu escape perfecto",
-    paragraph: "Relájate en las playas más hermosas bajo el sol del Caribe",
+    title: "Lakes ioannina",
+    subtitle: "Embrace Tranquility",
+    paragraph:
+      "Discover the serene beauty of Ioannina's lakes, where tranquil waters meet stunning mountain views",
   },
 ];
 
