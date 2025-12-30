@@ -1,0 +1,55 @@
+.hero-nature {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #ffffff;
+  padding: 0 24px;
+  overflow: hidden;
+}
+
+.hero-nature__video {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.hero-nature__video-el {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: cover;
+}
+
+.hero-nature__video::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  z-index: 1;
+}
+
+.hero-nature__content {
+  position: relative;
+  z-index: 2;
+  max-width: 900px;
+}
+
+.hero-nature__title {
+  font-weight: 300;
+  font-size: clamp(2.5rem, 4vw, 4.5rem);
+  letter-spacing: 0.02em;
+}
+
+.hero-nature__subtitle {
+  margin-top: 0.5rem;
+  font-weight: 300;
+  font-size: clamp(1.25rem, 2.2vw, 2.5rem);
+}

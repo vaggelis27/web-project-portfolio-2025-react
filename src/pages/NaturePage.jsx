@@ -1,7 +1,9 @@
+import HeroNature from "./HeroNature";
 import React, { useState } from "react";
 import { Container, Row, Col, Image } from "react-bootstrap";
 import Lightbox from "yet-another-react-lightbox";
 import "yet-another-react-lightbox/styles.css";
+
 
 import nature01 from "../assets/nature/Nature_Photos01.jpg";
 import nature02 from "../assets/nature/Nature_Photos02.jpg";
@@ -56,54 +58,56 @@ function NaturePage() {
     setIsOpen(false);
   };
   return (
-    // Use nature-gallery-container to keep padding below the navbar
-    <Container className="nature-gallery-container py-5">
-      {/* Use nature-gallery-title styling */}
-      <h1 className="text-center mb-4 nature-gallery-title">
-        Nature Photography
-      </h1>
+    <>
+      <HeroNature />
+      {/* Use nature-gallery-container to keep padding below the navbar */}
+      <Container className="nature-gallery-container py-5">
+        {/* Use nature-gallery-title styling */}
+        <h1 className="text-center mb-4 nature-gallery-title">
+          Nature Photography
+        </h1>
 
-      {/* -------------------- Gallery display (Bootstrap grid) -------------------- */}
-      <Row className="g-1">
-        {galleryItems.map((img, index) => (
-          <Col key={index} xs={12} sm={6} md={4}>
-            <div
-              className="nature-card" // Using nature-card class for styling
-              // When clicked, open the lightbox at this image
-              onClick={() => openLightbox(index)}
-              style={{ cursor: "pointer" }} // Show it is clickable
-            >
-              <Image
-                src={img.src}
-                alt={img.alt}
-                fluid
-                className="nature-image" // Using nature-image for clarity
-              />
-              {/* Use nature-card-title to show hover text */}
-              <div className="nature-card-title">{img.alt}</div>
-            </div>
-          </Col>
-        ))}
-      </Row>
+        {/* -------------------- Gallery display (Bootstrap grid) -------------------- */}
+        <Row className="g-1">
+          {galleryItems.map((img, index) => (
+            <Col key={index} xs={12} sm={6} md={4}>
+              <div
+                className="nature-card" // Using nature-card class for styling
+                // When clicked, open the lightbox at this image
+                onClick={() => openLightbox(index)}
+                style={{ cursor: "pointer" }} // Show it is clickable
+              >
+                <Image
+                  src={img.src}
+                  alt={img.alt}
+                  fluid
+                  className="nature-image" // Using nature-image for clarity
+                />
+                {/* Use nature-card-title to show hover text */}
+                <div className="nature-card-title">{img.alt}</div>
+              </div>
+            </Col>
+          ))}
+        </Row>
 
-      {/* -------------------- Lightbox Component (Click & Zoom) -------------------- */}
-      {isOpen && (
-        <Lightbox
-          open={isOpen}
-          index={photoIndex}
-          close={closeLightbox}
-          slides={slides}
-          carousel={{ finite: false }}
-          render={{
-            description: ({ slide }) => slide.description,
-          }}
-          on={{
-            view: ({ index }) => setPhotoIndex(index),
-          }}
-        />
-      )}
-    </Container>
+        {/* -------------------- Lightbox Component (Click & Zoom) -------------------- */}
+        {isOpen && (
+          <Lightbox
+            open={isOpen}
+            index={photoIndex}
+            close={closeLightbox}
+            slides={slides}
+            carousel={{ finite: false }}
+            render={{
+              description: ({ slide }) => slide.description,
+            }}
+            on={{
+              view: ({ index }) => setPhotoIndex(index),
+            }}
+          />
+        )}
+      </Container>
+    </>
   );
 }
-
 export default NaturePage;
