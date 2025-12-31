@@ -26,6 +26,7 @@ const galleryItems = [
 function Portrait() {
   const [isOpen, setIsOpen] = useState(false);
   const [photoIndex, setPhotoIndex] = useState(0);
+
   const openLightbox = (index) => {
     setPhotoIndex(index);
     setIsOpen(true);
@@ -36,30 +37,36 @@ function Portrait() {
   };
 
   return (
-    <Container className="gallery-container py-5">
-      <h1 className="gallery-title text-center">Portrait Photography</h1>
+    <div className="portrait-page">
+      <div className="portrait-page__background" />
 
-      {/* ------------- Gallery display (Bootstrap grid) ------------- */}
-      <Row className="g-2">
-        {galleryItems.map((img, index) => (
-          <Col key={index} xs={12} sm={6} md={4}>
-            <div
-              className="portrait-card"
-              onClick={() => openLightbox(index)} // Open lightbox on click
-              style={{ cursor: "pointer" }}
-            >
-              <Image
-                src={img.src}
-                alt={img.alt}
-                fluid
-                className="portrait-image"
-              />
-            </div>
-          </Col>
-        ))}
-      </Row>
+      <div className="portrait-page__content">
+        <div className="gallery-container portrait-gallery-container">
+          <Container>
+            <h1 className="portrait-gallery-title text-center">
+              Portrait Photography
+            </h1>
 
-      {/* ------------- Lightbox modal ------------- */}
+            <Row className="g-1">
+              {galleryItems.map((img, index) => (
+                <Col key={index} xs={12} sm={6} md={4}>
+                  <div
+                    className="portrait-card"
+                    onClick={() => openLightbox(index)}
+                  >
+                    <Image
+                      src={img.src}
+                      alt={img.alt}
+                      fluid
+                    />
+                  </div>
+                </Col>
+              ))}
+            </Row>
+          </Container>
+        </div>
+      </div>
+
       {isOpen && (
         <Lightbox
           open={isOpen}
@@ -69,16 +76,9 @@ function Portrait() {
             src: img.src,
             description: img.alt,
           }))}
-          carousel={{ finite: false }}
-          render={{
-            description: (slide) => slide.description,
-          }}
-          on={{
-            view: () => {},
-          }}
         />
       )}
-    </Container>
+    </div>
   );
 }
 
