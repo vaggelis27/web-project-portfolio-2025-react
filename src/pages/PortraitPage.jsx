@@ -54,11 +54,7 @@ function Portrait() {
                     className="portrait-card"
                     onClick={() => openLightbox(index)}
                   >
-                    <Image
-                      src={img.src}
-                      alt={img.alt}
-                      fluid
-                    />
+                    <Image src={img.src} alt={img.alt} fluid />
                   </div>
                 </Col>
               ))}

@@ -3,7 +3,7 @@
   width: auto;
   margin: 0 auto;
   text-align: center;
-  background: var(--bg-main);
+  /* background: var(--bg-main); */
 }
 
 .brand-logo img {

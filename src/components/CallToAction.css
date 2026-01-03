@@ -1,0 +1,124 @@
+/* =========================
+   Section wrapper
+   ========================= */
+
+.call-to-action {
+  max-width: 1200px;
+  margin: 6rem auto 0;
+  padding-bottom: 8rem; /* καθαρό κλείσιμο πριν το footer */
+ 
+}
+
+/* =========================
+   Article layout (paper)
+   ========================= */
+
+.cta-article {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 4rem;
+  align-items: center;
+}
+
+.cta-article + .cta-article {
+  margin-top: 6rem;
+}
+
+.call-to-action .cta-article:last-child {
+  margin-bottom: 2rem;
+}
+
+/* =========================
+   Reverse layout
+   ========================= */
+
+.cta-article--reverse {
+  direction: rtl;
+}
+
+.cta-article--reverse > * {
+  direction: ltr;
+}
+
+/* =========================
+   Boxes
+   ========================= */
+
+.cta-box {
+  padding: 0 5rem;
+  box-sizing: border-box;
+}
+
+/* =========================
+   Text
+   ========================= */
+
+.cta-text {
+  max-width: 520px;
+}
+
+.cta-meta {
+  display: block;
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  opacity: 0.6;
+  margin-bottom: 1rem;
+}
+
+.cta-title {
+  font-size: 2.1rem;
+  font-weight: 400;
+  margin: 0 0 1.2rem;
+  line-height: 1.2;
+}
+
+.cta-paragraph {
+  font-size: 0.95rem;
+  line-height: 1.75;
+  opacity: 0.75;
+  margin: 0;
+}
+
+/* =========================
+   Image
+   ========================= */
+
+.cta-image-wrapper {
+  width: 90%;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.call-to-action .cta-image {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.35s ease;
+}
+
+.call-to-action .cta-image:hover {
+  transform: scale(1.04);
+}
+
+/* =========================
+   Responsive
+   ========================= */
+
+@media (max-width: 979px) {
+  .cta-article {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .cta-article + .cta-article {
+    margin-top: 3.5rem;
+  }
+
+  .cta-box {
+    padding: 0 1.5rem;
+  }
+
+  .cta-text {
+    max-width: 100%;
+  }
+}
