@@ -10,6 +10,7 @@ import Portrait04 from "../assets/Portrait/Portrait_Photos04.jpg";
 import Portrait05 from "../assets/Portrait/Portrait_Photos05.jpg";
 import Portrait06 from "../assets/Portrait/Portrait_Photos06.jpg";
 import Portrait07 from "../assets/Portrait/Portrait_Photos07.jpg";
+import Portrait08 from "../assets/Portrait/Portrait_Photos08.jpg";
 
 import "./PortraitPage.css";
 
@@ -21,6 +22,7 @@ const galleryItems = [
   { src: Portrait05, alt: "Portrait photo 5" },
   { src: Portrait06, alt: "Portrait photo 6" },
   { src: Portrait07, alt: "Portrait photo 7" },
+  { src: Portrait08, alt: "Portrait photo 8" },
 ];
 
 function Portrait() {
