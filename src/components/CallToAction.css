@@ -1,21 +1,17 @@
-/* =========================
-   Section wrapper
-   ========================= */
+/* SECTION WRAPPER */
 
 .call-to-action {
-  max-width: 1200px;
-  margin: 4rem auto 0;
-  padding-bottom: 8rem; /* καθαρό κλείσιμο πριν το footer */
+  max-width: 1100px;
+  margin: 5rem auto 0;
+  padding-bottom: 7rem;
 }
 
-/* =========================
-   Article layout (paper)
-   ========================= */
+/* ARTICLE LAYOUT */
 
 .cta-article {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 2rem;
+  gap: clamp(2rem, 4vw, 4.5rem);
   align-items: center;
 }
 
@@ -27,9 +23,7 @@
   margin-bottom: 2rem;
 }
 
-/* =========================
-   Reverse layout
-   ========================= */
+/* REVERSE LAYOUT */
 
 .cta-article--reverse {
   direction: rtl;
@@ -39,51 +33,46 @@
   direction: ltr;
 }
 
-/* =========================
-   Boxes
-   ========================= */
+/* BOXES */
 
 .cta-box {
-  padding: 0 2.5rem;
+  padding: 0 clamp(1.5rem, 3vw, 3rem);
   box-sizing: border-box;
 }
 
-/* =========================
-   Text
-   ========================= */
+/* TEXT STYLE */
 
 .cta-text {
-  max-width: 520px;
+  max-width: 34rem;
 }
 
 .cta-meta {
   display: block;
-  font-size: 0.7rem;
-  letter-spacing: 0.15em;
-  opacity: 0.6;
-  margin-bottom: 1rem;
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  opacity: 0.55;
+  margin-bottom: 0.9rem;
 }
 
 .cta-title {
-  font-size: 2.1rem;
+  font-size: clamp(1.6rem, 1.1vw + 1.3rem, 2.35rem);
   font-weight: 400;
-  margin: 0 0 1.2rem;
-  line-height: 1.2;
+  margin: 0 0 1rem;
+  line-height: 1.28;
 }
 
 .cta-paragraph {
-  font-size: 0.95rem;
-  line-height: 1.75;
-  opacity: 0.75;
+  font-size: 1rem;
+  line-height: 1.8;
+  opacity: 0.7;
   margin: 0;
 }
 
-/* =========================
-   Image
-   ========================= */
+/* IMAGE STYLES */
 
 .cta-image-wrapper {
-  width: 90%;
+  width: 100%;
   overflow: hidden;
   border-radius: 12px;
 }
@@ -99,14 +88,12 @@
   transform: scale(1.04);
 }
 
-/* =========================
-   Responsive
-   ========================= */
+/* RESPONSIVE */
 
 @media (max-width: 979px) {
   .cta-article {
     grid-template-columns: 1fr;
-    gap: 2rem;
+    gap: 1.75rem;
   }
 
   .cta-article + .cta-article {
@@ -114,7 +101,7 @@
   }
 
   .cta-box {
-    padding: 0 1.5rem;
+    padding: 0 1.25rem;
   }
 
   .cta-text {
