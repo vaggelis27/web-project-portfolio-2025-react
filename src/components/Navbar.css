@@ -180,7 +180,7 @@
   }
 
   #navbar.navbar-scrolled .navbar-collapse {
-    background: var(--bg-main);
+    background: rgb(255, 255, 255);
   }
 }
 
