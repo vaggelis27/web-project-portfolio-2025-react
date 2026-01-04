@@ -52,7 +52,7 @@ export default function Portfolio() {
                       {/* Το Overlay up images*/}
                       <div className="Portfolio-overlay">
                         <h3 className="Overlay-title">{item.title}</h3>
-                        <span className="Overlay-tag">View Project &rarr;</span>
+                        <span className="Overlay-tag">view &rarr;</span>
                       </div>
                     </div>
                   </Link>
