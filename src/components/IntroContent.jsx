@@ -15,17 +15,20 @@ const IntroContent = () => {
       {/* Main Content Layout */}
       <div className="section-body">
         <p className="lead-paragraph">
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Atque
-          molestiae pariatur non consectetur sed expedita fugit corrupti! Autem
-          earum consectetur quam, esse suscipit consequatur natus voluptatem
-          obcaecati repudiandae atque officiis.
+          "Ονομάζομαι Βαγγέλης Ντότσικας και η πορεία μου ξεκίνησε μέσα από τον
+          φακό, αναζητώντας την τέλεια ισορροπία φωτός και σύνθεσης. Αυτή η
+          ανάγκη μου να «χτίζω» εικόνες με οδήγησε σταδιακά στον κόσμο της
+          τεχνολογίας και του Web Development.
         </p>
         <div className="text-content">
           <p>
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vel
-            accusantium debitis eius perferendis, accusamus nobis eveniet, eaque
-            corrupti quaerat earum dolor! Itaque, temporibus. Nemo fugiat et
-            sapiente, eum dicta doloremque!
+            Για μένα, ο προγραμματισμός και η φωτογραφία μοιράζονται την ίδια
+            φιλοσοφία: τη δημιουργία κάτι ουσιαστικού από το μηδέν. Είτε
+            πρόκειται για ένα πορτρέτο στη φύση είτε για ένα component στη
+            React, στόχος μου είναι η καθαρότητα, η λεπτομέρεια και η σωστή
+            εμπειρία του χρήστη. Σήμερα, συνδυάζω την αισθητική μου αντίληψη με
+            σύγχρονα εργαλεία κώδικα για να δημιουργώ ψηφιακά προϊόντα που είναι
+            τόσο λειτουργικά όσο και όμορφα."
           </p>
         </div>
       </div>
