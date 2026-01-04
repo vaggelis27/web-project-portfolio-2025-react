@@ -37,7 +37,7 @@ export default function Portfolio() {
         <div className="Portfolio">
           <Container className=" text-center">
             <h1 className="fw-bold mb-4">Portfolio</h1>
-            <Row className="g-4">
+            <Row className="g-2">
               {portfolioItems.map((item) => (
                 <Col md={4} key={item.id}>
                   {/* link cards */}
