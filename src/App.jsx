@@ -8,10 +8,12 @@ import NaturePage from "./pages/NaturePage.jsx";
 import PortraitPage from "./pages/PortraitPage.jsx";
 import ContactPage from "./pages/ContactPage.jsx";
 import NightPage from "./pages/NightPage.jsx";
+import ScrollToTop from "./components/ScrollToTop.jsx";
 function App() {
   return (
     <>
       <Navbar />
+      <ScrollToTop />
 
       <Routes>
         <Route path="/" element={<HomePage />} />
