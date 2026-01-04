@@ -32,7 +32,7 @@ const CallToAction = () => {
 
       <article className="cta-article cta-article--reverse">
         <div className="cta-box cta-text">
-          <span className="cta-meta">ΦΩΤΟΓΡΑΦΙΕΣ ΓΑΜΟΥ</span>
+          <span className="cta-meta">PORTRAIT</span>
           <h2 className="cta-title">Central Park</h2>
           <p className="cta-paragraph">
             Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
