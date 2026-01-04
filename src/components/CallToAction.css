@@ -4,9 +4,8 @@
 
 .call-to-action {
   max-width: 1200px;
-  margin: 6rem auto 0;
+  margin: 4rem auto 0;
   padding-bottom: 8rem; /* καθαρό κλείσιμο πριν το footer */
- 
 }
 
 /* =========================
@@ -16,7 +15,7 @@
 .cta-article {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 4rem;
+  gap: 2rem;
   align-items: center;
 }
 
@@ -45,7 +44,7 @@
    ========================= */
 
 .cta-box {
-  padding: 0 5rem;
+  padding: 0 2.5rem;
   box-sizing: border-box;
 }
 
