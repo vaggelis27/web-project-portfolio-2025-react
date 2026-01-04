@@ -18,7 +18,7 @@ const portfolioItems = [
   },
   {
     id: 2,
-    title: "Portraiture",
+    title: "Portrait",
     image: portfolioImage2,
     to: "/portrait",
   },
