@@ -1,14 +1,16 @@
-import { useRef, useEffect, useState } from "react"; // NOTE: We need to use the useState hook for this component.
+import { useEffect, useRef, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 
 import "./Navbar.css";
 import logo from "../assets/navbar-logo/photography_logo 2025.svg";
 
 export default function Navbar() {
-  /* REFS & ROUTER */
   const navbarRef = useRef(null);
+  const togglerRef = useRef(null);
   const location = useLocation();
   const [menuOpen, setMenuOpen] = useState(false);
+
+  const closeMenu = () => setMenuOpen(false);
 
   /* NAVBAR SCROLL EFFECT */
   useEffect(() => {
@@ -16,53 +18,50 @@ export default function Navbar() {
 
     const handleScroll = () => {
       if (!navbarEl) return;
-
-      if (window.scrollY > 10) {
-        navbarEl.classList.add("navbar-scrolled");
-      } else {
-        navbarEl.classList.remove("navbar-scrolled");
-      }
+      navbarEl.classList.toggle("navbar-scrolled", window.scrollY > 10);
     };
 
-    /* initialize state on mount */
     handleScroll();
-
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  /* PORTFOLIO SCROLL (HOME PAGE ONLY) */
-  const handlePortfolioClick = (e) => {
-    if (location.pathname === "/") {
-      e.preventDefault();
+  /* HASH SCROLL (HOME ONLY) - supports */
+  useEffect(() => {
+    if (location.pathname !== "/") return;
+    if (!location.hash) return;
 
-      const section = document.getElementById("portfolio");
-      if (section) {
-        section.scrollIntoView({ behavior: "smooth" });
+    const id = location.hash.slice(1);
+    // Allow layout to paint first (especially if sections render after route change)
+    requestAnimationFrame(() => {
+      const section = document.getElementById(id);
+      if (section) section.scrollIntoView({ behavior: "smooth" });
+    });
+  }, [location.pathname, location.hash]);
+
+  /* ESC TO CLOSE (ACCESSIBILITY BASIC) */
+  useEffect(() => {
+    if (!menuOpen) return;
+
+    const onKeyDown = (e) => {
+      if (e.key === "Escape") {
+        closeMenu();
+        togglerRef.current?.focus();
       }
-    }
-  };
+    };
 
-  /* CONTACT SCROLL (HOME PAGE ONLY) */
-  const handleContactClick = (e) => {
-    if (location.pathname === "/") {
-      e.preventDefault();
-
-      const section = document.getElementById("ContactPage");
-      if (section) {
-        section.scrollIntoView({ behavior: "smooth" });
-      }
-    }
-  };
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [menuOpen]);
 
   /* LOGO CLICK (ALWAYS GO HOME, SCROLL TO TOP IF ALREADY THERE) */
   const handleLogoClick = () => {
+    closeMenu();
     if (location.pathname === "/") {
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
   };
 
-  /* JSX RENDER */
   return (
     <nav
       ref={navbarRef}
@@ -77,50 +76,46 @@ export default function Navbar() {
 
         {/* MOBILE TOGGLER */}
         <button
+          ref={togglerRef}
           className="navbar-toggler custom-toggler"
           type="button"
           aria-controls="navbarNav"
           aria-expanded={menuOpen}
           aria-label="Toggle navigation"
-          onClick={() => setMenuOpen(!menuOpen)}
+          onClick={() => setMenuOpen((v) => !v)}
         >
           <span className="navbar-toggler-icon"></span>
         </button>
 
         {/* NAVIGATION LINKS (RIGHT) */}
         <div
-          className={`navbar-collapse ${menuOpen ? "show" : "collapse"}`}
+          className={`navbar-collapse collapse${menuOpen ? " show" : ""}`}
           id="navbarNav"
+          aria-hidden={!menuOpen}
         >
           <ul className="navbar-nav ms-auto">
             <li className="nav-item">
-              <Link
-                to="/"
-                className="nav-link"
-                onClick={() => setMenuOpen(false)}
-              >
+              <Link to="/" className="nav-link" onClick={closeMenu}>
                 <i className="bi bi-house-door me-1"></i> Home
               </Link>
             </li>
 
             <li className="nav-item">
-              <Link to="/" className="nav-link" onClick={handlePortfolioClick}>
+              {/* Works from anywhere: navigates to home + scrolls to #portfolio */}
+              <Link to="/#portfolio" className="nav-link" onClick={closeMenu}>
                 <i className="bi bi-collection me-1"></i> Portfolio
               </Link>
             </li>
 
             <li className="nav-item">
-              <Link to="/about" className="nav-link">
+              <Link to="/about" className="nav-link" onClick={closeMenu}>
                 <i className="bi bi-info-circle me-1"></i> About
               </Link>
             </li>
 
             <li className="nav-item">
-              <Link
-                to="/contact"
-                className="nav-link"
-                onClick={handleContactClick}
-              >
+              {/* Works from anywhere: navigates to home + scrolls to #Contact */}
+              <Link to="/#Contact" className="nav-link" onClick={closeMenu}>
                 <i className="bi bi-envelope me-1"></i> Contact
               </Link>
             </li>
