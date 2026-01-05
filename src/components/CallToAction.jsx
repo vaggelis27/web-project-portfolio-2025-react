@@ -8,6 +8,7 @@ import nature01 from "../assets/nature/Nature_Photos01.jpg";
 import Portrait08 from "../assets/Portrait/Portrait_Photos08.jpg";
 import nature03 from "../assets/nature/Nature_Photos03.jpg";
 
+// Call to action data
 const callToAction = [
   {
     id: 1,
@@ -39,6 +40,7 @@ const callToAction = [
   },
 ];
 
+// CallToAction Component
 const CallToAction = () => {
   return (
     <section className="call-to-action">
