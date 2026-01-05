@@ -34,7 +34,7 @@ function Contact() {
       <div className="container">
         <div className="row justify-content-center">
           <div className="col-lg-8 col-xl-10">
-            <div className="contact-card p-4 p-lg-5">
+            <div className="contact-card p-4 p-lg-8">
               <h2 className="text-uppercase fw-bold text-center mb-4">
                 Contact
               </h2>
