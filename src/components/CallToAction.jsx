@@ -20,7 +20,7 @@ const callToAction = [
   },
   {
     id: 2,
-    title: "Ηχώ της Φύσης",
+    title: "ΗΧΩ ΤΗΣ ΦΥΣΗΣ",
     image: Portrait08,
     to: "/portrait",
     meta: "PORTRAIT",
