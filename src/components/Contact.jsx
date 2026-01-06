@@ -62,7 +62,7 @@ function Contact() {
                   <div className="col-md-6">
                     <label
                       className="form-label text-uppercase small"
-                      for="contactName"
+                      htmlFor="contactName"
                     >
                       Name
                     </label>
@@ -78,7 +78,7 @@ function Contact() {
                   <div className="col-md-6">
                     <label
                       className="form-label text-uppercase small"
-                      for="contactEmail"
+                      htmlFor="contactEmail"
                     >
                       Email
                     </label>
@@ -94,7 +94,7 @@ function Contact() {
                   <div className="col-12">
                     <label
                       className="form-label text-uppercase small"
-                      for="contactMessage"
+                      htmlFor="contactMessage"
                     >
                       Message
                     </label>

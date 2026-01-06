@@ -13,6 +13,7 @@
     "deploy": "gh-pages -d dist"
   },
   "dependencies": {
+    "@supabase/supabase-js": "^2.89.0",
     "@tailwindplus/elements": "^1.0.18",
     "animate.css": "^4.1.1",
     "astro": "^5.16.0",
