@@ -1,50 +1,60 @@
-import React from "react";
+// CallToAction.jsx
+import React, { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
+import { supabase } from "../lib/supabase";
 
 import "./CallToAction.css";
+// Call to action data ( added from Supabase Storage)
 
-// images
-import nature01 from "../assets/nature/Nature_Photos01.jpg";
-import Portrait08 from "../assets/Portrait/Portrait_Photos08.jpg";
-import nature03 from "../assets/nature/Nature_Photos03.jpg";
-
-// Call to action data
 const callToAction = [
   {
     id: 1,
     title: "ΠΗΓΕΣ ΛΟΥΡΟΥ",
-    image: nature01,
+    imagePath: "nature/nature_photos01.jpg", // https://supabase.com/dashboard/project/dhfnkvncfzerhctejqbj/storage/files/buckets/images
     to: "/nature",
-    meta: "NATURE",
+    meta: "nature",
     description:
       "Οι Πηγές του Λούρου, επίσημα γνωστό ως λίμνη Βηρός, είναι μια «γαλάζια λίμνη» παραμυθένιας ομορφιάς κοντά στο χωριό Βουλιάστα, λίγα χιλιόμετρα έξω από τα Ιωάννινα, που χαρακτηρίζεται από τα κρυστάλλινα, γαλαζοπράσινα νερά της και το πλούσιο καταπράσινο περιβάλλον της, ιδανική για περιπάτους, πικνίκ και θαυμασμό της φύσης. Το τοπίο προσφέρει ηρεμία, ενώ τα νερά της λίμνης είναι πεντακάθαρα και αλλάζουν χρώμα ανάλογα με το φως, φιλοξενώντας πλούσια υδρόβια ζωή.",
   },
   {
     id: 2,
     title: "ΗΧΩ ΤΗΣ ΦΥΣΗΣ",
-    image: Portrait08,
+    imagePath: "portrait/Portrait_Photos08.jpg",
     to: "/portrait",
     meta: "PORTRAIT",
     reverse: true,
-    description:
-      "Μια στιγμή απόλυτης αρμονίας στην καρδιά της Ηπείρου. Το βαθύ πορφυρό του υφάσματος έρχεται σε ζωντανή αντίθεση με τους πέτρινους τόνους του μονοπατιού και το καταπράσινο βάθος της Χαράδρας του Βίκου. Η γυναίκα, με την ήρεμη αλλά αποφασιστική της στάση, φαίνεται να αντηχεί τη γαλήνη και τη δύναμη της φύσης γύρω της, δημιουργώντας μια σκηνή που είναι ταυτόχρονα γήινη και αιθέρια.",
+    description: "...",
   },
   {
     id: 3,
     title: "Ηχώ της Φύσης",
-    image: nature03,
+    imagePath: "nature/Nature_Photos03.jpg",
     to: "/night",
     meta: "MILKY WAY",
-    description:
-      "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.",
+    description: "...",
   },
 ];
 
-// CallToAction Component
+const BUCKET = "images";
+
 const CallToAction = () => {
+  const [imgSrcById, setImgSrcById] = useState({}); // { [id]: "blob:..." }
+
+  const items = useMemo(() => callToAction, []);
+
+  useEffect(() => {
+    const results = items.map((item) => {
+      // Public bucket: use public URL instead of download/blob. (sos) (https://supabase.com/docs/guides/storage/public-buckets)
+      const { data } = supabase.storage.from(BUCKET).getPublicUrl(item.imagePath);
+      return [item.id, data.publicUrl];
+    });
+
+    setImgSrcById(Object.fromEntries(results));
+  }, [items]);
+
   return (
     <section className="call-to-action">
-      {callToAction.map((item) => (
+      {items.map((item) => (
         <article
           key={item.id}
           className={`cta-article${
@@ -59,7 +69,11 @@ const CallToAction = () => {
 
           <div className="cta-box cta-image-wrapper">
             <Link to={item.to} className="cta-link" aria-label={item.title}>
-              <img className="cta-image" src={item.image} alt={item.title} />
+              <img
+                className="cta-image"
+                src={imgSrcById[item.id] || ""}
+                alt={item.title}
+              />
             </Link>
           </div>
         </article>
