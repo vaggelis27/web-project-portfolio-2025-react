@@ -6,7 +6,7 @@ import HomePage from "./pages/HomePage.jsx";
 import AboutPage from "./pages/AboutPage.jsx";
 import NaturePage from "./pages/NaturePage.jsx";
 import PortraitPage from "./pages/PortraitPage.jsx";
-import NightPage from "./pages/NightPage.jsx";
+import MilkyWayPage from "./pages/MilkyWayPage.jsx";
 import ScrollToTop from "./components/ScrollToTop.jsx";
 
 function App() {
@@ -20,7 +20,7 @@ function App() {
         <Route path="/about" element={<AboutPage />} />
         <Route path="/nature" element={<NaturePage />} />
         <Route path="/portrait" element={<PortraitPage />} />
-        <Route path="/night" element={<NightPage />} />
+        <Route path="/night" element={<MilkyWayPage />} />
       </Routes>
 
       <Footer />

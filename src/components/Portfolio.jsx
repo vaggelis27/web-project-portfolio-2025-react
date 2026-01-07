@@ -24,9 +24,9 @@ const portfolioItems = [
   },
   {
     id: 3,
-    title: "Nightscapes",
+    title: "MilkyWay",
     image: portfolioImage3,
-    to: "/night",
+    to: "/MilkyWay",
   },
 ];
 

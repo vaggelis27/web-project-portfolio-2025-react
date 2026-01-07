@@ -6,6 +6,12 @@ import { supabase } from "../lib/supabase";
 import "./CallToAction.css";
 // Call to action data ( added from Supabase Storage)
 
+//  console log public URL check for error debugging
+const { data } = supabase.storage
+  .from("images")
+  .getPublicUrl("portrait/Portrait_Photos08.jpg");
+console.log(data.publicUrl);
+
 const callToAction = [
   {
     id: 1,
@@ -19,16 +25,17 @@ const callToAction = [
   {
     id: 2,
     title: "ΗΧΩ ΤΗΣ ΦΥΣΗΣ",
-    imagePath: "portrait/Portrait_Photos08.jpg",
+    imagePath: "Portrait/portrait_photos08.jpg",
     to: "/portrait",
-    meta: "PORTRAIT",
+    meta: "portrait",
     reverse: true,
-    description: "...",
+    description:
+      "Η φωτογραφία πορτραίτου είναι μια τέχνη που αιχμαλωτίζει την ουσία και τον χαρακτήρα ενός ατόμου μέσα από την εικόνα του. Με έμφαση στην έκφραση, τη στάση και το περιβάλλον, η φωτογραφία πορτραίτου αποκαλύπτει την προσωπικότητα και τις μοναδικές πτυχές του υποκειμένου, δημιουργώντας μια σύνδεση μεταξύ του θεατή και του ατόμου που απεικονίζεται.",
   },
   {
     id: 3,
     title: "Ηχώ της Φύσης",
-    imagePath: "nature/Nature_Photos03.jpg",
+    imagePath: "Portrait/portrait_photos07.jpg",
     to: "/night",
     meta: "MILKY WAY",
     description: "...",
@@ -45,7 +52,9 @@ const CallToAction = () => {
   useEffect(() => {
     const results = items.map((item) => {
       // Public bucket: use public URL instead of download/blob. (sos) (https://supabase.com/docs/guides/storage/public-buckets)
-      const { data } = supabase.storage.from(BUCKET).getPublicUrl(item.imagePath);
+      const { data } = supabase.storage
+        .from(BUCKET)
+        .getPublicUrl(item.imagePath);
       return [item.id, data.publicUrl];
     });
 

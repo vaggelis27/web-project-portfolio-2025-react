@@ -1,9 +1,12 @@
-/* root */
-.gallery-container {
-  background: var(--bg-pages);
+/* Page spacing below the fixed navbar */
+,
+body {
+  background-color: ;
+}
+.portrait-gallery-container {
+  padding-top: 140px;
 }
 
-/* Page structure */
 .portrait-page {
   position: relative;
   min-height: 100vh;
@@ -22,12 +25,6 @@
   z-index: 1;
 }
 
-/* Page spacing below fixed navbar */
-.portrait-gallery-container {
-  padding-top: 140px;
-  padding-bottom: 60px;
-}
-
 /* Gallery title */
 .portrait-gallery-title {
   color: black;
@@ -37,12 +34,20 @@
 /* Gallery card */
 .portrait-card {
   position: relative;
-  aspect-ratio: 1 / 1;
+  aspect-ratio: 2 / 3;
   overflow: hidden;
   cursor: pointer;
+  height: 100%;
 }
 
-/* Image */
+.portrait-item {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  height: 100%;
+}
+
+/* Image inside card */
 .portrait-card img {
   width: 100%;
   height: 100%;
@@ -51,6 +56,41 @@
   transition: transform 0.3s ease;
 }
 
+/* HOVER EFFECT: Zoom image on hover */
 .portrait-card:hover img {
   transform: scale(1.05);
+}
+
+/* Dark overlay */
+.portrait-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+/* Show overlay on hover */
+.portrait-card:hover::after {
+  opacity: 1;
+}
+
+/* Title on hover */
+.portrait-card .portrait-card-title {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 1.2rem;
+  opacity: 0;
+  z-index: 2;
+  transition: opacity 0.3s ease;
+}
+
+/* Show title on hover */
+.portrait-card:hover .portrait-card-title {
+  opacity: 1;
 }

@@ -2,15 +2,10 @@ import { useState, useEffect, useMemo } from "react";
 import { Container, Row, Col, Image, Spinner } from "react-bootstrap";
 import Lightbox from "yet-another-react-lightbox";
 import "yet-another-react-lightbox/styles.css";
-
-import HeroNature from "./HeroNature";
 import { supabase } from "../lib/supabase";
-import "./NaturePage.css";
+import HeroNature from "./HeroNature";
 
-// Move URL to a constant for cleaner code supabase access
-const IMAGE_BASE_URL = `${
-  import.meta.env.VITE_SUPABASE_URL
-}/storage/v1/object/public/images/`;
+import "./NaturePage.css";
 
 function NaturePage() {
   /* STATE MANAGEMENT */
@@ -20,7 +15,7 @@ function NaturePage() {
   const [isOpen, setIsOpen] = useState(false);
   const [photoIndex, setPhotoIndex] = useState(0);
 
-  /* FETCH PHOTOS FROM SUPABASE */
+  /* FETCH PHOTOS FROM SUPABASE FOR NATURE CATEGORY */
   useEffect(() => {
     const fetchPhotos = async () => {
       try {
@@ -32,7 +27,7 @@ function NaturePage() {
           .order("created_at", { ascending: true });
 
         if (supabaseError) throw supabaseError;
-        setPhotos(data);
+        setPhotos(data || []);
       } catch (err) {
         console.error("Error fetching nature photos:", err.message);
         setError("Failed to load images.");
@@ -44,20 +39,48 @@ function NaturePage() {
     fetchPhotos();
   }, []);
 
+  /*
+   * Acquire public URLs from Storage for each image, utilizing the getPublicURL function
+   * to obtain a secure and publicly accessible link. This is essential for displaying
+   * images in the browser without exposing sensitive Storage links.
+   */
+  const photosWithPublicUrls = useMemo(() => {
+    if (!photos.length) return [];
+
+    const photosWithUrls = photos.map((photo) => ({
+      ...photo,
+      publicUrl: supabase.storage.from("images").getPublicUrl(photo.image_path),
+    }));
+
+    return photosWithUrls;
+  }, [photos]);
+
+  const processedPhotos = useMemo(() => {
+    return photos.map((img) => {
+      const { data } = supabase.storage
+        .from("images")
+        .getPublicUrl(img.image_path.trim());
+
+      return {
+        ...img,
+        url: data.publicUrl,
+      };
+    });
+  }, [photos]);
+
   /* MEMOIZE SLIDES FOR PERFORMANCE */
   const slides = useMemo(
     () =>
-      photos.map((img) => ({
-        src: `${IMAGE_BASE_URL}${img.image_path.trim()}`,
+      processedPhotos.map((img) => ({
+        src: img.url,
         title: img.alt,
       })),
-    [photos]
+    [processedPhotos]
   );
 
   return (
     <div className="nature-page">
-      <HeroNature />
-
+      <HeroNature /> {/* Hero video Section Component */}
       <Container className="nature-gallery-container py-5">
         <h1 className="text-center mb-4 nature-gallery-title">
           Nature Photography
@@ -74,8 +97,8 @@ function NaturePage() {
 
         {!loading && !error && (
           <Row className="g-1">
-            {photos.map((img, index) => (
-              <Col key={img.id || index} xs={12} sm={6} md={4}>
+            {processedPhotos.map((img, index) => (
+              <Col key={img.id || index} xs={12} sm={6} md={4} lg={2}>
                 <div
                   className="nature-card"
                   onClick={() => {
@@ -85,7 +108,7 @@ function NaturePage() {
                   style={{ cursor: "pointer" }}
                 >
                   <Image
-                    src={`${IMAGE_BASE_URL}${img.image_path.trim()}`}
+                    src={img.url}
                     alt={img.alt}
                     fluid
                     className="nature-image"
