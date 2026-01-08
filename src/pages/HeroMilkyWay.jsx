@@ -1,5 +1,5 @@
-import "./MilkyWayPage.css";
 import heroMilkyWay from "../assets/hero-videos/MilkyWay.mp4";
+import "./HeroMilkyWay.css";
 
 function HeroMilkyWay() {
   return (
@@ -11,6 +11,7 @@ function HeroMilkyWay() {
           muted
           loop
           playsInline
+          preload="metadata" // Added preload attribute to load metadata of video before playing
         >
           <source src={heroMilkyWay} type="video/mp4" />
         </video>

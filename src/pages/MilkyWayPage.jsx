@@ -64,7 +64,7 @@ function NightPage() {
   );
 
   return (
-    <div className="milkyway-page">
+    <div className="milkyway-page ">
       <HeroMilkyWay />
       <Container className="milkyway-gallery-container py-5">
         <h1 className="text-center mb-4 milkyway-gallery-title">Milky Way</h1>
