@@ -17,8 +17,8 @@ function HeroMilkyWay() {
         </video>
       </div>
       <div className="hero-milkyway__content">
-        <h1 className="hero-milkyway__title">Full Hero Video</h1>
-        <h3 className="hero-milkyway__subtitle">Milky Way Reel</h3>
+        <h1 className="hero-milkyway__title">Milky Way</h1>
+        <h3 className="hero-milkyway__subtitle">comet c 2025 a1</h3>
       </div>
     </section>
   );
