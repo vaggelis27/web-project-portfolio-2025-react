@@ -4,14 +4,16 @@ import { Link } from "react-router-dom";
 import { supabase } from "../lib/supabase";
 
 import "./CallToAction.css";
-// Call to action data ( added from Supabase Storage)
+// SUPABASE STORAGE DATA
 
 //  console log public URL check for error debugging
+// SUPABASE PUBLIC URL DEBUG
 const { data } = supabase.storage
   .from("images")
   .getPublicUrl("portrait/Portrait_Photos08.jpg");
 console.log(data.publicUrl);
 
+// CTA ITEMS
 const callToAction = [
   {
     id: 1,
@@ -42,13 +44,18 @@ const callToAction = [
   },
 ];
 
+// SUPABASE BUCKET
 const BUCKET = "images";
 
+// COMPONENT
 const CallToAction = () => {
+  // IMAGE URL MAP
   const [imgSrcById, setImgSrcById] = useState({}); // { [id]: "blob:..." }
 
+  // STATIC ITEMS
   const items = useMemo(() => callToAction, []);
 
+  // LOAD PUBLIC URLS
   useEffect(() => {
     const results = items.map((item) => {
       // Public bucket: use public URL instead of download/blob. (sos) (https://supabase.com/docs/guides/storage/public-buckets)

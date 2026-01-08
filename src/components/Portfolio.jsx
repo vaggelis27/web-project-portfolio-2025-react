@@ -1,67 +1,89 @@
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Container, Row, Col } from "react-bootstrap";
-
-// Use existing local assets for the portfolio cards
-import portfolioImage1 from "../assets/nature/Nature_Photos01.jpg";
-import portfolioImage2 from "../assets/Portrait/Portrait_Photos01.jpg";
-import portfolioImage3 from "../assets/nature/Nature_Photos10.JPG";
+import { supabase } from "../lib/supabase";
 
 import "./Portfolio.css";
 
-// data table
+// PORTFOLIO ITEMS
 const portfolioItems = [
   {
     id: 1,
-    title: "Nature",
-    image: portfolioImage1,
+    title: "nature",
+    imagePath: "nature/nature_photos09.jpg",
     to: "/nature",
+    meta: "nature",
   },
   {
     id: 2,
     title: "Portrait",
-    image: portfolioImage2,
+    imagePath: "Portrait/portrait_photos01.jpg",
     to: "/portrait",
   },
   {
     id: 3,
-    title: "MilkyWay",
-    image: portfolioImage3,
-    to: "/MilkyWay",
+    title: "Milky Way",
+    imagePath: "nature/nature_photos15.png",
+    to: "/night",
   },
 ];
 
+// SUPABASE BUCKET
+const BUCKET = "images";
+
+// COMPONENT
 export default function Portfolio() {
+  // IMAGE URL MAP
+  const [images, setImages] = useState({});
+  // LOAD PUBLIC URLS
+  useEffect(() => {
+    if (!portfolioItems || portfolioItems.length === 0) return;
+
+    const urls = portfolioItems.map((item) => {
+      const path = item?.imagePath ?? "";
+      const res = supabase.storage.from(BUCKET).getPublicUrl(path);
+      console.log("getPublicUrl result", res); // inspect returned shape
+
+      // handle either naming convention
+      const publicUrl = res?.data?.publicUrl ?? res?.data?.publicURL ?? null;
+      return [item.id, publicUrl];
+    });
+
+    setImages(Object.fromEntries(urls));
+  }, [portfolioItems]); // run when items arrive
+
   return (
-    <section id="portfolio" className="py-4 text-dark">
-      <div className="background-logo">
-        <div className="Portfolio">
-          <Container className=" text-center">
-            <h1 className="fw-bold mb-4">Portfolio</h1>
-            <Row className="g-2">
-              {portfolioItems.map((item) => (
-                <Col md={4} key={item.id}>
-                  {/* link cards */}
-                  <Link to={item.to} className="Portfolio-card-link">
-                    <div className="Portfolio-card">
-                      {/* img full frame */}
-                      <img
-                        src={item.image}
-                        className="Portfolio-img"
-                        alt={item.title}
-                      />
-                      {/* Το Overlay up images*/}
-                      <div className="Portfolio-overlay">
-                        <h3 className="Overlay-title">{item.title}</h3>
-                        <span className="Overlay-tag">view &rarr;</span>
-                      </div>
+    <section id="portfolio" className="portfolio-section">
+      <Container>
+        <h2 className="portfolio-title text-center mb-4">Portfolio</h2>
+
+        <Row className="g-2">
+          {portfolioItems.map((item) => {
+            const imgSrc = images[item.id];
+            if (!imgSrc) return null;
+
+            return (
+              <Col md={4} key={item.id}>
+                <Link to={item.to} className="Portfolio-card-link">
+                  <article className="Portfolio-card">
+                    <img
+                      src={imgSrc}
+                      alt={item.title}
+                      className="Portfolio-img"
+                      loading="lazy"
+                    />
+
+                    <div className="Portfolio-overlay">
+                      <h3 className="Overlay-title">{item.title}</h3>
+                      <span className="Overlay-tag">view →</span>
                     </div>
-                  </Link>
-                </Col>
-              ))}
-            </Row>
-          </Container>
-        </div>
-      </div>
+                  </article>
+                </Link>
+              </Col>
+            );
+          })}
+        </Row>
+      </Container>
     </section>
   );
 }
