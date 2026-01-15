@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
+import Weather from "./Weather.jsx";
 
 import "./Navbar.css";
 import logo from "../assets/navbar-logo/photography_logo 2025.svg";

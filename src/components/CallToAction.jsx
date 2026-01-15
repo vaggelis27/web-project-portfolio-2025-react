@@ -18,7 +18,7 @@ const callToAction = [
   {
     id: 1,
     title: "ΠΗΓΕΣ ΛΟΥΡΟΥ",
-    imagePath: "nature/nature_photos01.jpg", // https://supabase.com/dashboard/project/dhfnkvncfzerhctejqbj/storage/files/buckets/images
+    imagePath: "nature/nature_photos16.jpg", // https://supabase.com/dashboard/project/dhfnkvncfzerhctejqbj/storage/files/buckets/images
     to: "/nature",
     meta: "nature",
     description:

@@ -8,12 +8,14 @@ import NaturePage from "./pages/NaturePage.jsx";
 import PortraitPage from "./pages/PortraitPage.jsx";
 import MilkyWayPage from "./pages/MilkyWayPage.jsx";
 import ScrollToTop from "./components/ScrollToTop.jsx";
+import Weather from "./components/Weather.jsx";
 
 function App() {
   return (
     <>
       <Navbar />
       <ScrollToTop />
+      <Weather />
 
       <Routes>
         <Route path="/" element={<HomePage />} />

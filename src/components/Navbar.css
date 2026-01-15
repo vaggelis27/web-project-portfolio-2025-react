@@ -51,7 +51,7 @@
   display: flex;
   align-items: center;
   margin-right: 12rem;
-  gap: 2  0px;
+  gap: 2 0px;
 }
 
 .nav-link {
@@ -182,11 +182,5 @@
 
   #navbar.navbar-scrolled .navbar-collapse {
     background: rgb(255, 255, 255);
-  }
-}
-
-@media (max-width: 768px) {
-  #navbar .nav-link {
-    font-size: 1.05rem;
   }
 }
