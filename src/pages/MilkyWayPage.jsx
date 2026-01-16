@@ -8,7 +8,7 @@ import HeroMilkyWay from "./HeroMilkyWay";
 
 import "./MilkyWayPage.css";
 
-function NightPage() {
+function MilkyWayPage() {
   /* STATE MANAGEMENT */
   const [photos, setPhotos] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -115,4 +115,4 @@ function NightPage() {
   );
 }
 
-export default NightPage;
+export default MilkyWayPage;

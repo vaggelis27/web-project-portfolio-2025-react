@@ -3,6 +3,9 @@ import "./HeroCarousel.css";
 import heroImage1 from "../assets/imagesHero/Hero_Photos01.jpg";
 import heroImage2 from "../assets/imagesHero/Hero_Photos02.jpg";
 import heroImage3 from "../assets/imagesHero/Hero_Photos03.jpg";
+import heroImage4 from "../assets/imagesHero/Hero_Photos04.png";
+import heroImage5 from "../assets/imagesHero/Hero_Photos05.jpg";
+
 // Local slide data (uses imported assets instead of remote URLs)
 const slides = [
   {
@@ -21,6 +24,21 @@ const slides = [
   },
   {
     image: heroImage3,
+    title: "Lakes ioannina",
+    subtitle: "Embrace Tranquility",
+    paragraph:
+      "Discover the serene beauty of Ioannina's lakes, where tranquil waters meet stunning mountain views",
+  },
+
+  {
+    image: heroImage4,
+    title: "Lakes ioannina",
+    subtitle: "Embrace Tranquility",
+    paragraph:
+      "Discover the serene beauty of Ioannina's lakes, where tranquil waters meet stunning mountain views",
+  },
+  {
+    image: heroImage5,
     title: "Lakes ioannina",
     subtitle: "Embrace Tranquility",
     paragraph:
@@ -100,11 +118,11 @@ function HeroCarousel() {
                   currentSlideRef.current =
                     (currentSlideRef.current + 1) % slides.length;
                   showSlide(currentSlideRef.current);
-                }, 3000)
+                }, 3000),
               );
-            }, 2100)
+            }, 2100),
           );
-        }, 100)
+        }, 100),
       );
     };
 
