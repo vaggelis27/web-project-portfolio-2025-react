@@ -36,7 +36,7 @@ const callToAction = [
   },
   {
     id: 3,
-    title: "Ηχώ της Φύσης",
+    title: "ΝΥΧΤΕΡΙΝΟΣ ΟΥΡΑΝΟΣ",
     imagePath: "milky_way/miklyway_photos04.png",
     to: "/night",
     meta: "MILKY WAY",
