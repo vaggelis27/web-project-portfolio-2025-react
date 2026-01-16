@@ -23,7 +23,7 @@ const portfolioItems = [
   {
     id: 3,
     title: "Milky Way",
-    imagePath: "nature/nature_photos15.png",
+    imagePath: "milky_way/miklyway_photos03.png",
     to: "/night",
   },
 ];

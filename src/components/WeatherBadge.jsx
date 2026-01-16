@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 const params = new URLSearchParams({
-  latitude: "39.665",
-  longitude: "20.853",
+  latitude: "39.6649",
+  longitude: "20.8519",
   current: "temperature_2m",
 });
 const url = `https://api.open-meteo.com/v1/forecast?${params.toString()}`;

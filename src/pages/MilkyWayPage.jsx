@@ -24,7 +24,7 @@ function NightPage() {
         const { data, error: supabaseError } = await supabase
           .from("photos")
           .select("id, image_path, alt")
-          .eq("category", "milkyway")
+          .eq("category", "milky_way")
           .order("created_at", { ascending: true });
 
         if (supabaseError) throw supabaseError;
@@ -60,7 +60,7 @@ function NightPage() {
         src: img.url,
         title: img.alt,
       })),
-    [processedPhotos]
+    [processedPhotos],
   );
 
   return (
