@@ -1,13 +1,10 @@
 import { useEffect, useState } from "react";
-import { fetchWeatherApi } from "openmeteo";
-
-
-const params = {
-  latitude: 39.665, // βάλε εσύ
-  longitude: 20.853, // βάλε εσύ
-  hourly: "temperature_2m",
-};
-const url = "https://api.open-meteo.com/v1/forecast";
+const params = new URLSearchParams({
+  latitude: "39.665",
+  longitude: "20.853",
+  current: "temperature_2m",
+});
+const url = `https://api.open-meteo.com/v1/forecast?${params.toString()}`;
 
 export default function WeatherBadge() {
   const [temp, setTemp] = useState(null);
@@ -15,12 +12,11 @@ export default function WeatherBadge() {
   useEffect(() => {
     const loadWeather = async () => {
       try {
-        const responses = await fetchWeatherApi(url, params);
-        const response = responses[0];
-        const hourly = response.hourly();
-        if (!hourly) return;
-
-        const temperature = hourly.variables(0)?.valuesArray()?.[0];
+        const response = await fetch(url);
+        if (!response.ok) throw new Error("Weather request failed");
+        const data = await response.json();
+        const temperature = data?.current?.temperature_2m;
+        if (typeof temperature !== "number") throw new Error("No temperature");
         setTemp(Math.round(temperature));
       } catch {
         setTemp(null);
@@ -35,7 +31,7 @@ export default function WeatherBadge() {
   const icon = temp <= 5 ? "bi-cloud" : temp <= 15 ? "bi-cloud-sun" : "bi-sun";
 
   return (
-    <div className="weather-badge d-flex align-items-center ms-3">
+    <div className="weather-badge d-flex align-items-center ms-3 bg-light px-2 py-0 rounded">
       <i className={`bi ${icon} me-1`}></i>
       <span>{temp}°C</span>
     </div>
