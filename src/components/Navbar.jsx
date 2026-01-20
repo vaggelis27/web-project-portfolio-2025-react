@@ -1,18 +1,18 @@
 import { useEffect, useRef, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import WeatherBadge from "./WeatherBadge.jsx";
-
+import moment from "moment";
 import "./Navbar.css";
 import logo from "../assets/navbar-logo/photography_logo 2025.svg";
 
 export default function Navbar() {
   const togglerRef = useRef(null);
   const location = useLocation();
+  const [time, setTime] = useState(moment().format("MMMM Do YYYY, h:mm:ss a"));
 
   /* STATE MANAGEMENT */
   const [menuOpen, setMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-
   const closeMenu = () => setMenuOpen(false);
 
   /* NAVBAR SCROLL EFFECT */
@@ -50,6 +50,14 @@ export default function Navbar() {
     window.addEventListener("keydown", onKeyDown);
     return () => window.removeEventListener("keydown", onKeyDown);
   }, [menuOpen]);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setTime(moment().format("MMMM Do YYYY, h:mm:ss a"));
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, []);
 
   /* BRAND LOGO CLICK HANDLER */
   const handleLogoClick = () => {
@@ -110,6 +118,9 @@ export default function Navbar() {
           </ul>
         </div>
       </div>
+      <nav className="navbar">
+        <span>{time}</span>
+      </nav>
       <WeatherBadge />
     </nav>
   );
