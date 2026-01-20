@@ -1,72 +1,16 @@
-import { useState, useEffect, useMemo } from "react";
+import { useState, useMemo } from "react";
 import { Container, Row, Col, Image, Spinner } from "react-bootstrap";
 import Lightbox from "yet-another-react-lightbox";
 import "yet-another-react-lightbox/styles.css";
-import { supabase } from "../lib/supabase";
 import HeroNature from "./HeroNature";
-
 import "./NaturePage.css";
+import usePhotos from "../hooks/usePhotos";
 
 function NaturePage() {
   /* STATE MANAGEMENT */
-  const [photos, setPhotos] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
   const [photoIndex, setPhotoIndex] = useState(0);
-
-  /* FETCH PHOTOS FROM SUPABASE FOR NATURE CATEGORY */
-  useEffect(() => {
-    const fetchPhotos = async () => {
-      try {
-        setLoading(true);
-        const { data, error: supabaseError } = await supabase
-          .from("photos")
-          .select("id, image_path, alt") // Added id for better keys
-          .eq("category", "nature")
-          .order("created_at", { ascending: true });
-
-        if (supabaseError) throw supabaseError;
-        setPhotos(data || []);
-      } catch (err) {
-        console.error("Error fetching nature photos:", err.message);
-        setError("Failed to load images.");
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchPhotos();
-  }, []);
-
-  /*
-   * Acquire public URLs from Storage for each image, utilizing the getPublicURL function
-   * to obtain a secure and publicly accessible link. This is essential for displaying
-   * images in the browser without exposing sensitive Storage links.
-   */
-  const photosWithPublicUrls = useMemo(() => {
-    if (!photos.length) return [];
-
-    const photosWithUrls = photos.map((photo) => ({
-      ...photo,
-      publicUrl: supabase.storage.from("images").getPublicUrl(photo.image_path),
-    }));
-
-    return photosWithUrls;
-  }, [photos]);
-
-  const processedPhotos = useMemo(() => {
-    return photos.map((img) => {
-      const { data } = supabase.storage
-        .from("images")
-        .getPublicUrl(img.image_path.trim());
-
-      return {
-        ...img,
-        url: data.publicUrl,
-      };
-    });
-  }, [photos]);
+  const { processedPhotos, loading, error } = usePhotos("nature");
 
   /* MEMOIZE SLIDES FOR PERFORMANCE */
   const slides = useMemo(
@@ -75,7 +19,7 @@ function NaturePage() {
         src: img.url,
         title: img.alt,
       })),
-    [processedPhotos]
+    [processedPhotos],
   );
 
   return (

@@ -2,56 +2,16 @@ import { useState, useEffect, useMemo } from "react";
 import { Container, Row, Col, Image, Spinner } from "react-bootstrap";
 import Lightbox from "yet-another-react-lightbox";
 import "yet-another-react-lightbox/styles.css";
-
-import { supabase } from "../lib/supabase";
 import HeroPortrait from "./HeroPortrait";
+import usePhotos from "../hooks/usePhotos";
 
 import "./PortraitPage.css";
 
 function Portrait() {
   /* STATE MANAGEMENT */
-  const [photos, setPhotos] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
   const [photoIndex, setPhotoIndex] = useState(0);
-
-  /* FETCH PHOTOS FROM SUPABASE FOR PORTRAIT CATEGORY */
-  useEffect(() => {
-    const fetchPhotos = async () => {
-      try {
-        setLoading(true);
-        const { data, error: supabaseError } = await supabase
-          .from("photos")
-          .select("id, image_path, alt")
-          .eq("category", "Portrait")
-          .order("created_at", { ascending: true });
-
-        if (supabaseError) throw supabaseError;
-        setPhotos(data || []);
-      } catch (err) {
-        console.error("Error fetching portrait photos:", err.message);
-        setError("Failed to load images.");
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchPhotos();
-  }, []);
-
-  const processedPhotos = useMemo(() => {
-    return photos.map((img) => {
-      const { data } = supabase.storage
-        .from("images")
-        .getPublicUrl(img.image_path.trim());
-
-      return {
-        ...img,
-        url: data.publicUrl,
-      };
-    });
-  }, [photos]);
+  const { processedPhotos, loading, error } = usePhotos("Portrait");
 
   /* MEMOIZE SLIDES FOR PERFORMANCE */
   const slides = useMemo(
@@ -60,7 +20,7 @@ function Portrait() {
         src: img.url,
         title: img.alt,
       })),
-    [processedPhotos]
+    [processedPhotos],
   );
 
   return (
