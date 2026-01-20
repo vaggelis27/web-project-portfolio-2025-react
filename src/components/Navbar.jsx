@@ -118,10 +118,10 @@ export default function Navbar() {
           </ul>
         </div>
       </div>
-      <nav className="navbar">
-        <span>{time}</span>
-      </nav>
-      <WeatherBadge />
+      <span>
+        <WeatherBadge />
+        {time}
+      </span>
     </nav>
   );
 }
