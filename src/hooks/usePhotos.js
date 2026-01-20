@@ -7,30 +7,37 @@ function usePhotos(category) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  /* FETCH PHOTOS FROM SUPABASE FOR NATURE CATEGORY */
+  /* FETCH PHOTOS FROM SUPABASE FOR CATEGORY */
   useEffect(() => {
+    let isCurrent = true;
     const fetchPhotos = async () => {
-      try {
-        setLoading(true);
-        const { data, error: supabaseError } = await supabase
-          .from("photos")
-          .select("id, image_path, alt") // Added id for better keys
-          .eq("category", category)
-          .order("created_at", { ascending: true });
+      setLoading(true);
+      const { data, error: supabaseError } = await supabase
+        .from("photos")
+        .select("id, image_path, alt")
+        .eq("category", category);
 
-        if (supabaseError) throw supabaseError;
-        setPhotos(data || []);
-      } catch (err) {
-        console.error("Error fetching nature photos:", err.message);
-        setError("Failed to load images.");
-      } finally {
+      if (isCurrent) {
+        if (supabaseError) {
+          setError("Failed to load");
+        } else {
+          const withUrls = data.map((img) => ({
+            ...img,
+            url: supabase.storage.from("images").getPublicUrl(img.image_path)
+              .data.publicUrl,
+          }));
+          setPhotos(withUrls);
+        }
         setLoading(false);
       }
     };
 
     fetchPhotos();
-  }, [category]);
 
+    return () => {
+      isCurrent = false;
+    };
+  }, [category]);
   const processedPhotos = useMemo(() => {
     return photos.map((img) => {
       const { data } = supabase.storage
