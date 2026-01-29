@@ -1,0 +1,93 @@
+body {
+  background-color: transparent;
+}
+.milkyway-gallery-container {
+  padding-top: 10px;
+}
+
+.milkyway-page {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+}
+
+.milkyway-page__background {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: var(--bg-pages);
+}
+
+.milkyway-page__content {
+  position: relative;
+  z-index: 1;
+}
+
+/* Gallery title */
+.milkyway-gallery-title {
+  color: black;
+  margin-bottom: 40px;
+}
+
+/* Gallery card */
+.milkyway-card {
+  position: relative;
+  aspect-ratio: 2 / 3;
+  overflow: hidden;
+  cursor: pointer;
+  height: 100%;
+}
+
+.milkyway-item {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  height: 100%;
+}
+
+/* Image inside card */
+.milkyway-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.3s ease;
+}
+/* HOVER EFFECT: Zoom image on hover */
+.milkyway-card:hover img {
+  transform: scale(1.05);
+}
+
+/* Dark overlay */
+.milkyway-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+/* Show overlay on hover */
+.milkyway-card:hover::after {
+  opacity: 1;
+}
+
+/* Title on hover */
+.milkyway-card .milkyway-card-title {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 1.2rem;
+  opacity: 0;
+  z-index: 2;
+  transition: opacity 0.3s ease;
+}
+
+/* Show title on hover */
+.milkyway-card:hover .milkyway-card-title {
+  opacity: 1;
+}

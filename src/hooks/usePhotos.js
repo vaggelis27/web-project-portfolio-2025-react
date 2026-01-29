@@ -1,7 +1,7 @@
 import { useState, useEffect, useMemo } from "react";
-import { supabase } from "../lib/supabase";
+import { supabase } from "@/core/api/supabase";
 
-function usePhotos(category) {
+export function usePhotos(category) {
   /* STATE MANAGEMENT */
   const [photos, setPhotos] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -27,6 +27,7 @@ function usePhotos(category) {
               .data.publicUrl,
           }));
           setPhotos(withUrls);
+          
         }
         setLoading(false);
       }
@@ -53,5 +54,3 @@ function usePhotos(category) {
 
   return { photos, loading, error, processedPhotos };
 }
-
-export default usePhotos;
