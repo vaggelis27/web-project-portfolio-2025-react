@@ -85,6 +85,7 @@ export function Navbar() {
           ref={togglerRef}
           className="navbar-toggler custom-toggler"
           type="button"
+          aria-controls="main-navbar-links"
           aria-expanded={menuOpen}
           aria-label="Toggle navigation"
           onClick={() => setMenuOpen((prev) => !prev)}
@@ -93,7 +94,10 @@ export function Navbar() {
         </button>
 
         {/* NAVIGATION LINKS */}
-        <div className={`navbar-collapse collapse ${menuOpen ? "show" : ""}`}>
+        <div
+          id="main-navbar-links"
+          className={`navbar-collapse collapse ${menuOpen ? "show" : ""}`}
+        >
           <ul className="navbar-nav ms-auto">
             <li className="nav-item">
               <Link to="/" className="nav-link" onClick={closeMenu}>
