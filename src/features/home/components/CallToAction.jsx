@@ -6,13 +6,6 @@ import { supabase } from "@/core/api/supabase";
 import "./CallToAction.css";
 // SUPABASE STORAGE DATA
 
-//  console log public URL check for error debugging
-// SUPABASE PUBLIC URL DEBUG
-const { data } = supabase.storage
-  .from("images")
-  .getPublicUrl("portrait/Portrait_Photos08.jpg");
-console.log(data.publicUrl);
-
 // CTA ITEMS
 const callToAction = [
   {
