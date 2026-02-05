@@ -1,13 +1,15 @@
 import { useState } from "react";
 import { supabase } from "@/core/api/supabase.js";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
 
   const handleLogin = async (e) => {
-    e.preventDefault(); // Σταματάει το refresh της σελίδας
+    e.preventDefault(); // Prevents page refresh on form submit
     setLoading(true);
 
     const { error } = await supabase.auth.signInWithPassword({
@@ -18,8 +20,8 @@ const Login = () => {
     if (error) {
       alert(error.message);
     } else {
-      alert("Επιτυχής σύνδεση!");
-      // Εδώ μπορείς να χρησιμοποιήσεις το useNavigate για το /admin
+      alert("Login successful!");
+      navigate("/admin");
     }
     setLoading(false);
   };
@@ -127,7 +129,7 @@ const Login = () => {
             disabled={loading}
             className="mt-8 w-full h-11 rounded-full text-white bg-indigo-500 hover:opacity-90 transition-opacity disabled:opacity-50"
           >
-            {loading ? "Φόρτωση..." : "Login"}
+            {loading ? "Loading..." : "Login"}
           </button>
           <p className="text-gray-500/90 text-sm mt-4">
             Don’t have an account?{" "}
