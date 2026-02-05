@@ -7,6 +7,7 @@ import { NaturePage } from "@/features/herogallery/pages/NaturePage.jsx";
 import { PortraitPage } from "@/features/herogallery/pages/PortraitPage.jsx";
 
 import Login from "@/features/auth/components/LoginForm";
+import AdminDashboard from "@/features/admin/components/AdminDashboard.jsx";
 import { SiteLayout } from "@/features/layout/pages/ SiteLayout.jsx";
 
 export function AppRoutes() {
@@ -15,6 +16,8 @@ export function AppRoutes() {
       <Routes>
         {/* NO navbar/footer here */}
         <Route path="/login" element={<Login />} />
+        <Route path="/admin" element={<AdminDashboard />} />
+        <Route path="/AdminDashboard" element={<AdminDashboard />} />
 
         {/* Everything inside SiteLayout HAS navbar/footer */}
         <Route element={<SiteLayout />}>
