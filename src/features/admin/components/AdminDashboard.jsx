@@ -1,4 +1,4 @@
-import React, { useState } from "react"; // Import necessary hooks from React
+import React, { useEffect, useState } from "react"; // Import necessary hooks from React
 import { supabase } from "@/core/api/supabase"; // Import Supabase client for API interactions
 import { usePhotos } from "@/hooks/usePhotos.js"; // Custom hook to fetch photos by category
 
@@ -6,13 +6,19 @@ export default function AdminDashboard() {
   const [selectedFile, setSelectedFile] = useState(null); // State to hold the selected file
   const [category, setCategory] = useState("nature"); // State to hold the current category for upload
   const { photos, loading } = usePhotos(category); // Custom hook to fetch photos based on the selected category
+  const [managedPhotos, setManagedPhotos] = useState([]); // Local state for instant UI updates without page reload
+
+  useEffect(() => {
+    setManagedPhotos(photos);
+  }, [photos]);
 
   // Function to handle uploading a new photo
   const handleUpload = async () => {
     if (!selectedFile) return; // Check if a file is selected
 
+    let filePath = "";
     try {
-      const filePath = `${category}/${Date.now()}_${selectedFile.name}`; // Generate a unique path for the uploaded file
+      filePath = `${category}/${Date.now()}_${selectedFile.name}`; // Generate a unique path for the uploaded file
 
       // Upload the file to Supabase Storage
       const { error: storageError } = await supabase.storage
@@ -22,18 +28,37 @@ export default function AdminDashboard() {
       if (storageError) throw storageError; // Throw an error if upload fails
 
       // Insert the file path into the database
-      const { error: dbError } = await supabase.from("photos").insert([
+      const { data: insertedPhoto, error: dbError } = await supabase
+        .from("photos")
+        .insert([
+          {
+            image_path: filePath,
+            category: category,
+            alt: selectedFile.name,
+          },
+        ])
+        .select("id, image_path, alt")
+        .single();
+
+      if (dbError) {
+        // Roll back the uploaded file if DB insert fails to avoid orphan files.
+        await supabase.storage.from("images").remove([filePath]);
+        throw dbError;
+      }
+
+      const {
+        data: { publicUrl },
+      } = supabase.storage.from("images").getPublicUrl(filePath);
+
+      setManagedPhotos((prev) => [
+        ...prev,
         {
-          image_path: filePath,
-          category: category,
-          alt: selectedFile.name,
+          ...insertedPhoto,
+          url: publicUrl,
         },
       ]);
-
-      if (dbError) throw dbError; // Throw an error if database insertion fails
-
+      setSelectedFile(null);
       alert("The photo was uploaded successfully!"); // Show success message to the user
-      window.location.reload(); // Reload the page to update the displayed photos
     } catch (err) {
       alert("Upload Error: " + err.message); // Catch and display error if something goes wrong
     }
@@ -44,23 +69,31 @@ export default function AdminDashboard() {
     if (!window.confirm("Are you sure you want to delete this photo?")) return; // Prompt user for confirmation
 
     try {
-      // Delete the photo from the database
+      // Delete the photo from the database first (source of truth for dashboard listing).
       const { error: dbError } = await supabase
         .from("photos")
         .delete()
         .eq("id", photoId);
 
-      if (dbError) throw dbError; // Throw an error if deletion fails
+      if (dbError) throw dbError;
 
-      // Delete the file from Supabase Storage
+      setManagedPhotos((prev) =>
+        prev.filter((photo) => String(photo.id) !== String(photoId)),
+      );
+
+      // Try to delete the underlying file. If this fails, keep UI updated and inform user.
       const { error: storageError } = await supabase.storage
         .from("images")
         .remove([imagePath]);
 
-      if (storageError) throw storageError; // Throw an error if file removal fails
+      if (storageError) {
+        alert(
+          `Photo removed from dashboard, but file cleanup failed: ${storageError.message}`,
+        );
+        return;
+      }
 
       alert("The photo was deleted successfully!"); // Show success message to the user
-      window.location.reload(); // Reload the page to update the displayed photos
     } catch (err) {
       alert("Delete Error: " + err.message); // Catch and display error if something goes wrong
     }
@@ -102,7 +135,7 @@ export default function AdminDashboard() {
         <p>Loading...</p> // Show a loading message while fetching photos
       ) : (
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-          {photos.map((photo) => (
+          {managedPhotos.map((photo) => (
             <div
               key={photo.id}
               className="border rounded p-2 bg-white shadow-sm"
