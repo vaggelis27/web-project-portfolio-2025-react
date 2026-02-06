@@ -1,12 +1,14 @@
-import React, { useEffect, useState } from "react"; // Import necessary hooks from React
-import { supabase } from "@/core/api/supabase"; // Import Supabase client for API interactions
-import { usePhotos } from "@/hooks/usePhotos.js"; // Custom hook to fetch photos by category
+import React, { useEffect, useState, useRef } from "react";
+import { supabase } from "@/core/api/supabase";
+import { usePhotos } from "@/hooks/usePhotos.js";
 
 export default function AdminDashboard() {
   const [selectedFile, setSelectedFile] = useState(null); // State to hold the selected file
   const [category, setCategory] = useState("nature"); // State to hold the current category for upload
   const { photos, loading } = usePhotos(category); // Custom hook to fetch photos based on the selected category
   const [managedPhotos, setManagedPhotos] = useState([]); // Local state for instant UI updates without page reload
+  const [isUploading, setIsUploading] = useState(false); // State to handle upload loading status
+  const fileInputRef = useRef(null); // Ref to reset the file input field
 
   useEffect(() => {
     setManagedPhotos(photos);
@@ -16,6 +18,7 @@ export default function AdminDashboard() {
   const handleUpload = async () => {
     if (!selectedFile) return; // Check if a file is selected
 
+    setIsUploading(true);
     let filePath = "";
     try {
       filePath = `${category}/${Date.now()}_${selectedFile.name}`; // Generate a unique path for the uploaded file
@@ -58,9 +61,14 @@ export default function AdminDashboard() {
         },
       ]);
       setSelectedFile(null);
+      if (fileInputRef.current) {
+        fileInputRef.current.value = ""; // Visually clear the file input
+      }
       alert("The photo was uploaded successfully!"); // Show success message to the user
     } catch (err) {
       alert("Upload Error: " + err.message); // Catch and display error if something goes wrong
+    } finally {
+      setIsUploading(false);
     }
   };
 
@@ -70,12 +78,20 @@ export default function AdminDashboard() {
 
     try {
       // Delete the photo from the database first (source of truth for dashboard listing).
-      const { error: dbError } = await supabase
+      const { data, error: dbError } = await supabase
         .from("photos")
         .delete()
-        .eq("id", photoId);
+        .eq("id", photoId)
+        .select(); // Request the deleted record to be returned
 
       if (dbError) throw dbError;
+
+      // If data is empty, it means nothing was deleted (e.g., due to RLS)
+      if (!data || data.length === 0) {
+        throw new Error(
+          "Deletion failed. Check permissions (RLS) or if the photo exists.",
+        );
+      }
 
       setManagedPhotos((prev) =>
         prev.filter((photo) => String(photo.id) !== String(photoId)),
@@ -107,6 +123,7 @@ export default function AdminDashboard() {
       <div className="bg-gray-100 p-6 rounded-lg mb-8">
         <h2 className="text-lg mb-4">Upload New Photo</h2>
         <input
+          ref={fileInputRef}
           type="file"
           onChange={(e) => setSelectedFile(e.target.files[0])} // Allow user to select a file
           className="mb-4 block w-full"
@@ -122,10 +139,10 @@ export default function AdminDashboard() {
         </select>
         <button
           onClick={handleUpload}
-          disabled={!selectedFile} // Disable button if no file is selected
+          disabled={!selectedFile || isUploading} // Disable button if no file is selected or uploading
           className="bg-blue-600 text-white px-4 py-2 rounded disabled:bg-gray-400"
         >
-          Upload
+          {isUploading ? "Uploading..." : "Upload"}
         </button>
       </div>
 
