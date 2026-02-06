@@ -32,8 +32,7 @@ export default function AdminDashboard() {
 
       if (storageError) throw storageError;
 
-      // Insert the file path into the database
-      // Αντικατάστησε το .insert(...) με αυτό:
+      // Insert or update the file path in the database (upsert by unique image path)
       const { data: insertedPhoto, error: dbError } = await supabase
         .from("photos")
         .upsert(
@@ -45,7 +44,7 @@ export default function AdminDashboard() {
             },
           ],
           { onConflict: "image_path" },
-        ) // Δήλωση της στήλης που έχει το Unique Constraint
+        ) // Column that has the unique constraint
         .select("id, image_path, alt")
         .single();
 
@@ -122,7 +121,7 @@ export default function AdminDashboard() {
 
       {/* Upload Form */}
       <div className="bg-gray-100 p-6 rounded-lg mb-8">
-        <h2 className="text-lg mb-4">Upload New Photo</h2>
+        <h2 className="text-lg mb-4">UPLOAD NEW PHOTO</h2>
         <input
           ref={fileInputRef}
           type="file"
@@ -143,12 +142,12 @@ export default function AdminDashboard() {
           disabled={!selectedFile || isUploading} // Disable button if no file is selected or uploading
           className="bg-blue-600 text-white px-4 py-2 rounded disabled:bg-gray-400"
         >
-          {isUploading ? "Uploading..." : "Upload"}
+          {isUploading ? "UPLOADING..." : "UPLOAD"}
         </button>
       </div>
 
       {/* List of Photos for Management */}
-      <h2 className="text-xl mb-4">Existing Photos ({category})</h2>
+      <h2 className="text-xl mb-4">EXISTING PHOTOS ({category})</h2>
       {loading ? (
         <p>Loading...</p> // Show a loading message while fetching photos
       ) : (
@@ -167,7 +166,7 @@ export default function AdminDashboard() {
                 onClick={() => handleDelete(photo.id, photo.image_path)} // Allow user to delete a photo
                 className="mt-2 w-full bg-red-500 text-white text-sm py-1 rounded"
               >
-                Delete
+                DELETE
               </button>
             </div>
           ))}
