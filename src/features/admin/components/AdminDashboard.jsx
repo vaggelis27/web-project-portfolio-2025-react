@@ -16,35 +16,40 @@ export default function AdminDashboard() {
 
   // Function to handle uploading a new photo
   const handleUpload = async () => {
-    if (!selectedFile) return; // Check if a file is selected
+    if (!selectedFile || isUploading) return;
 
     setIsUploading(true);
     let filePath = "";
+
     try {
-      filePath = `${category}/${Date.now()}_${selectedFile.name}`; // Generate a unique path for the uploaded file
+      const unique = crypto.randomUUID(); // unique per upload
+      filePath = `${category}/${Date.now()}_${unique}_${selectedFile.name}`;
 
       // Upload the file to Supabase Storage
       const { error: storageError } = await supabase.storage
         .from("images")
         .upload(filePath, selectedFile);
 
-      if (storageError) throw storageError; // Throw an error if upload fails
+      if (storageError) throw storageError;
 
       // Insert the file path into the database
+      // Αντικατάστησε το .insert(...) με αυτό:
       const { data: insertedPhoto, error: dbError } = await supabase
         .from("photos")
-        .insert([
-          {
-            image_path: filePath,
-            category: category,
-            alt: selectedFile.name,
-          },
-        ])
+        .upsert(
+          [
+            {
+              image_path: filePath,
+              category: category,
+              alt: selectedFile.name,
+            },
+          ],
+          { onConflict: "image_path" },
+        ) // Δήλωση της στήλης που έχει το Unique Constraint
         .select("id, image_path, alt")
         .single();
 
       if (dbError) {
-        // Roll back the uploaded file if DB insert fails to avoid orphan files.
         await supabase.storage.from("images").remove([filePath]);
         throw dbError;
       }
@@ -55,18 +60,14 @@ export default function AdminDashboard() {
 
       setManagedPhotos((prev) => [
         ...prev,
-        {
-          ...insertedPhoto,
-          url: publicUrl,
-        },
+        { ...insertedPhoto, url: publicUrl },
       ]);
+
       setSelectedFile(null);
-      if (fileInputRef.current) {
-        fileInputRef.current.value = ""; // Visually clear the file input
-      }
-      alert("The photo was uploaded successfully!"); // Show success message to the user
+      if (fileInputRef.current) fileInputRef.current.value = "";
+      alert("The photo was uploaded successfully!");
     } catch (err) {
-      alert("Upload Error: " + err.message); // Catch and display error if something goes wrong
+      alert("Upload Error: " + err.message);
     } finally {
       setIsUploading(false);
     }
