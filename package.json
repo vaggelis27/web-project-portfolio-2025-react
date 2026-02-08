@@ -6,11 +6,11 @@
   "homepage": "https://vaggelis27.github.io/web-project-portfolio-2025-react/",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "vite build && cp docs/index.html docs/404.html",
     "lint": "eslint .",
     "preview": "vite preview",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+    "deploy": "gh-pages -d docs"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.89.0",

@@ -18,12 +18,11 @@ const Login = () => {
       });
       if (error) {
         alert(error.message);
-        setLoading(false); // Εδώ το κλείνεις αν υπάρχει λάθος από το Supabase
+        setLoading(false);
       }
-      // Αφαίρεσε το navigate("/admin") από εδώ, άφησε τον AuthListener να το κάνει
     } catch (err) {
       console.error("Critical error:", err);
-      setLoading(false); // Εδώ το κλείνεις αν "σκάσει" κάτι άλλο (π.χ. δίκτυο)
+      setLoading(false);
     }
   };
 
