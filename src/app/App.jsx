@@ -9,6 +9,7 @@ import { PortraitPage } from "@/features/herogallery/pages/PortraitPage.jsx";
 import Login from "@/features/auth/components/LoginForm.jsx";
 import AuthListener from "@/features/auth/components/AuthListener.jsx";
 import { ProtectedRoute } from "@/features/auth/components/ProtectedRoute.jsx";
+import { SessionRoute } from "@/features/auth/components/SessionRoute.jsx";
 import AdminDashboard from "@/features/admin/components/AdminDashboard.jsx";
 import { SiteLayout } from "@/features/layout/pages/SiteLayout.jsx";
 
@@ -19,7 +20,6 @@ export function AppRoutes() {
       <AuthListener />
 
       <Routes>
-        <Route path="/" element={<Navigate to="/login" replace />} />
         {/* Public auth page (no main site layout). */}
         <Route path="/login" element={<Login />} />
 
@@ -40,13 +40,22 @@ export function AppRoutes() {
         />
 
         {/* Main website pages rendered with shared navbar/footer layout. */}
-        <Route element={<SiteLayout />}>
+        <Route
+          element={
+            <SessionRoute>
+              <SiteLayout />
+            </SessionRoute>
+          }
+        >
           <Route path="/" element={<HomePage />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/night" element={<MilkyWayPage />} />
           <Route path="/nature" element={<NaturePage />} />
           <Route path="/portrait" element={<PortraitPage />} />
         </Route>
+
+        {/* Fallback: unknown routes return to home. */}
+        <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </BrowserRouter>
   );

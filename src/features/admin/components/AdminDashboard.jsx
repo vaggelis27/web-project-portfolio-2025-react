@@ -141,7 +141,7 @@ export default function AdminDashboard() {
         >
           <option value="nature">Nature</option>
           <option value="milky_way">Milky Way</option>
-          <option value="portraits">Portraits</option>
+          <option value="Portrait">Portraits</option>
         </select>
         <button
           onClick={handleUpload}

@@ -18,10 +18,12 @@ const Login = () => {
       });
       if (error) {
         alert(error.message);
-        setLoading(false);
+        return;
       }
+      navigate("/admin");
     } catch (err) {
       console.error("Critical error:", err);
+    } finally {
       setLoading(false);
     }
   };

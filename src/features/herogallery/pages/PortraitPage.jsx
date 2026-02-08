@@ -11,7 +11,7 @@ export function PortraitPage() {
   /* STATE MANAGEMENT */
   const [isOpen, setIsOpen] = useState(false);
   const [photoIndex, setPhotoIndex] = useState(0);
-  const { processedPhotos, loading, error } = usePhotos("Portrait");
+  const { processedPhotos, loading, error } = usePhotos("portraits");
 
   /* MEMOIZE SLIDES FOR PERFORMANCE */
   const slides = useMemo(
