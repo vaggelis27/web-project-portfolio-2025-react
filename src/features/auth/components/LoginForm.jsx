@@ -9,21 +9,22 @@ const Login = () => {
   const [loading, setLoading] = useState(false);
 
   const handleLogin = async (e) => {
-    e.preventDefault(); // Prevents page refresh on form submit
+    e.preventDefault();
     setLoading(true);
-
-    const { error } = await supabase.auth.signInWithPassword({
-      email,
-      password,
-    });
-
-    if (error) {
-      alert(error.message);
-    } else {
-      alert("Login successful!");
-      navigate("/admin");
+    try {
+      const { error } = await supabase.auth.signInWithPassword({
+        email,
+        password,
+      });
+      if (error) {
+        alert(error.message);
+        setLoading(false); // Εδώ το κλείνεις αν υπάρχει λάθος από το Supabase
+      }
+      // Αφαίρεσε το navigate("/admin") από εδώ, άφησε τον AuthListener να το κάνει
+    } catch (err) {
+      console.error("Critical error:", err);
+      setLoading(false); // Εδώ το κλείνεις αν "σκάσει" κάτι άλλο (π.χ. δίκτυο)
     }
-    setLoading(false);
   };
 
   return (

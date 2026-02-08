@@ -6,25 +6,37 @@ export default function AuthListener() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Listen for Supabase auth state changes and route accordingly.
     const {
       data: { subscription },
-    } = supabase.auth.onAuthStateChange((event, session) => {
+    } = supabase.auth.onAuthStateChange(async (event, session) => {
       if (event === "SIGNED_IN" && session) {
-        // Redirect authenticated users to the admin dashboard.
-        navigate("/admin");
+        // 1. Ρωτάμε τη βάση για τον ρόλο του χρήστη
+        const { data: profile, error } = await supabase
+          .from("profiles")
+          .select("role")
+          .eq("id", session.user.id)
+          .single();
+
+        if (error) {
+          console.error("Σφάλμα προφίλ:", error.message);
+          return;
+        }
+
+        // 2. Ανακατεύθυνση βάσει ρόλου
+        if (profile?.role === "admin") {
+          navigate("/admin");
+        } else {
+          navigate("/"); // Ο απλός χρήστης πάει στην αρχική
+        }
       }
 
       if (event === "SIGNED_OUT") {
-        // Redirect signed-out users back to the login page.
         navigate("/login");
       }
     });
 
-    // Prevent memory leaks by cleaning up the auth listener on unmount.
     return () => subscription.unsubscribe();
   }, [navigate]);
 
-  // This component renders no UI; it only handles auth navigation side effects.
   return null;
 }

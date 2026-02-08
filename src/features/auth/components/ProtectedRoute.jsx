@@ -2,31 +2,61 @@ import { Navigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { supabase } from "@/core/api/supabase";
 
-export default function ProtectedRoute({ children }) {
-  const [session, setSession] = useState(undefined); // undefined για να ξέρουμε ότι φορτώνει
+export function ProtectedRoute({ children }) {
+  // null means "checked and not authenticated", undefined means "still checking"
+  const [session, setSession] = useState(undefined);
 
   useEffect(() => {
-    // Έλεγχος αν υπάρχει ήδη session
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      setSession(session);
+    let isMounted = true;
+
+    const initSession = async () => {
+      try {
+        const {
+          data: { session },
+          error,
+        } = await supabase.auth.getSession();
+
+        if (error) {
+          throw error;
+        }
+
+        if (isMounted) {
+          setSession(session ?? null);
+        }
+      } catch (err) {
+        console.error("Auth session check failed:", err.message);
+        if (isMounted) {
+          setSession(null);
+        }
+      }
+    };
+
+    initSession();
+
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((_event, session) => {
+      if (isMounted) {
+        setSession(session ?? null);
+      }
     });
 
-    // Ακρόαση για αλλαγές
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
-      setSession(session);
-    });
-
-    return () => subscription.unsubscribe();
+    return () => {
+      isMounted = false;
+      subscription.unsubscribe();
+    };
   }, []);
 
-  // Όσο περιμένουμε το Supabase να απαντήσει
+  // While waiting for Supabase session check
   if (session === undefined) return <p>Loading...</p>;
 
-  // Αν δεν υπάρχει session, στείλε τον στο login
+  // If no active session, redirect to login
   if (!session) {
     return <Navigate to="/login" replace />;
   }
 
-  // Αν υπάρχει, δείξε τη σελίδα (children)
+  // Authenticated session -> render protected content
   return children;
 }
+
+export default ProtectedRoute;

@@ -8,7 +8,7 @@ import { PortraitPage } from "@/features/herogallery/pages/PortraitPage.jsx";
 
 import Login from "@/features/auth/components/LoginForm.jsx";
 import AuthListener from "@/features/auth/components/AuthListener.jsx";
-import ProtectedRoute from "@/features/auth/components/ProtectedRoute.jsx";
+import { ProtectedRoute } from "@/features/auth/components/ProtectedRoute.jsx";
 import AdminDashboard from "@/features/admin/components/AdminDashboard.jsx";
 import { SiteLayout } from "@/features/layout/pages/SiteLayout.jsx";
 
