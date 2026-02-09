@@ -7,6 +7,7 @@ const AUTH_GUARD_TIMEOUT_MS = 10000;
 const withTimeout = (promise, ms, message) =>
   new Promise((resolve, reject) => {
     const timerId = setTimeout(() => reject(new Error(message)), ms);
+
     promise.then(
       (value) => {
         clearTimeout(timerId);
@@ -19,17 +20,17 @@ const withTimeout = (promise, ms, message) =>
     );
   });
 
+const getErrorMessage = (err) =>
+  err instanceof Error ? err.message : String(err);
+
 export function ProtectedRoute({ children }) {
-  // undefined means "still checking"; null means "checked and unauthenticated"
   const [session, setSession] = useState(undefined);
-  const [isAdmin, setIsAdmin] = useState(false);
+  const [role, setRole] = useState(null);
   const [checkingRole, setCheckingRole] = useState(true);
   const latestCheckIdRef = useRef(0);
 
   useEffect(() => {
     let isMounted = true;
-    const getErrorMessage = (err) =>
-      err instanceof Error ? err.message : String(err);
 
     const resolveAccess = async (currentSession) => {
       const checkId = ++latestCheckIdRef.current;
@@ -37,7 +38,7 @@ export function ProtectedRoute({ children }) {
 
       if (!currentSession) {
         setSession(null);
-        setIsAdmin(false);
+        setRole(null);
         setCheckingRole(false);
         return;
       }
@@ -62,11 +63,11 @@ export function ProtectedRoute({ children }) {
           throw roleError;
         }
 
-        setIsAdmin(profile?.role === "admin");
+        setRole(profile?.role ?? null);
       } catch (err) {
         if (isMounted && checkId === latestCheckIdRef.current) {
           console.error("Role check failed:", getErrorMessage(err));
-          setIsAdmin(false);
+          setRole(null);
         }
       } finally {
         if (isMounted && checkId === latestCheckIdRef.current) {
@@ -78,7 +79,7 @@ export function ProtectedRoute({ children }) {
     const initSession = async () => {
       try {
         const {
-          data: { session },
+          data: { session: currentSession },
           error,
         } = await withTimeout(
           supabase.auth.getSession(),
@@ -90,7 +91,7 @@ export function ProtectedRoute({ children }) {
           throw error;
         }
 
-        await resolveAccess(session ?? null);
+        await resolveAccess(currentSession ?? null);
       } catch (err) {
         console.error("Auth session check failed:", getErrorMessage(err));
         await resolveAccess(null);
@@ -101,8 +102,8 @@ export function ProtectedRoute({ children }) {
 
     const {
       data: { subscription },
-    } = supabase.auth.onAuthStateChange((_event, session) => {
-      resolveAccess(session ?? null);
+    } = supabase.auth.onAuthStateChange((_event, newSession) => {
+      resolveAccess(newSession ?? null);
     });
 
     return () => {
@@ -111,20 +112,18 @@ export function ProtectedRoute({ children }) {
     };
   }, []);
 
-  // While waiting for Supabase session and role check.
-  if (session === undefined || checkingRole) return <p>Loading...</p>;
+  if (session === undefined || checkingRole) {
+    return <p>Loading...</p>;
+  }
 
-  // If no active session, redirect to login.
   if (!session) {
     return <Navigate to="/login" replace />;
   }
 
-  // Authenticated but not admin -> return to public home.
-  if (!isAdmin) {
+  if (role !== "admin") {
     return <Navigate to="/" replace />;
   }
 
-  // Authenticated admin session -> render protected content.
   return children;
 }
 

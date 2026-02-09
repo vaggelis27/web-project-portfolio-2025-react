@@ -48,6 +48,16 @@ const CallToAction = () => {
 
   // STATIC ITEMS
   const items = useMemo(() => callToAction, []);
+  const fallbackSrcById = useMemo(() => {
+    const results = items.map((item) => {
+      const { data } = supabase.storage
+        .from(BUCKET)
+        .getPublicUrl(item.imagePath);
+      return [item.id, data?.publicUrl || ""];
+    });
+
+    return Object.fromEntries(results);
+  }, [items]);
 
   // LOAD PUBLIC URLS
   useEffect(() => {
@@ -81,7 +91,7 @@ const CallToAction = () => {
             <Link to={item.to} className="cta-link" aria-label={item.title}>
               <img
                 className="cta-image"
-                src={imgSrcById[item.id] || ""}
+                src={imgSrcById[item.id] || fallbackSrcById[item.id]}
                 alt={item.title}
               />
             </Link>

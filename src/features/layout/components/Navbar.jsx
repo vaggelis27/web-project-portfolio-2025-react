@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { WeatherBadge } from "@/features/layout/components/WeatherBadge.jsx";
+import { supabase } from "@/core/api/supabase";
 import moment from "moment";
 import "./Navbar.css";
 import logo from "@/assets/navbar-logo/photography_logo 2025.svg";
@@ -9,6 +10,7 @@ export function Navbar() {
   const togglerRef = useRef(null);
   const location = useLocation();
   const [time, setTime] = useState(moment().format("MMMM Do YYYY, h:mm:ss a"));
+  const [isSigningOut, setIsSigningOut] = useState(false);
 
   /* STATE MANAGEMENT */
   const [menuOpen, setMenuOpen] = useState(false);
@@ -67,6 +69,13 @@ export function Navbar() {
     }
   };
 
+  const handleLogout = async () => {
+    setIsSigningOut(true);
+    await supabase.auth.signOut();
+    setIsSigningOut(false);
+    closeMenu();
+  };
+
   return (
     <nav
       className={`navbar navbar-expand-md fixed-top ${
@@ -98,7 +107,7 @@ export function Navbar() {
           id="main-navbar-links"
           className={`navbar-collapse collapse ${menuOpen ? "show" : ""}`}
         >
-          <ul className="navbar-nav ms-auto">
+          <ul className="navbar-nav ms-auto navbar-links">
             <li className="nav-item">
               <Link to="/" className="nav-link" onClick={closeMenu}>
                 <i className="bi bi-house-door me-1"></i> Home
@@ -120,12 +129,21 @@ export function Navbar() {
               </Link>
             </li>
           </ul>
+          <div className="navbar-extras">
+            <WeatherBadge />
+            <span className="navbar-time">{time}</span>
+            <button
+              type="button"
+              className="logout-btn"
+              onClick={handleLogout}
+              disabled={isSigningOut}
+            >
+              <i className="bi bi-box-arrow-right me-1"></i>
+              {isSigningOut ? "Logging out..." : "Logout"}
+            </button>
+          </div>
         </div>
       </div>
-      <span>
-        <WeatherBadge />
-        {time}
-      </span>
     </nav>
   );
 }

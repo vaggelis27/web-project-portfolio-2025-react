@@ -12,15 +12,38 @@ const Login = () => {
     e.preventDefault();
     setLoading(true);
     try {
-      const { error } = await supabase.auth.signInWithPassword({
+      // 1. Προσθέσαμε το "data" για να πάρουμε το id του χρήστη μετά το login
+      const { data, error } = await supabase.auth.signInWithPassword({
         email,
         password,
       });
+
       if (error) {
         alert(error.message);
         return;
       }
-      navigate("/admin");
+
+      // 2. Query στον πίνακα 'profiles' για να βρούμε τον ρόλο (role)
+      // Χρησιμοποιούμε το data.user.id από το παραπάνω βήμα
+      const { data: profile, error: profileError } = await supabase
+        .from("profiles")
+        .select("role")
+        .eq("id", data.user.id)
+        .single();
+
+      if (profileError) {
+        console.error("Σφάλμα κατά την ανάκτηση του προφίλ:", profileError);
+        // Αν υπάρξει σφάλμα στο προφίλ, μπορείς να τον στείλεις στην αρχική για ασφάλεια
+        navigate("/");
+        return;
+      }
+
+      // 3. Έλεγχος ρόλου και ανακατεύθυνση (Redirect)
+      if (profile.role === "admin") {
+        navigate("/admin");
+      } else {
+        navigate("/"); // Εδώ στέλνουμε τον απλό χρήστη
+      }
     } catch (err) {
       console.error("Critical error:", err);
     } finally {
