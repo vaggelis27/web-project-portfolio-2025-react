@@ -1,16 +1,15 @@
 import { useEffect, useRef, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { WeatherBadge } from "@/features/layout/components/WeatherBadge.jsx";
-import { supabase } from "@/core/api/supabase";
 import moment from "moment";
 import "./Navbar.css";
 import logo from "@/assets/navbar-logo/photography_logo 2025.svg";
 
 export function Navbar() {
+  const navRef = useRef(null);
   const togglerRef = useRef(null);
   const location = useLocation();
   const [time, setTime] = useState(moment().format("MMMM Do YYYY, h:mm:ss a"));
-  const [isSigningOut, setIsSigningOut] = useState(false);
 
   /* STATE MANAGEMENT */
   const [menuOpen, setMenuOpen] = useState(false);
@@ -20,7 +19,6 @@ export function Navbar() {
   /* NAVBAR SCROLL EFFECT */
   useEffect(() => {
     const handleScroll = () => {
-      // Update state instead of direct DOM manipulation
       setIsScrolled(window.scrollY > 10);
     };
 
@@ -33,24 +31,48 @@ export function Navbar() {
     if (location.pathname !== "/" || !location.hash) return;
 
     const id = location.hash.slice(1);
-    // Use requestAnimationFrame to ensure the DOM is ready before scrolling
     requestAnimationFrame(() => {
       const section = document.getElementById(id);
       if (section) section.scrollIntoView({ behavior: "smooth" });
     });
   }, [location.pathname, location.hash]);
 
+  /* CLOSE MENU ON ROUTE/HASH CHANGE */
+  useEffect(() => {
+    closeMenu();
+  }, [location.pathname, location.hash]);
+
   /* ACCESSIBILITY: CLOSE ON ESCAPE KEY */
   useEffect(() => {
     if (!menuOpen) return;
+
     const onKeyDown = (e) => {
       if (e.key === "Escape") {
         closeMenu();
         togglerRef.current?.focus();
       }
     };
-    window.addEventListener("keydown", onKeyDown);
-    return () => window.removeEventListener("keydown", onKeyDown);
+
+    document.addEventListener("keydown", onKeyDown);
+    return () => document.removeEventListener("keydown", onKeyDown);
+  }, [menuOpen]);
+
+  /* CLOSE WHEN CLICKING OUTSIDE THE NAV */
+  useEffect(() => {
+    if (!menuOpen) return;
+
+    const onPointerDown = (e) => {
+      if (navRef.current && !navRef.current.contains(e.target)) {
+        closeMenu();
+      }
+    };
+
+    document.addEventListener("mousedown", onPointerDown);
+    document.addEventListener("touchstart", onPointerDown);
+    return () => {
+      document.removeEventListener("mousedown", onPointerDown);
+      document.removeEventListener("touchstart", onPointerDown);
+    };
   }, [menuOpen]);
 
   useEffect(() => {
@@ -69,15 +91,9 @@ export function Navbar() {
     }
   };
 
-  const handleLogout = async () => {
-    setIsSigningOut(true);
-    await supabase.auth.signOut();
-    setIsSigningOut(false);
-    closeMenu();
-  };
-
   return (
     <nav
+      ref={navRef}
       className={`navbar navbar-expand-md fixed-top ${
         isScrolled ? "navbar-scrolled" : "shadow-0"
       }`}
