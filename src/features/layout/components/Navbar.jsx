@@ -132,15 +132,6 @@ export function Navbar() {
           <div className="navbar-extras">
             <WeatherBadge />
             <span className="navbar-time">{time}</span>
-            <button
-              type="button"
-              className="logout-btn"
-              onClick={handleLogout}
-              disabled={isSigningOut}
-            >
-              <i className="bi bi-box-arrow-right me-1"></i>
-              {isSigningOut ? "Logging out..." : "Logout"}
-            </button>
           </div>
         </div>
       </div>
