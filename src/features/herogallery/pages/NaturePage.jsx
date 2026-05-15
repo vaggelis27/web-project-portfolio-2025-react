@@ -6,6 +6,9 @@ import { HeroNature } from "@/features/herogallery/components/HeroNature.jsx";
 import "./NaturePage.css";
 import { usePhotos } from "@/hooks/usePhotos.js";
 
+const FALLBACK_IMAGE =
+  "https://placehold.co/600x600/eeeeee/999999?text=Image+Not+Found";
+
 export function NaturePage() {
   /* STATE MANAGEMENT */
   const [isOpen, setIsOpen] = useState(false);
@@ -16,7 +19,7 @@ export function NaturePage() {
   const slides = useMemo(
     () =>
       processedPhotos.map((img) => ({
-        src: img.url,
+        src: img.url || FALLBACK_IMAGE,
         title: img.alt,
       })),
     [processedPhotos],
@@ -57,6 +60,10 @@ export function NaturePage() {
                     fluid
                     className="nature-image"
                     loading="lazy" //i added this to Native lazy loading for performance
+                    onError={(e) => {
+                      e.target.onerror = null;
+                      e.target.src = FALLBACK_IMAGE;
+                    }}
                   />
                   <div className="nature-card-title">{img.alt}</div>
                 </div>

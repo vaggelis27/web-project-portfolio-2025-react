@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Container, Row, Col } from "react-bootstrap";
-import { motion } from "framer-motion";
+import { motion as Motion } from "framer-motion";
 import { supabase } from "@/core/api/supabase";
 
 import "./Portfolio.css";
@@ -55,7 +55,7 @@ export default function Portfolio() {
   return (
     <section id="portfolio" className="portfolio-section">
       <Container>
-        <motion.h2 
+        <Motion.h2 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -63,7 +63,7 @@ export default function Portfolio() {
           className="portfolio-title text-center mb-5"
         >
           Portfolio
-        </motion.h2>
+        </Motion.h2>
 
         <Row className="g-4">
           {portfolioItems.map((item, index) => {
@@ -72,7 +72,7 @@ export default function Portfolio() {
 
             return (
               <Col md={4} key={item.id}>
-                <motion.div
+                <Motion.div
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
@@ -93,7 +93,7 @@ export default function Portfolio() {
                       </div>
                     </article>
                   </Link>
-                </motion.div>
+                </Motion.div>
               </Col>
             );
           })}

@@ -3,7 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { WeatherBadge } from "@/features/layout/components/WeatherBadge.jsx";
 import moment from "moment";
 import "./Navbar.css";
-import logo from "@/assets/navbar-logo/photography_logo 2025.svg";
+import logo from "@/assets/navbar-logo/photography_logo_2025.svg";
 
 export function Navbar() {
   const navRef = useRef(null);

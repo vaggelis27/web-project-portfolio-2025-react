@@ -1,5 +1,5 @@
 // IntroContent.jsx
-import { motion } from "framer-motion";
+import { motion as Motion } from "framer-motion";
 import "./IntroContent.css";
 import introImage from "@/assets/imagesIntro/Vangelis_Ntotsikas.png";
 
@@ -7,7 +7,7 @@ const IntroContent = () => {
   return (
     <section className="editorial-section" aria-labelledby="section-title">
       {/* Branding / Typography Header */}
-      <motion.div 
+      <Motion.div 
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
@@ -17,10 +17,10 @@ const IntroContent = () => {
         <h1 id="section-title" className="brand-logo">
           <img src={introImage} alt="Vangelis Ntotsikas Photography" />
         </h1>
-      </motion.div>
+      </Motion.div>
 
       {/* Main Content Layout */}
-      <motion.div 
+      <Motion.div 
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
@@ -44,7 +44,7 @@ const IntroContent = () => {
             τόσο λειτουργικά όσο και όμορφα."
           </p>
         </div>
-      </motion.div>
+      </Motion.div>
     </section>
   );
 };

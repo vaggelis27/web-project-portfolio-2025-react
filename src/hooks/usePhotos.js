@@ -41,7 +41,7 @@ export function usePhotos(category) {
           supabase
             .from("photos")
             .select("id, image_path, alt")
-            .eq("category", category),
+            .ilike("category", category),
           PHOTOS_QUERY_TIMEOUT_MS,
           "Photos request timed out.",
         );
@@ -63,7 +63,9 @@ export function usePhotos(category) {
         if (isCurrent) {
           const isTimeout =
             err instanceof Error && err.message.includes("timed out");
-          setError(isTimeout ? "Loading timed out. Please refresh." : "Failed to load");
+          setError(
+            isTimeout ? "Loading timed out. Please refresh." : "Failed to load",
+          );
           setPhotos([]);
         }
       } finally {

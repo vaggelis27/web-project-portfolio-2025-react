@@ -2,22 +2,25 @@ import { useState, useMemo } from "react";
 import { Container, Row, Col, Image, Spinner } from "react-bootstrap";
 import Lightbox from "yet-another-react-lightbox";
 import "yet-another-react-lightbox/styles.css";
-import { HeroPortrait } from "../components/HeroPortrait.jsx";
+import { HeroPortrait } from "@/features/herogallery/components/HeroPortrait.jsx";
 import { usePhotos } from "@/hooks/usePhotos.js";
 
 import "./PortraitPage.css";
+
+const FALLBACK_IMAGE =
+  "https://placehold.co/600x600/eeeeee/999999?text=Image+Not+Found";
 
 export function PortraitPage() {
   /* STATE MANAGEMENT */
   const [isOpen, setIsOpen] = useState(false);
   const [photoIndex, setPhotoIndex] = useState(0);
-  const { processedPhotos, loading, error } = usePhotos("portraits");
+  const { processedPhotos, loading, error } = usePhotos("portrait");
 
   /* MEMOIZE SLIDES FOR PERFORMANCE */
   const slides = useMemo(
     () =>
       processedPhotos.map((img) => ({
-        src: img.url,
+        src: img.url || FALLBACK_IMAGE,
         title: img.alt,
       })),
     [processedPhotos],
@@ -58,6 +61,10 @@ export function PortraitPage() {
                     fluid
                     className="portrait-image"
                     loading="lazy"
+                    onError={(e) => {
+                      e.target.onerror = null;
+                      e.target.src = FALLBACK_IMAGE;
+                    }}
                   />
                   <div className="portrait-card-title">{img.alt}</div>
                 </div>

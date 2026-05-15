@@ -6,16 +6,20 @@ import { HeroMilkyWay } from "@/features/herogallery/components/HeroMilkyWay.jsx
 import "./MilkyWayPage.css";
 import { usePhotos } from "@/hooks/usePhotos.js";
 
+const FALLBACK_IMAGE =
+  "https://placehold.co/600x600/eeeeee/999999?text=Image+Not+Found";
+
 export function MilkyWayPage() {
   /* STATE MANAGEMENT */
   const [isOpen, setIsOpen] = useState(false);
   const [photoIndex, setPhotoIndex] = useState(0);
   const { processedPhotos, loading, error } = usePhotos("milky_way");
+
   /* MEMOIZE SLIDES FOR PERFORMANCE */
   const slides = useMemo(
     () =>
       processedPhotos.map((img) => ({
-        src: img.url,
+        src: img.url || FALLBACK_IMAGE,
         title: img.alt,
       })),
     [processedPhotos],
@@ -54,6 +58,10 @@ export function MilkyWayPage() {
                     fluid
                     className="milkyway-image"
                     loading="lazy"
+                    onError={(e) => {
+                      e.target.onerror = null;
+                      e.target.src = FALLBACK_IMAGE;
+                    }}
                   />
                   <div className="milkyway-card-title">{img.alt}</div>
                 </div>

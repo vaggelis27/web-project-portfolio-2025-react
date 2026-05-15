@@ -1,5 +1,5 @@
 import "./HeroPortrait.css";
-import heroPortrait from "@/assets/hero-videos/heroPortrait .mp4";
+import heroPortrait from "@/assets/hero-videos/heroPortrait.mp4";
 
 export function HeroPortrait() {
   return (
@@ -22,4 +22,3 @@ export function HeroPortrait() {
     </section>
   );
 }
-

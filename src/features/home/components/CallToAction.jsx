@@ -1,7 +1,7 @@
 // CallToAction.jsx
 import React, { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
+import { motion as Motion } from "framer-motion";
 import { supabase } from "@/core/api/supabase";
 
 import "./CallToAction.css";
@@ -57,7 +57,7 @@ const CallToAction = () => {
   return (
     <section className="call-to-action">
       {items.map((item, index) => (
-        <motion.article
+        <Motion.article
           key={item.id}
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -82,7 +82,7 @@ const CallToAction = () => {
               />
             </Link>
           </div>
-        </motion.article>
+        </Motion.article>
       ))}
     </section>
   );
