@@ -1,34 +1,5 @@
 import "./Contact.css";
 function Contact() {
-  const onSubmit = async (event) => {
-    event.preventDefault();
-    const formData = new FormData(event.target);
-
-    formData.append("e7a59409-9696-421f-86e1-c2706b3c2d58");
-
-    const object = Object.fromEntries(formData);
-    const json = JSON.stringify(object);
-
-    const res = await fetch("https://api.web3forms.com/submit", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-      body: json,
-    }).then((res) => res.json());
-
-    if (res.success) {
-      console.log("Success", res);
-      <form onSubmit={onSubmit}>
-        <input type="text" name="name" />
-        <input type="email" name="email" />
-        <textarea name="message"></textarea>
-        <button type="submit">Submit Form</button>
-      </form>;
-    }
-  };
-
   return (
     <section id="contact" className="py-4 text-white contact-section">
       <div className="container">

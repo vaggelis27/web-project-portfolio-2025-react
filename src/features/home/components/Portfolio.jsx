@@ -50,7 +50,7 @@ export default function Portfolio() {
     });
 
     setImages(Object.fromEntries(urls));
-  }, [portfolioItems]); // run when items arrive
+  }, []); // run when items arrive
 
   return (
     <section id="portfolio" className="portfolio-section">
