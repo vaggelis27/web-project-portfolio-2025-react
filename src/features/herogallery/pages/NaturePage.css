@@ -1,91 +1,71 @@
-/* Page spacing below the fixed navbar */
 .nature-gallery-container {
-  padding-top: 140px;
+  padding-top: 100px;
+  max-width: 1400px;
 }
 
-.nature-page {
-  position: relative;
-  min-height: 100vh;
-  width: 100%;
-}
-
-.nature-page__background {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  background: var(--bg-pages);
-}
-
-.nature-page__content {
-  position: relative;
-  z-index: 1;
-}
-
-/* Gallery title */
 .nature-gallery-title {
-  color: black;
-  margin-bottom: 40px;
+  font-family: var(--font-serif);
+  font-size: 3.5rem;
+  color: var(--color-primary);
+  margin-bottom: 60px;
 }
 
-/* Gallery card */
 .nature-card {
   position: relative;
-  aspect-ratio: 2 / 3;
+  aspect-ratio: 1 / 1;
   overflow: hidden;
   cursor: pointer;
-  height: 100%;
+  background: #eee;
 }
 
-.nature-item {
-  display: block;
-  text-decoration: none;
-  color: inherit;
-  height: 100%;
-}
-
-/* Image inside card */
-.nature-card img {
+.nature-image {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  display: block;
-  transition: transform 0.3s ease;
-}
-/* HOVER EFFECT: Zoom image on hover */
-.nature-card:hover img {
-  transform: scale(1.05);
+  transition: transform 0.8s cubic-bezier(0.2, 1, 0.3, 1);
 }
 
-/* Dark overlay */
+.nature-card:hover .nature-image {
+  transform: scale(1.1);
+}
+
 .nature-card::after {
   content: "";
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.35);
+  background: rgba(0, 0, 0, 0.4);
   opacity: 0;
-  transition: opacity 0.3s ease;
+  transition: opacity 0.5s ease;
 }
 
-/* Show overlay on hover */
 .nature-card:hover::after {
   opacity: 1;
 }
 
-/* Title on hover */
-.nature-card .nature-card-title {
+.nature-card-title {
   position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #fff;
-  font-size: 1.2rem;
+  bottom: 20px;
+  left: 20px;
+  right: 20px;
+  color: white;
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
   opacity: 0;
-  z-index: 2;
-  transition: opacity 0.3s ease;
+  transform: translateY(10px);
+  transition: all 0.5s ease;
+  z-index: 10;
+  text-align: center;
 }
 
-/* Show title on hover */
 .nature-card:hover .nature-card-title {
   opacity: 1;
+  transform: translateY(0);
+}
+
+@media (max-width: 768px) {
+  .nature-gallery-title {
+    font-size: 2.5rem;
+  }
 }

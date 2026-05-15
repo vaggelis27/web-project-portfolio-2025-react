@@ -1,21 +1,21 @@
 // CallToAction.jsx
 import React, { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 import { supabase } from "@/core/api/supabase";
 
 import "./CallToAction.css";
-// SUPABASE STORAGE DATA
 
 // CTA ITEMS
 const callToAction = [
   {
     id: 1,
     title: "ΠΗΓΕΣ ΛΟΥΡΟΥ",
-    imagePath: "nature/nature_photos16.jpg", // https://supabase.com/dashboard/project/dhfnkvncfzerhctejqbj/storage/files/buckets/images
+    imagePath: "nature/nature_photos16.jpg",
     to: "/nature",
     meta: "nature",
     description:
-      "Οι Πηγές του Λούρου, επίσημα γνωστό ως λίμνη Βηρός, είναι μια «γαλάζια λίμνη» παραμυθένιας ομορφιάς κοντά στο χωριό Βουλιάστα, λίγα χιλιόμετρα έξω από τα Ιωάννινα, που χαρακτηρίζεται από τα κρυστάλλινα, γαλαζοπράσινα νερά της και το πλούσιο καταπράσινο περιβάλλον της, ιδανική για περιπάτους, πικνίκ και θαυμασμό της φύσης. Το τοπίο προσφέρει ηρεμία, ενώ τα νερά της λίμνης είναι πεντακάθαρα και αλλάζουν χρώμα ανάλογα με το φως, φιλοξενώντας πλούσια υδρόβια ζωή.",
+      "Οι Πηγές του Λούρου, επίσημα γνωστό ως λίμνη Βηρός, είναι μια «γαλάζια λίμνη» παραμυθένιας ομορφιάς κοντά στο χωριό Βουλιάστα, λίγα χιλιόμετρα έξω από τα Ιωάννινα, που χαρακτηρίζεται από τα κρυστάλλινα, γαλαζοπράσινα νερά της και το πλούσιο καταπράσινο περιβάλλον της, ιδανική για περιπάτους, πικνίκ και θαυμασμό της φύσης.",
   },
   {
     id: 2,
@@ -25,7 +25,7 @@ const callToAction = [
     meta: "portrait",
     reverse: true,
     description:
-      "Η φωτογραφία πορτραίτου είναι μια τέχνη που αιχμαλωτίζει την ουσία και τον χαρακτήρα ενός ατόμου μέσα από την εικόνα του. Με έμφαση στην έκφραση, τη στάση και το περιβάλλον, η φωτογραφία πορτραίτου αποκαλύπτει την προσωπικότητα και τις μοναδικές πτυχές του υποκειμένου, δημιουργώντας μια σύνδεση μεταξύ του θεατή και του ατόμου που απεικονίζεται.",
+      "Η φωτογραφία πορτραίτου είναι μια τέχνη που αιχμαλωτίζει την ουσία και τον χαρακτήρα ενός ατόμου μέσα από την εικόνα του. Με έμφαση στην έκφραση, τη στάση και το περιβάλλον, η φωτογραφία πορτραίτου αποκαλύπτει την προσωπικότητα και τις μοναδικές πτυχές του υποκειμένου.",
   },
   {
     id: 3,
@@ -34,49 +34,35 @@ const callToAction = [
     to: "/night",
     meta: "MILKY WAY",
     description:
-      'Η λήψη αποτυπώνει τον κομήτη C/2024 A1 (ATLAS), ο οποίος ανακαλύφθηκε στις αρχές του 2024. Το εντυπωσιακό στοιχείο είναι η τοποθέτησή του: ο κομήτης φαίνεται να "διασχίζει" το φωτεινό ποτάμι του Milky Way. Είναι μια συνάντηση δύο διαφορετικών κόσμων — ενός παγωμένου σώματος από τις παρυφές του ηλιακού μας συστήματος και των δισεκατομμυρίων άστρων που σχηματίζουν τον γαλαξία μας.',
+      'Η λήψη αποτυπώνει τον κομήτη C/2024 A1 (ATLAS), ο οποίος ανακαλύφθηκε στις αρχές του 2024. Το εντυπωσιακό στοιχείο είναι η τοποθέτησή του: ο κομήτης φαίνεται να "διασχίζει" το φωτεινό ποτάμι του Milky Way.',
   },
 ];
 
-// SUPABASE BUCKET
 const BUCKET = "images";
 
-// COMPONENT
 const CallToAction = () => {
-  // IMAGE URL MAP
-  const [imgSrcById, setImgSrcById] = useState({}); // { [id]: "blob:..." }
-
-  // STATIC ITEMS
+  const [imgSrcById, setImgSrcById] = useState({});
   const items = useMemo(() => callToAction, []);
-  const fallbackSrcById = useMemo(() => {
-    const results = items.map((item) => {
-      const { data } = supabase.storage
-        .from(BUCKET)
-        .getPublicUrl(item.imagePath);
-      return [item.id, data?.publicUrl || ""];
-    });
 
-    return Object.fromEntries(results);
-  }, [items]);
-
-  // LOAD PUBLIC URLS
   useEffect(() => {
     const results = items.map((item) => {
-      // Public bucket: use public URL instead of download/blob. (sos) (https://supabase.com/docs/guides/storage/public-buckets)
       const { data } = supabase.storage
         .from(BUCKET)
         .getPublicUrl(item.imagePath);
       return [item.id, data.publicUrl];
     });
-
     setImgSrcById(Object.fromEntries(results));
   }, [items]);
 
   return (
     <section className="call-to-action">
-      {items.map((item) => (
-        <article
+      {items.map((item, index) => (
+        <motion.article
           key={item.id}
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8, delay: index * 0.1 }}
           className={`cta-article${
             item.reverse ? " cta-article--reverse" : ""
           }`}
@@ -91,12 +77,12 @@ const CallToAction = () => {
             <Link to={item.to} className="cta-link" aria-label={item.title}>
               <img
                 className="cta-image"
-                src={imgSrcById[item.id] || fallbackSrcById[item.id]}
+                src={imgSrcById[item.id]}
                 alt={item.title}
               />
             </Link>
           </div>
-        </article>
+        </motion.article>
       ))}
     </section>
   );

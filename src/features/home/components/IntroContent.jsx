@@ -1,4 +1,5 @@
 // IntroContent.jsx
+import { motion } from "framer-motion";
 import "./IntroContent.css";
 import introImage from "@/assets/imagesIntro/Vangelis_Ntotsikas.png";
 
@@ -6,14 +7,26 @@ const IntroContent = () => {
   return (
     <section className="editorial-section" aria-labelledby="section-title">
       {/* Branding / Typography Header */}
-      <div className="section-header">
+      <motion.div 
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8 }}
+        className="section-header"
+      >
         <h1 id="section-title" className="brand-logo">
           <img src={introImage} alt="Vangelis Ntotsikas Photography" />
         </h1>
-      </div>
+      </motion.div>
 
       {/* Main Content Layout */}
-      <div className="section-body">
+      <motion.div 
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8, delay: 0.2 }}
+        className="section-body"
+      >
         <p className="lead-paragraph">
           "Ονομάζομαι Βαγγέλης Ντότσικας και η πορεία μου ξεκίνησε μέσα από τον
           φακό, αναζητώντας την τέλεια ισορροπία φωτός και σύνθεσης. Αυτή η
@@ -31,7 +44,7 @@ const IntroContent = () => {
             τόσο λειτουργικά όσο και όμορφα."
           </p>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 };

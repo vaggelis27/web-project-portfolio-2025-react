@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Container, Row, Col } from "react-bootstrap";
+import { motion } from "framer-motion";
 import { supabase } from "@/core/api/supabase";
 
 import "./Portfolio.css";
@@ -42,7 +43,6 @@ export default function Portfolio() {
     const urls = portfolioItems.map((item) => {
       const path = item?.imagePath ?? "";
       const res = supabase.storage.from(BUCKET).getPublicUrl(path);
-      console.log("getPublicUrl result", res); // inspect returned shape
 
       // handle either naming convention
       const publicUrl = res?.data?.publicUrl ?? res?.data?.publicURL ?? null;
@@ -55,30 +55,45 @@ export default function Portfolio() {
   return (
     <section id="portfolio" className="portfolio-section">
       <Container>
-        <h2 className="portfolio-title text-center mb-4">Portfolio</h2>
+        <motion.h2 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="portfolio-title text-center mb-5"
+        >
+          Portfolio
+        </motion.h2>
 
-        <Row className="g-2">
-          {portfolioItems.map((item) => {
+        <Row className="g-4">
+          {portfolioItems.map((item, index) => {
             const imgSrc = images[item.id];
             if (!imgSrc) return null;
 
             return (
               <Col md={4} key={item.id}>
-                <Link to={item.to} className="Portfolio-card-link">
-                  <article className="Portfolio-card">
-                    <img
-                      src={imgSrc}
-                      alt={item.title}
-                      className="Portfolio-img"
-                      loading="lazy"
-                    />
+                <motion.div
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                >
+                  <Link to={item.to} className="Portfolio-card-link">
+                    <article className="Portfolio-card">
+                      <img
+                        src={imgSrc}
+                        alt={item.title}
+                        className="Portfolio-img"
+                        loading="lazy"
+                      />
 
-                    <div className="Portfolio-overlay">
-                      <h3 className="Overlay-title">{item.title}</h3>
-                      <span className="Overlay-tag">view →</span>
-                    </div>
-                  </article>
-                </Link>
+                      <div className="Portfolio-overlay">
+                        <h3 className="Overlay-title">{item.title}</h3>
+                        <span className="Overlay-tag">view project →</span>
+                      </div>
+                    </article>
+                  </Link>
+                </motion.div>
               </Col>
             );
           })}

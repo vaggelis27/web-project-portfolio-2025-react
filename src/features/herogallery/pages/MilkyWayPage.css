@@ -1,93 +1,71 @@
-body {
-  background-color: transparent;
-}
-.milkyway-gallery-container {
-  padding-top: 10px;
+.milky-way-gallery-container {
+  padding-top: 100px;
+  max-width: 1400px;
 }
 
-.milkyway-page {
+.milky-way-gallery-title {
+  font-family: var(--font-serif);
+  font-size: 3.5rem;
+  color: var(--color-primary);
+  margin-bottom: 60px;
+}
+
+.milky-way-card {
   position: relative;
-  min-height: 100vh;
-  width: 100%;
-}
-
-.milkyway-page__background {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  background: var(--bg-pages);
-}
-
-.milkyway-page__content {
-  position: relative;
-  z-index: 1;
-}
-
-/* Gallery title */
-.milkyway-gallery-title {
-  color: black;
-  margin-bottom: 40px;
-}
-
-/* Gallery card */
-.milkyway-card {
-  position: relative;
-  aspect-ratio: 2 / 3;
+  aspect-ratio: 1 / 1;
   overflow: hidden;
   cursor: pointer;
-  height: 100%;
+  background: #eee;
 }
 
-.milkyway-item {
-  display: block;
-  text-decoration: none;
-  color: inherit;
-  height: 100%;
-}
-
-/* Image inside card */
-.milkyway-card img {
+.milky-way-image {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  display: block;
-  transition: transform 0.3s ease;
-}
-/* HOVER EFFECT: Zoom image on hover */
-.milkyway-card:hover img {
-  transform: scale(1.05);
+  transition: transform 0.8s cubic-bezier(0.2, 1, 0.3, 1);
 }
 
-/* Dark overlay */
-.milkyway-card::after {
+.milky-way-card:hover .milky-way-image {
+  transform: scale(1.1);
+}
+
+.milky-way-card::after {
   content: "";
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.35);
+  background: rgba(0, 0, 0, 0.4);
   opacity: 0;
-  transition: opacity 0.3s ease;
+  transition: opacity 0.5s ease;
 }
 
-/* Show overlay on hover */
-.milkyway-card:hover::after {
+.milky-way-card:hover::after {
   opacity: 1;
 }
 
-/* Title on hover */
-.milkyway-card .milkyway-card-title {
+.milky-way-card-title {
   position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #fff;
-  font-size: 1.2rem;
+  bottom: 20px;
+  left: 20px;
+  right: 20px;
+  color: white;
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
   opacity: 0;
-  z-index: 2;
-  transition: opacity 0.3s ease;
+  transform: translateY(10px);
+  transition: all 0.5s ease;
+  z-index: 10;
+  text-align: center;
 }
 
-/* Show title on hover */
-.milkyway-card:hover .milkyway-card-title {
+.milky-way-card:hover .milky-way-card-title {
   opacity: 1;
+  transform: translateY(0);
+}
+
+@media (max-width: 768px) {
+  .milky-way-gallery-title {
+    font-size: 2.5rem;
+  }
 }
